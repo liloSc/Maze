@@ -8,17 +8,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="65.0" prefWidth="257.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.HelloController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
     <Label fx:id="welcomeText" text="Name of Game">
       <font>
-         <Font name="Arial" size="28.0" />
+         <Font name="Avenir Book" size="47.0" />
       </font></Label>
     <Button onAction="#onHelloButtonClick" text="press enter" />
-   <ImageView fitHeight="85.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="226.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@dog_left_1.png" />
       </image>
