@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.Controller">
+   <children>
+      <Label layoutX="56.0" layoutY="43.0" text="Select a character">
+         <font>
+            <Font name="Retro Gaming" size="18.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c9c9c9" height="113.0" layoutX="56.0" layoutY="97.0" stroke="#d7d7d7" strokeType="INSIDE" width="113.0" />
+      <ImageView fitHeight="89.0" fitWidth="89.0" layoutX="68.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/dog_left_1.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c9c9c9" height="113.0" layoutX="235.0" layoutY="97.0" stroke="#d7d7d7" strokeType="INSIDE" width="113.0" />
+      <ImageView fitHeight="89.0" fitWidth="89.0" layoutX="247.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/dog_left_1.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c9c9c9" height="113.0" layoutX="412.0" layoutY="97.0" stroke="#d7d7d7" strokeType="INSIDE" width="113.0" />
+      <ImageView fitHeight="89.0" fitWidth="89.0" layoutX="424.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/dog_left_1.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c9c9c9" height="113.0" layoutX="588.0" layoutY="97.0" stroke="#d7d7d7" strokeType="INSIDE" width="113.0" />
+      <ImageView fitHeight="89.0" fitWidth="89.0" layoutX="600.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/dog_left_1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="247.0" fitWidth="247.0" layoutX="272.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/dog_left_1.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="348.0" layoutY="498.0" onMouseClicked="#switchToLevelSelection" text="Next">
+         <font>
+            <Font name="Retro Gaming" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
