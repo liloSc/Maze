@@ -16,6 +16,8 @@ public class ControllerCharacterSelection {
     private Scene scene;
 
     private Parent root;
+    
+    
     public void switchToLevelSelection(MouseEvent event) {
 
         try {
