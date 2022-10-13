@@ -1,4 +1,4 @@
-package com.example.maze.Controller;
+package com.example.maze;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

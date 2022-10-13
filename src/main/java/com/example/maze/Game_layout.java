@@ -1,4 +1,4 @@
-package com.example.maze.Model;
+package com.example.maze;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
