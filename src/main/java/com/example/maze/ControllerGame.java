@@ -1,7 +1,7 @@
-package com.example.maze.Controller;
+package com.example.maze;
 
-import com.example.maze.Model.Direction;
-import com.example.maze.Model.Position;
+import com.example.maze.Direction;
+import com.example.maze.Position;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

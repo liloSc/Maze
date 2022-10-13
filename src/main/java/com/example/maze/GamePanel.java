@@ -1,4 +1,4 @@
-package com.example.maze.Model;
+package com.example.maze;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

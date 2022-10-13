@@ -1,4 +1,4 @@
-package com.example.maze.Controller;
+package com.example.maze;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
