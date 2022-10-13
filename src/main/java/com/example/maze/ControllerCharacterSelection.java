@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -16,6 +18,17 @@ public class ControllerCharacterSelection {
     private Scene scene;
 
     private Parent root;
+    
+    @FXML private ImageView charac1;
+    @FXML private ImageView bigCharac1;
+    @FXML private ImageView charac2;
+    @FXML private ImageView bigCharac2;
+    @FXML private ImageView charac3;
+    @FXML private ImageView bigCharac3;
+    @FXML private ImageView charac4;
+    @FXML private ImageView bigCharac4;
+    
+ 
     
     
     public void switchToLevelSelection(MouseEvent event) {
@@ -32,5 +45,38 @@ public class ControllerCharacterSelection {
         } catch (Exception e) {
             System.out.println("Can not load the Scene Level Selection");
         }
+    }
+    
+   
+    
+
+    private void hideImage() {
+    	bigCharac1.setVisible(false);
+    	bigCharac2.setVisible(false);
+    	bigCharac3.setVisible(false);
+    	bigCharac4.setVisible(false);
+    }
+    
+    public void animateCharacter(MouseEvent event) {
+    	
+    	if (event.getSource()== charac1) {
+    		hideImage();
+    		bigCharac1.setVisible(true);
+    	}
+    	else if (event.getSource()== charac2) {
+    		hideImage();
+    		bigCharac2.setVisible(true);
+    		
+    	}
+    	else if (event.getSource()== charac3) {
+    		hideImage();
+    		bigCharac3.setVisible(true);
+    		
+    	}
+    	else if (event.getSource()== charac4) {
+    		hideImage();
+    		bigCharac4.setVisible(true);
+    	}
+    	
     }
 }
