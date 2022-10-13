@@ -1,6 +1,5 @@
-package com.example.maze;
+package com.example.maze.Model;
 
-import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Background;

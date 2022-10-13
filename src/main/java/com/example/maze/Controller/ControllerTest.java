@@ -1,4 +1,4 @@
-package com.example.maze;
+package com.example.maze.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,22 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Controller {
+public class ControllerTest {
     @FXML
 
     private Stage stage;
@@ -76,13 +66,14 @@ public class Controller {
             System.out.println("Can not load the Scene Level Selection");
         }
     }
-KeyHandler keyHandler= new KeyHandler();
-    int playerx=100;
-    int playery= 100;
-    int playerspeed=4;
+
+    //KeyHandler keyHandler= new KeyHandler();
+    int playerx = 100;
+    int playery = 100;
+    int playerspeed = 4;
 
 
-    public void switchToGame(MouseEvent event) {
+  /*  public void switchToGame(MouseEvent event) {
         GamePanel gameBoard = new GamePanel();
      /*   GridPane gameBoard = new GridPane();
         gameBoard.setPrefSize(800, 600);
@@ -108,18 +99,18 @@ KeyHandler keyHandler= new KeyHandler();
 
         gameBoard.getChildren().add(canvas);*/
 
-        // panel_start.setPrefSize(300, 400);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    // panel_start.setPrefSize(300, 400);
+    /*    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(gameBoard);
         scene.addEventHandler(KeyEvent.KEY_PRESSED,keyHandler);
 
         stage.setScene(scene);
         gameBoard.startGameThread();
-    }
+    }*/
     public void switchToGame2(MouseEvent event) {
         try {
 
-            Parent root  = FXMLLoader.load(getClass().getResource("game.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("game.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

@@ -1,6 +1,7 @@
+package com.example.maze.Controller;
 
-package com.example.maze;
-
+import com.example.maze.Model.Direction;
+import com.example.maze.Model.Position;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,14 +22,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ControllerGame implements Initializable {
+public class  ControllerGame implements Initializable {
 
     //A snake body part is 50x50
     private final Double snakeSize = 50.;
     //The head of the snake is created, at position (250,250)
     private final Rectangle snakeHead = new Rectangle(250,250,snakeSize,snakeSize);
     //First snake tail created behind the head of the snake
-    Rectangle snakeTail_1 = new Rectangle(snakeHead.getX() - snakeSize,snakeHead.getY(),snakeSize,snakeSize);
+    //  Rectangle snakeTail_1 = new Rectangle(snakeHead.getX() - snakeSize,snakeHead.getY(),snakeSize,snakeSize);
 
     //x and y position of the snake head different from starting position
     double xPos = snakeHead.getLayoutX();
@@ -70,9 +71,10 @@ public class ControllerGame implements Initializable {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
-        snakeBody.add(snakeTail_1);
+        //  snakeBody.add(snakeTail_1);
 
-        anchorPane.getChildren().addAll(snakeHead,snakeTail_1);
+        //   anchorPane.getChildren().addAll(snakeHead,snakeTail_1);
+        anchorPane.getChildren().addAll(snakeHead);
     }
 
 
@@ -84,13 +86,13 @@ public class ControllerGame implements Initializable {
     //Change position with key pressed
     @FXML
     void moveSquareKeyPressed(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.W) && direction != Direction.DOWN){
+        if(event.getCode().equals(KeyCode.UP) && direction != Direction.DOWN){
             direction = Direction.UP;
-        } else if(event.getCode().equals(KeyCode.S) && direction != Direction.UP){
+        } else if(event.getCode().equals(KeyCode.DOWN) && direction != Direction.UP){
             direction = Direction.DOWN;
-        }else if(event.getCode().equals(KeyCode.A) && direction != Direction.RIGHT){
+        }else if(event.getCode().equals(KeyCode.LEFT) && direction != Direction.RIGHT){
             direction = Direction.LEFT;
-        }else if(event.getCode().equals(KeyCode.D) && direction != Direction.LEFT){
+        }else if(event.getCode().equals(KeyCode.RIGHT) && direction != Direction.LEFT){
             direction = Direction.RIGHT;
         }
     }
