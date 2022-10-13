@@ -75,8 +75,6 @@ public class Controller {
         } catch (Exception e) {
             System.out.println("Can not load the Scene Level Selection");
         }
-
-
     }
 KeyHandler keyHandler= new KeyHandler();
     int playerx=100;
