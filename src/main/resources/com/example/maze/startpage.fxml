@@ -17,7 +17,7 @@
       <font>
          <Font name="Retro Gaming" size="47.0" />
       </font></Label>
-    <Button onAction="#switchToLevelSelection" onKeyPressed="#switchToCharacterSelection" style="-fx-background-color: Transparent;" text="press enter" textFill="#322eff">
+    <Button onKeyPressed="#switchToCharacterSelection" style="-fx-background-color: Transparent;" text="press enter" textFill="#322eff">
       <font>
          <Font name="Retro Gaming" size="18.0" />
       </font></Button>
