@@ -32,29 +32,39 @@ public class ControllerCharacterSelection {
     
     
     public void switchToLevelSelection(MouseEvent event) {
+    	if(isCharacSelected()==true) {
 
-        try {
+            try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("levelselection.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("levelselection.fxml"));
 
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
 
-        } catch (Exception e) {
-            System.out.println("Can not load the Scene Level Selection");
-        }
+            } catch (Exception e) {
+                System.out.println("Can not load the Scene Level Selection");
+            }
+    		
+    	}
+
     }
-    
-   
-    
 
     private void hideImage() {
     	bigCharac1.setVisible(false);
     	bigCharac2.setVisible(false);
     	bigCharac3.setVisible(false);
     	bigCharac4.setVisible(false);
+    }
+    
+    private boolean isCharacSelected() {
+    	if (bigCharac1.isVisible() || bigCharac2.isVisible() || bigCharac3.isVisible() || bigCharac4.isVisible() ) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
     
     public void animateCharacter(MouseEvent event) {
