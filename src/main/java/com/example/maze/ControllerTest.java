@@ -1,5 +1,5 @@
-package com.example.maze;
-
+//package com.example.maze;
+/*
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -99,7 +99,7 @@ public class ControllerTest {
 
         gameBoard.getChildren().add(canvas);*/
 
-    // panel_start.setPrefSize(300, 400);
+// panel_start.setPrefSize(300, 400);
     /*    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(gameBoard);
         scene.addEventHandler(KeyEvent.KEY_PRESSED,keyHandler);
@@ -107,7 +107,7 @@ public class ControllerTest {
         stage.setScene(scene);
         gameBoard.startGameThread();
     }*/
-    public void switchToGame2(MouseEvent event) {
+  /*  public void switchToGame2(MouseEvent event) {
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("game.fxml"));
@@ -119,5 +119,6 @@ public class ControllerTest {
         } catch (Exception e) {
             System.out.println("Can not load the Switch to Game");
         }
-    }
+    }*//*
 }
+*/
