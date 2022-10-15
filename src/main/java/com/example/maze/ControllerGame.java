@@ -22,12 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class  ControllerGame implements Initializable {
+public class ControllerGame implements Initializable {
 
     //A snake body part is 50x50
     private final Double snakeSize = 50.;
     //The head of the snake is created, at position (250,250)
-    private final Rectangle snakeHead = new Rectangle(250,250,snakeSize,snakeSize);
+    private final Rectangle snakeHead = new Rectangle(250, 250, snakeSize, snakeSize);
     //First snake tail created behind the head of the snake
     //  Rectangle snakeTail_1 = new Rectangle(snakeHead.getX() - snakeSize,snakeHead.getY(),snakeSize,snakeSize);
 
@@ -53,12 +53,10 @@ public class  ControllerGame implements Initializable {
     private Button startButton;
 
     //Timeline that is running the game every time the KeyFrame is called (0.3 s)
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3),e ->{
-        positions.add(new Position(snakeHead.getX() +xPos, snakeHead.getY() + yPos));
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), e -> {
+        positions.add(new Position(snakeHead.getX() + xPos, snakeHead.getY() + yPos));
         moveSnakeHead(snakeHead);
-        for (int i = 1; i < snakeBody.size(); i++) {
-            moveSnakeTail(snakeBody.get(i),i);
-        }
+
         gameTicks++;
     }));
 
@@ -70,10 +68,6 @@ public class  ControllerGame implements Initializable {
 
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
-
-        //  snakeBody.add(snakeTail_1);
-
-        //   anchorPane.getChildren().addAll(snakeHead,snakeTail_1);
         anchorPane.getChildren().addAll(snakeHead);
     }
 
@@ -82,61 +76,52 @@ public class  ControllerGame implements Initializable {
     void start(MouseEvent event) {
         //Restart not implemented yet
     }
-
+boolean isActive=false;
     //Change position with key pressed
     @FXML
     void moveSquareKeyPressed(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.UP) && direction != Direction.DOWN){
-            direction = Direction.UP;
-        } else if(event.getCode().equals(KeyCode.DOWN) && direction != Direction.UP){
-            direction = Direction.DOWN;
-        }else if(event.getCode().equals(KeyCode.LEFT) && direction != Direction.RIGHT){
-            direction = Direction.LEFT;
-        }else if(event.getCode().equals(KeyCode.RIGHT) && direction != Direction.LEFT){
-            direction = Direction.RIGHT;
+        if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
+
+
+            if (event.getCode().equals(KeyCode.UP)) {
+                direction = Direction.UP;
+                isActive=true;
+            } else if (event.getCode().equals(KeyCode.DOWN)) {
+                direction = Direction.DOWN;
+                isActive=true;
+            } else if (event.getCode().equals(KeyCode.LEFT)) {
+                direction = Direction.LEFT;
+                isActive=true;
+            } else if (event.getCode().equals(KeyCode.RIGHT)) {
+                direction = Direction.RIGHT;
+                isActive=true;
+            }
+        }
+    }
+    @FXML
+    void moveSquareKeyReleased(KeyEvent event) {
+        if (KeyEvent.KEY_RELEASED.equals(event.getEventType())) {
+            isActive=false;
+
         }
     }
 
-    //Create another snake body part
-    @FXML
-    void addBodyPart(ActionEvent event) {
-        addSnakeTail();
-    }
 
     //Snake head is moved in the direction specified
-    private void moveSnakeHead(Rectangle snakeHead){
-        if(direction.equals(Direction.RIGHT)){
+    private void moveSnakeHead(Rectangle snakeHead) {
+        if (direction.equals(Direction.RIGHT)&&   isActive) {
             xPos = xPos + snakeSize;
             snakeHead.setTranslateX(xPos);
-        } else if(direction.equals(Direction.LEFT)) {
+        } else if (direction.equals(Direction.LEFT)&&   isActive) {
             xPos = xPos - snakeSize;
             snakeHead.setTranslateX(xPos);
-        }else if(direction.equals(Direction.UP)) {
+        } else if (direction.equals(Direction.UP)&&   isActive) {
             yPos = yPos - snakeSize;
             snakeHead.setTranslateY(yPos);
-        }else if(direction.equals(Direction.DOWN)) {
+        } else if (direction.equals(Direction.DOWN)&&   isActive) {
             yPos = yPos + snakeSize;
             snakeHead.setTranslateY(yPos);
         }
-    }
-
-    //A specific tail is moved to the position of the head x game ticks after the head was there
-    private void moveSnakeTail(Rectangle snakeTail, int tailNumber){
-        double yPos = positions.get(gameTicks - tailNumber + 1).getYPos() - snakeTail.getY();
-        double xPos = positions.get(gameTicks - tailNumber + 1).getXPos() - snakeTail.getX();
-        snakeTail.setTranslateX(xPos);
-        snakeTail.setTranslateY(yPos);
-    }
-
-    //New snake tail is created and added to the snake and the anchor pane
-    private void addSnakeTail(){
-        Rectangle rectangle = snakeBody.get(snakeBody.size() - 1);
-        Rectangle snakeTail = new Rectangle(
-                snakeBody.get(1).getX() + xPos + snakeSize,
-                snakeBody.get(1).getY() + yPos,
-                snakeSize,snakeSize);
-        snakeBody.add(snakeTail);
-        anchorPane.getChildren().add(snakeTail);
     }
 }
 
