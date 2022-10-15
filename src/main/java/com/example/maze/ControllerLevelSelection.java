@@ -12,7 +12,7 @@ public class ControllerLevelSelection {
     private Scene scene;
 
     private Parent root;
-    public void switchToGame2(MouseEvent event) {
+    public void switchToGame(MouseEvent event) {
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("game.fxml"));

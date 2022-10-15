@@ -29,7 +29,7 @@ public class ControllerGame implements Initializable {
     //x and y position of the rectangle different from starting position
     double xPos = rectangle_player.getLayoutX();
     double yPos = rectangle_player.getLayoutY();
-    private Direction direction;
+    private Direction direction = Direction.RIGHT;
 
 
     //Game ticks is how many times the rectangle have moved

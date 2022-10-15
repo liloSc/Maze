@@ -13,7 +13,7 @@
             <Font name="Retro Gaming" size="36.0" />
          </font>
       </Label>
-      <Button layoutX="281.0" layoutY="433.0" mnemonicParsing="false" onMouseClicked="#switchToGame2" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: Transparent;" text="Play" textFill="#411ce8">
+      <Button layoutX="281.0" layoutY="433.0" mnemonicParsing="false" onMouseClicked="#switchToGame" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: Transparent;" text="Play" textFill="#411ce8">
          <font>
             <Font name="Retro Gaming" size="24.0" />
          </font>
