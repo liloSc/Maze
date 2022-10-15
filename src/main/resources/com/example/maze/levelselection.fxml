@@ -18,20 +18,20 @@
             <Font name="Retro Gaming" size="24.0" />
          </font>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="40.0" layoutX="198.0" layoutY="132.0" stroke="#72727200" strokeType="INSIDE" width="205.0" />
-      <Label alignment="CENTER" layoutX="378.0" layoutY="218.0" text="Easy" textAlignment="CENTER">
+      <Rectangle fx:id="rectangle_level1" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="40.0" layoutX="301.0" layoutY="240.0" onMouseClicked="#selectLevel" stroke="#72727200" strokeType="INSIDE" style="-fx-stroke: BLue;" visible="false" width="205.0" />
+      <Label fx:id="level1" alignment="CENTER" layoutX="378.0" layoutY="251.0" onMouseClicked="#selectLevel" text="Easy" textAlignment="CENTER">
          <font>
             <Font name="Retro Gaming" size="14.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="40.0" layoutX="198.0" layoutY="172.0" stroke="#72727200" strokeType="INSIDE" width="205.0" />
-      <Label alignment="CENTER" layoutX="343.0" layoutY="258.0" text="Intermediate" textAlignment="CENTER">
+      <Rectangle fx:id="rectangle_level2" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="40.0" layoutX="301.0" layoutY="280.0" onMouseClicked="#selectLevel" stroke="#72727200" strokeType="INSIDE" style="-fx-stroke: Blue;" visible="false" width="205.0" />
+      <Label fx:id="level2" alignment="CENTER" layoutX="343.0" layoutY="291.0" onMouseClicked="#selectLevel" text="Intermediate" textAlignment="CENTER">
          <font>
             <Font name="Retro Gaming" size="14.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="40.0" layoutX="198.0" layoutY="212.0" stroke="#72727200" strokeType="INSIDE" width="205.0" />
-      <Label alignment="CENTER" layoutX="358.0" layoutY="298.0" text="Advanced" textAlignment="CENTER">
+      <Rectangle fx:id="rectangle_level3" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="40.0" layoutX="301.0" layoutY="319.0" onMouseClicked="#selectLevel" stroke="#72727200" strokeType="INSIDE" style="-fx-stroke: Blue;" visible="false" width="205.0" />
+      <Label fx:id="level3" alignment="CENTER" layoutX="358.0" layoutY="330.0" onMouseClicked="#selectLevel" text="Advanced" textAlignment="CENTER">
          <font>
             <Font name="Retro Gaming" size="14.0" />
          </font>
