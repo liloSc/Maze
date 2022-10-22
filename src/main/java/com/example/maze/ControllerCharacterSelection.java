@@ -119,7 +119,7 @@ public class ControllerCharacterSelection {
             //   setPlayerCharacter(Player.Char4);
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("game.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game_layout.fxml"));
             Parent root = (Parent) loader.load();
 
             System.out.println("Char Selection: " + player.character);

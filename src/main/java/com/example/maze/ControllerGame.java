@@ -25,7 +25,7 @@ public class ControllerGame implements Initializable {
     //Rectangle is 50x50
     private final double rectangleSize = 50.0;
     //The Rectangle is created, at position (250,250)
-    private final Rectangle rectangle_player = new Rectangle(600, 0, rectangleSize, rectangleSize);
+    private final Rectangle rectangle_player = new Rectangle(0, 0, rectangleSize, rectangleSize);
 
     
     //x and y position of the rectangle different from starting position
@@ -158,6 +158,7 @@ public class ControllerGame implements Initializable {
     //Change position with key pressed
     @FXML
     void moveSquareKeyPressed(KeyEvent event) {
+    	System.out.println("I am in KeyPressed");
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
             isActive = true;
 
