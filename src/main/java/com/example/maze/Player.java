@@ -20,15 +20,35 @@ public class Player{
         }
 */
 
-public final class Player {
-    String character;
+public class Player {
+    private String character;
 
     private Player player;
 
-    Player(String character) {
+   public  Player(String character) {
         this.character=character;
     }
+	
+	public void test() {
+		System.out.println("test");
+		character = "cool";
+	}
+	
 
-
+	public void setCharacter(String character) {
+		this.character = character;
+		System.out.println(character +" is your chosen character");
+		return;
+	}
+	
+	public String getCharacter() {
+		System.out.println(character +" The character is taken");
+		return character;
+	}
+	
+	
+    
+    
+    
 
 }

@@ -63,6 +63,7 @@ public class ControllerGame_layout implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+
 		image = getCharacterImage();
 	    player.setFill(new ImagePattern(image));
 		GridPane.setConstraints(player, 0, 0);
@@ -71,6 +72,11 @@ public class ControllerGame_layout implements Initializable {
 		yPos = GridPane.getColumnIndex(player);
 		System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
 	    
+
+
+		
+System.out.println("teeeeeeeest");
+	
 
 		Button enemy = new Button();
 		GridPane.setRowIndex(enemy, 20);

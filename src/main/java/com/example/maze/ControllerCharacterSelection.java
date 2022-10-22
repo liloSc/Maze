@@ -95,7 +95,8 @@ public class ControllerCharacterSelection {
             hideImage();
             bigCharac1.setVisible(true);
             //  player.setPlayer(player);
-            player.character = "charac1";
+            											//player.character = "charac1";
+            player.setCharacter("charac1");
             //   setPlayerCharacter(Player.Char1);
 
         } else if (event.getSource() == charac2) {
@@ -103,26 +104,29 @@ public class ControllerCharacterSelection {
             bigCharac2.setVisible(true);
             //   player.setPlayer(player);
            // System.out.println("open Charc2");
-            player.character = "charac2";
+            										// player.character = "charac2";
+            player.setCharacter("charac2");
             // setPlayerCharacter(Player.Char2);
 
         } else if (event.getSource() == charac3) {
             hideImage();
             bigCharac3.setVisible(true);
-            player.character = "charac3";
+            											//player.character = "charac3";
+            player.setCharacter("charac3");
             //   setPlayerCharacter(Player.Char3);
 
         } else if (event.getSource() == charac4) {
             hideImage();
             bigCharac4.setVisible(true);
-            player.character = "charac4";
+            										//  player.character = "charac4";
+            player.setCharacter("charac4");
             //   setPlayerCharacter(Player.Char4);
         }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game_layout.fxml"));
             Parent root = (Parent) loader.load();
 
-            System.out.println("Char Selection: " + player.character);
+            System.out.println("Char Selection: " + player.getCharacter());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

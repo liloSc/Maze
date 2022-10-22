@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 			
 	public ControllerGame_layout gamecontroller;
-	
+	public Player player; // Creating an instance of player
 	
     @Override
     public void start(Stage stage) {
@@ -24,7 +24,14 @@ public class Main extends Application {
        // gamecontroller = new ControllerGame_layout();
        // gamecontroller.layoutcontroller();
     //    gamecontroller.Main = this;
+        
+        
+        
+        player = new Player("test");
+        //player.Main = this;
+        player.test();
     }
+
 
 
 
