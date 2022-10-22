@@ -51,25 +51,50 @@ public class ControllerGame implements Initializable {
     //Method called after the stage is loaded
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        image = getImage();
+        image = getCharacterImage();
         rectangle_player.setFill(new ImagePattern(image));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
         anchorPane.getChildren().addAll(rectangle_player);
     }
 
-    private Image getImage() {
+    ControllerCharacterSelection controller = new ControllerCharacterSelection();
+
+    private Image getCharacterImage() {
+
+       // Player player = controller.getPlayerCharacter();
+        System.out.println(player);
         String path = "resources/player/dog_left_1.png";
-        if (isActive) {
-            if (direction == Direction.UP)
-                path = "resources/player/dog_up_1.png";
-            if (direction == Direction.DOWN)
-                path = "resources/player/dog_down_1.png";
-            if (direction == Direction.LEFT)
-                path = "resources/player/dog_left_1.png";
-            if (direction == Direction.RIGHT)
-                path = "resources/player/dog_right_1.png";
+      /*  if(player==Player.Char2){
+
+            path = "resources/player/heart.png";
+
         }
+        if(player==Player.Char3){
+
+            path = "resources/player/banana.png";
+
+        }
+        if(player==Player.Char4){
+
+            path = "resources/player/pacman.png";
+
+        }*/
+        if (isActive) {
+            //Dog
+        //    if(player==Player.Char1){
+                if (direction == Direction.UP)
+                    path = "resources/player/dog_up_1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/dog_down_1.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/dog_left_1.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/dog_right_1.png";
+
+          //  }
+
+            }
         Image image;
         try {
             image = new Image(new FileInputStream(path));
@@ -84,7 +109,6 @@ public class ControllerGame implements Initializable {
     void start(MouseEvent event) {
         //TODO: Restart not implemented yet
     }
-
 
 
     //Change position with key pressed
@@ -106,11 +130,18 @@ public class ControllerGame implements Initializable {
                 direction = Direction.RIGHT;
                 isActive = true;
             }
-            image = getImage();
+            image = getCharacterImage();
             rectangle_player.setFill(new ImagePattern(image));
         }
     }
-
+    Player player;
+    public void setPlayer(Player p) {
+        this.player = p;
+    }
+/*
+    public Player getPlayer() {
+        return this.player;
+    }*/
     @FXML
     void moveSquareKeyReleased(KeyEvent event) {
         if (KeyEvent.KEY_RELEASED.equals(event.getEventType())) {

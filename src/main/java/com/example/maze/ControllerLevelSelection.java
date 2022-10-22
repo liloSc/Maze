@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 public class ControllerLevelSelection {
 
+
     private Stage stage;
     private Scene scene;
 
@@ -38,11 +39,17 @@ public class ControllerLevelSelection {
 
     }
 
+    Player player;
+    public void setPlayer(Player p) {
+        this.player = p;
+    }
+
     public void switchToGame(MouseEvent event) {
         if (isLevelSelected() == true) {
             try {
 
                 Parent root = FXMLLoader.load(getClass().getResource("game.fxml"));
+
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
@@ -64,7 +71,8 @@ public class ControllerLevelSelection {
 
     @FXML
     public void selectLevel(MouseEvent event) {
-        System.out.println(((Control) event.getSource()).getId());
+     //   System.out.println("Char sel: "+ player.character);
+       // System.out.println(((Control) event.getSource()).getId());
         if ((event.getSource() == rectangle_level1) || (event.getSource() == level1)) {
             hideLevelSelection();
             rectangle_level1.setVisible(true);
