@@ -32,14 +32,11 @@ public class CombiningGame implements Initializable {
     @FXML
     private GridPane gamelayoutgrid;
 
-   // private FlowPane flowpane;
+    // private FlowPane flowpane;
+
+    private final double rectangleSize = 20.0;
     @FXML
     private Rectangle rectangleid;
-
-    //Rectangle is 50x50
-    private final double rectangleSize = 20.0;
-    //The Rectangle is created, at position (250,250)
-   // private final Rectangle rectangle_player = new Rectangle(180, 440, rectangleSize, rectangleSize);
 
 
     //x and y position of the rectangle different from starting position
@@ -51,16 +48,15 @@ public class CombiningGame implements Initializable {
     private Direction direction = Direction.RIGHT;
 
 
-
     //Variable to look if key is pressed
     boolean isActive = false;
 
 
     //Timeline that is running the game every time the KeyFrame is called (0.1s)
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
-    //    movePlayer(rectangle_player);
+
         moveRectangle(rectangleid);
-        //   gameTicks++;
+
     }));
 
     Image image;
@@ -75,11 +71,7 @@ public class CombiningGame implements Initializable {
 
         image = getCharacterImage();
         rectangleid.setFill(new ImagePattern(image));
-     /*   rectangle_player.setFill(new ImagePattern(image));
-        anchorPane.getChildren().addAll(rectangle_player);
-        rectangle_player.getLayoutBounds();
-        xPos = rectangle_player.getX();
-        yPos = rectangle_player.getY();*/
+
         doorClose.getLayoutBounds();
         xPosDoor = doorClose.getLayoutX();
         yPosDoor = doorClose.getLayoutY();
@@ -89,11 +81,6 @@ public class CombiningGame implements Initializable {
         System.out.println("DoorPos : [" + xPosDoor + ", " + yPosDoor + "]");
         System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
     }
-
-   /* public void Play() {
-        movePlayer(rectangle_player);
-        // gameTicks++;
-    }*/
 
 
     private Image getCharacterImage() {
@@ -118,7 +105,7 @@ public class CombiningGame implements Initializable {
 
             //Dog
             //    if(player==Player.Char1){
-            if (direction == Direction.UP){
+            if (direction == Direction.UP) {
                 System.out.println("Get Character Image UP");
                 path = "resources/player/dog_up_1.png";
             }
@@ -135,11 +122,8 @@ public class CombiningGame implements Initializable {
                 System.out.println("Get Character Image RIght");
                 path = "resources/player/dog_right_1.png";
             }
-
-            //  }
-
         }
-     //   Image characterImage;
+        //   Image image;
         try {
             image = new Image(new FileInputStream(path));
         } catch (FileNotFoundException e) {
@@ -147,12 +131,11 @@ public class CombiningGame implements Initializable {
         }
         return image;
     }
+
     @FXML
     void start(MouseEvent event) {
         //TODO: Restart not implemented yet
     }
-
-
 
 
     //Change position with key pressed
@@ -176,7 +159,7 @@ public class CombiningGame implements Initializable {
                 isActive = true;
             }
             image = getCharacterImage();
-          //  rectangle_player.setFill(new ImagePattern(image));
+            rectangleid.setFill(new ImagePattern(image));
         }
     }
 
@@ -189,23 +172,7 @@ public class CombiningGame implements Initializable {
         }
     }
 
-    //Player is moved in the direction specified
-   /* private void movePlayer(Rectangle player) {
-        if (direction.equals(Direction.RIGHT) && isActive) {
-            xPos = xPos + rectangleSize;
-            player.setTranslateX(xPos);
-        } else if (direction.equals(Direction.LEFT) && isActive) {
-            xPos = xPos - rectangleSize;
-            player.setTranslateX(xPos);
-        } else if (direction.equals(Direction.UP) && isActive) {
-            yPos = yPos - rectangleSize;
-            player.setTranslateY(yPos);
-        } else if (direction.equals(Direction.DOWN) && isActive) {
-            yPos = yPos + rectangleSize;
-            player.setTranslateY(yPos);
-        }
-        System.out.println("[" + xPos + ", " + yPos + "]");
-    }*/
+   
     private void moveRectangle(Rectangle rectangle) {
         if (direction.equals(Direction.RIGHT) && isActive) {
             xPos = xPos + rectangleSize;
@@ -220,7 +187,7 @@ public class CombiningGame implements Initializable {
             yPos = yPos + rectangleSize;
             rectangle.setTranslateY(yPos);
         }
-     //   System.out.println("[" + xPos + ", " + yPos + "]");
+        //   System.out.println("[" + xPos + ", " + yPos + "]");
     }
 
     private void playerOnDoor() {
