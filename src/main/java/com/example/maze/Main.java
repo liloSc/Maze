@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent startpage = FXMLLoader.load(getClass().getResource("combining_game.fxml"));
+            Parent startpage = FXMLLoader.load(getClass().getResource("startpage.fxml"));
             Scene scene = new Scene(startpage);
             stage.setScene(scene);
             stage.show();

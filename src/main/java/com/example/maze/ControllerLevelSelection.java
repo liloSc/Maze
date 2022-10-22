@@ -48,7 +48,7 @@ public class ControllerLevelSelection {
         if (isLevelSelected() == true) {
             try {
 
-                Parent root = FXMLLoader.load(getClass().getResource("combining_game.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("Game_layout.fxml"));
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);

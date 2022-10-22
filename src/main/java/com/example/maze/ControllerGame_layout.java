@@ -63,6 +63,7 @@ public class ControllerGame_layout implements Initializable {
     private int[][] grid;
 	private int length = 60;
 	private int height = 40;
+	int i, j;
 	Image path = new Image("file:resources/player/GridB1.png",20,20, false, false);
 	Image wall = new Image("file:resources/player/GridW1.png",20,20, false, false);
 	
@@ -99,6 +100,8 @@ System.out.println("teeeeeeeest");
 		
 		Label label = new Label("test");
 	    GridPane.setConstraints(label, 30,30);
+	    
+	    
 	  //  movePlayer(player);
 	    
 	    gamelayoutgrid.getChildren().addAll(label, enemy, player, printGrid());
@@ -113,20 +116,22 @@ System.out.println("teeeeeeeest");
 	    
 		
 	}
+
 	
 	//fill the grid with a simple background
 	private Node printGrid() {
 		grid = new int [length][height];
 		gameLayout = new Game_layout(grid);
+
 		
 
 		GridPane GPane = new GridPane();
-		int i = 0;
-		int j = 0;
-		for(i = 0; i<length; i++) {
-			for (j = 0; j<height; j++) {
+		i = 0;
+		j = 0;
+		for(i = 0; i<length-1; i++) {
+			for (j = 0; j<height-1; j++) {
 				
-				if (grid[i][j] == 1) {
+				if (gameLayout.isWall(i, j) == true) {
 	
 				backgroundView = new ImageView();
 				backgroundView.setImage(wall);
@@ -142,7 +147,7 @@ System.out.println("teeeeeeeest");
 					
 					//System.out.println(grid[i][j]);
 				}
-				System.out.println(grid[i][j]);
+				
 				gamelayoutgrid.add(backgroundView, i, j);
 			}
 			
