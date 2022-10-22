@@ -119,6 +119,7 @@ System.out.println("teeeeeeeest");
 	
 	//fill the grid with a simple background
 	private Node printGrid() {
+		grid = new int [length][height];
 		gameLayout = new Game_layout(grid);
 
 		GridPane GPane = new GridPane();
@@ -126,11 +127,16 @@ System.out.println("teeeeeeeest");
 		int j = 0;
 		for(i = 0; i<length; i++) {
 			for (j = 0; j<height; j++) {
+				
+				if (grid[i][j] ==0) {
+					
+				
 				backgroundView = new ImageView();
 				backgroundView.setImage(background);
 				
 				gamelayoutgrid.add(backgroundView, i, j);
 				//System.out.println(grid[i][j]);
+				}
 			}
 			
 		}

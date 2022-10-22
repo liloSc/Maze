@@ -27,9 +27,12 @@ public class Game_layout {
 	    private Parent root;
 	    
 	    
-	    public Game_layout(int[][] grid) {
-	    	this.grid = grid;
+	    public Game_layout(int[][] gridc) {
+	    	this.grid = gridc;
+	    	
+	    	
 	    	createGrid();
+	    	System.out.println(grid);
 	    }
 	    
 	    public void switchToLevelSelection(MouseEvent event) {
@@ -50,20 +53,22 @@ public class Game_layout {
 	    
 	    
 	    //This is the model for the grid. At each position [i,j] the value is 0
-	    private void createGrid() {
+	    private int[][] createGrid() {
+	    	
 	    	
 	    	
 	    	int i = 0;
 	    	int j = 0;
 	    	
-	    	this.grid = new int [length][height];
+	    	grid = new int [length][height];
 	    	
 	    	for (i = 0; i< length; i++) {
 	    		for(j = 0; j< height; j++) {
 	    			grid[i][j]=0;
-	    			System.out.println(grid[i][j]);
+	    			//System.out.println(grid[i][j]);
 	    		}
 	    	}
+			return grid;
 	    	
 	    	}
 	
