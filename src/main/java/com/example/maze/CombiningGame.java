@@ -31,8 +31,8 @@ public class CombiningGame implements Initializable {
 
     @FXML
     private GridPane gamelayoutgrid;
-    @FXML
-    private FlowPane flowpane;
+
+   // private FlowPane flowpane;
     @FXML
     private Rectangle rectangleid;
 
@@ -74,6 +74,7 @@ public class CombiningGame implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         image = getCharacterImage();
+        rectangleid.setFill(new ImagePattern(image));
      /*   rectangle_player.setFill(new ImagePattern(image));
         anchorPane.getChildren().addAll(rectangle_player);
         rectangle_player.getLayoutBounds();
@@ -97,6 +98,7 @@ public class CombiningGame implements Initializable {
 
     private Image getCharacterImage() {
         String path = "resources/player/dog_left_1.png";
+
       /*  if(player==Player.Char2){
 
             path = "resources/player/heart.png";
@@ -113,27 +115,37 @@ public class CombiningGame implements Initializable {
 
         }*/
         if (isActive) {
+
             //Dog
             //    if(player==Player.Char1){
-            if (direction == Direction.UP)
+            if (direction == Direction.UP){
+                System.out.println("Get Character Image UP");
                 path = "resources/player/dog_up_1.png";
-            if (direction == Direction.DOWN)
+            }
+
+            if (direction == Direction.DOWN) {
+                System.out.println("Get Character Image DOWN");
                 path = "resources/player/dog_down_1.png";
-            if (direction == Direction.LEFT)
+            }
+            if (direction == Direction.LEFT) {
+                System.out.println("Get Character ImageLEFT ");
                 path = "resources/player/dog_left_1.png";
-            if (direction == Direction.RIGHT)
+            }
+            if (direction == Direction.RIGHT) {
+                System.out.println("Get Character Image RIght");
                 path = "resources/player/dog_right_1.png";
+            }
 
             //  }
 
         }
-        Image characterImage;
+     //   Image characterImage;
         try {
-            characterImage = new Image(new FileInputStream(path));
+            image = new Image(new FileInputStream(path));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return characterImage;
+        return image;
     }
     @FXML
     void start(MouseEvent event) {
@@ -148,7 +160,7 @@ public class CombiningGame implements Initializable {
     void moveSquareKeyPressed(KeyEvent event) {
 
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
-           // isActive = true;
+            isActive = true;
 
             if (event.getCode().equals(KeyCode.UP)) {
                 direction = Direction.UP;
@@ -208,7 +220,7 @@ public class CombiningGame implements Initializable {
             yPos = yPos + rectangleSize;
             rectangle.setTranslateY(yPos);
         }
-        System.out.println("[" + xPos + ", " + yPos + "]");
+     //   System.out.println("[" + xPos + ", " + yPos + "]");
     }
 
     private void playerOnDoor() {
