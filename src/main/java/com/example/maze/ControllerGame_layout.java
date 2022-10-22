@@ -63,7 +63,9 @@ public class ControllerGame_layout implements Initializable {
     private int[][] grid;
 	private int length = 60;
 	private int height = 40;
-	Image background = new Image("file:resources/player/GridB1.png",20,20, false, false);
+	Image path = new Image("file:resources/player/GridB1.png",20,20, false, false);
+	Image wall = new Image("file:resources/player/GridW1.png",20,20, false, false);
+	
 	ImageView backgroundView;
 
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
@@ -116,6 +118,7 @@ System.out.println("teeeeeeeest");
 	private Node printGrid() {
 		grid = new int [length][height];
 		gameLayout = new Game_layout(grid);
+		
 
 		GridPane GPane = new GridPane();
 		int i = 0;
@@ -123,15 +126,24 @@ System.out.println("teeeeeeeest");
 		for(i = 0; i<length; i++) {
 			for (j = 0; j<height; j++) {
 				
-				if (grid[i][j] ==0) {
-					
-				
+				if (grid[i][j] == 1) {
+	
 				backgroundView = new ImageView();
-				backgroundView.setImage(background);
+				backgroundView.setImage(wall);
 				
-				gamelayoutgrid.add(backgroundView, i, j);
+				
 				//System.out.println(grid[i][j]);
 				}
+				
+				else {
+					backgroundView = new ImageView();
+					backgroundView.setImage(path);
+					
+					
+					//System.out.println(grid[i][j]);
+				}
+				System.out.println(grid[i][j]);
+				gamelayoutgrid.add(backgroundView, i, j);
 			}
 			
 		}

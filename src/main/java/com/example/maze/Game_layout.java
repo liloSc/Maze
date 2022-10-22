@@ -64,8 +64,17 @@ public class Game_layout {
 	    	
 	    	for (i = 0; i< length; i++) {
 	    		for(j = 0; j< height; j++) {
-	    			grid[i][j]=0;
-	    			//System.out.println(grid[i][j]);
+	    			grid[i][j]=8;
+	    			/*
+	    			if (i == 0) {
+	    				grid[i][j]=1;
+	    			}
+	    			
+	    			else {
+	    				grid[i][j]=0;
+	    			}
+	    			*/
+	    			
 	    		}
 	    	}
 			return grid;
