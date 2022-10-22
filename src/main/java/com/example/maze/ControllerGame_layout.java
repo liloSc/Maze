@@ -61,8 +61,8 @@ public class ControllerGame_layout implements Initializable {
 
     Game_layout gameLayout;
     private int[][] grid;
-	private int length = 60;
-	private int height = 40;
+	private int length = 61;
+	private int height = 41;
 	int i, j;
 	Image path = new Image("file:resources/player/GridB1.png",20,20, false, false);
 	Image wall = new Image("file:resources/player/GridW1.png",20,20, false, false);
