@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -22,13 +23,22 @@ import java.util.ResourceBundle;
 public class ControllerGame implements Initializable {
 
     //Rectangle is 50x50
-    private final Double rectangleSize = 50.;
+    private final double rectangleSize = 50.0;
     //The Rectangle is created, at position (250,250)
-    private final Rectangle rectangle_player = new Rectangle(250, 250, rectangleSize, rectangleSize);
+    private final Rectangle rectangle_player = new Rectangle(600, 0, rectangleSize, rectangleSize);
 
+    
     //x and y position of the rectangle different from starting position
-    double xPos = rectangle_player.getLayoutX();
-    double yPos = rectangle_player.getLayoutY();
+    double xPos;
+    double yPos;
+    
+    
+    @FXML
+    ImageView doorClose;
+    
+    
+     double xPosDoor;
+     double yPosDoor;
     private Direction direction = Direction.RIGHT;
 
 
@@ -37,25 +47,59 @@ public class ControllerGame implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
+    
     //Variable to look if key is pressed
     boolean isActive = false;
 
 
     //Timeline that is running the game every time the KeyFrame is called (0.1s)
+    
+    
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
         movePlayer(rectangle_player);
         gameTicks++;
     }));
+    
     Image image;
 
+    public ControllerGame() {
+    	
+    }
     //Method called after the stage is loaded
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         image = getCharacterImage();
         rectangle_player.setFill(new ImagePattern(image));
+        //movePlayer(rectangle_player);
+        
+       // AnchorPane.setLeftAnchor(rectangle_player, rectangleSize);
+        //AnchorPane.setTopAnchor(rectangle_player, rectangleSize);
+        
+
+        anchorPane.getChildren().addAll(rectangle_player);
+        
+        rectangle_player.getLayoutBounds();
+        xPos = rectangle_player.getX();
+        yPos = rectangle_player.getY();
+        
+        
+        doorClose.getLayoutBounds();
+        xPosDoor = doorClose.getLayoutX();
+        yPosDoor = doorClose.getLayoutY();
+        
+        
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
-        anchorPane.getChildren().addAll(rectangle_player);
+        
+      //  playerOnDoor();
+        
+        System.out.println("DoorPos : [" + xPosDoor + ", " + yPosDoor + "]");
+        System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
+    }
+    
+    public void Play() {
+    	 movePlayer(rectangle_player);
+         gameTicks++;
     }
 
     ControllerCharacterSelection controller = new ControllerCharacterSelection();
@@ -63,7 +107,7 @@ public class ControllerGame implements Initializable {
     private Image getCharacterImage() {
 
        // Player player = controller.getPlayerCharacter();
-        System.out.println(player);
+       // System.out.println(player);
         String path = "resources/player/dog_left_1.png";
       /*  if(player==Player.Char2){
 
@@ -165,6 +209,29 @@ public class ControllerGame implements Initializable {
             yPos = yPos + rectangleSize;
             player.setTranslateY(yPos);
         }
+        System.out.println("[" + xPos + ", " + yPos + "]");
+    }
+    
+    private void playerOnDoor() {
+    	if (isPlayerOnDoor()) {
+    		System.out.println("I'm on door");
+    		doorClose.setVisible(false);
+    	}
+    }
+    
+    private boolean isPlayerOnDoor() {
+    	if (
+    			((xPosDoor - rectangleSize <= xPos) &&
+    			(xPosDoor + rectangleSize >= xPos)) &&
+    			((yPosDoor - rectangleSize <= yPos) &&
+    			(yPosDoor + rectangleSize >= yPos))
+    			
+    			) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 }
 
