@@ -14,7 +14,10 @@ import javafx.scene.layout.Pane;
 
 public class Game_layout {
 
+		private int length = 60;
+		private int height = 40;
 		
+		private int[][] grid;
 	
 	   @FXML
 
@@ -23,6 +26,11 @@ public class Game_layout {
 
 	    private Parent root;
 	    
+	    
+	    public Game_layout(int[][] grid) {
+	    	this.grid = grid;
+	    	createGrid();
+	    }
 	    
 	    public void switchToLevelSelection(MouseEvent event) {
 
@@ -39,6 +47,25 @@ public class Game_layout {
 	            System.out.println("Can not load the Scene Level Selection");
 	        }
 	    }
+	    
+	    
+	    //This is the model for the grid. At each position [i,j] the value is 0
+	    private void createGrid() {
+	    	
+	    	
+	    	int i = 0;
+	    	int j = 0;
+	    	
+	    	this.grid = new int [length][height];
+	    	
+	    	for (i = 0; i< length; i++) {
+	    		for(j = 0; j< height; j++) {
+	    			grid[i][j]=0;
+	    			System.out.println(grid[i][j]);
+	    		}
+	    	}
+	    	
+	    	}
 	
 	
 	

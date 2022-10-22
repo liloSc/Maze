@@ -16,14 +16,17 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -39,6 +42,8 @@ public class ControllerGame_layout implements Initializable {
 	//public Main Main;
 	@FXML
 	private AnchorPane anchorpane;
+	@FXML
+	private FlowPane flowpane;
 
 	
 	private final double cellSize = 20;
@@ -49,10 +54,22 @@ public class ControllerGame_layout implements Initializable {
 
     Image image;
     
+    
+    
+    
   //Variable to look if key is pressed
     boolean isActive = false;
     
     private int gameTicks = 0;
+    
+    
+    
+    Game_layout gameLayout;
+    private int[][] grid;
+	private int length = 60;
+	private int height = 40;
+	Image background = new Image("file:resources/player/GridB1.png",20,20, false, false);
+	ImageView backgroundView;
 
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
         movePlayer(player);
@@ -87,8 +104,9 @@ System.out.println("teeeeeeeest");
 	    GridPane.setConstraints(label, 30,30);
 	  //  movePlayer(player);
 	    
-	    gamelayoutgrid.getChildren().addAll(label, enemy, player);
+	    gamelayoutgrid.getChildren().addAll(label, enemy, player, printGrid());
 	    
+	    //flowpane.getChildren().addAll(gamelayoutgrid);
         
 	    
 	    
@@ -97,6 +115,27 @@ System.out.println("teeeeeeeest");
 	    
 	    
 		
+	}
+	
+	//fill the grid with a simple background
+	private Node printGrid() {
+		gameLayout = new Game_layout(grid);
+
+		GridPane GPane = new GridPane();
+		int i = 0;
+		int j = 0;
+		for(i = 0; i<length; i++) {
+			for (j = 0; j<height; j++) {
+				backgroundView = new ImageView();
+				backgroundView.setImage(background);
+				
+				gamelayoutgrid.add(backgroundView, i, j);
+				//System.out.println(grid[i][j]);
+			}
+			
+		}
+		
+		return GPane;
 	}
 	
 	 ControllerCharacterSelection controller = new ControllerCharacterSelection();
