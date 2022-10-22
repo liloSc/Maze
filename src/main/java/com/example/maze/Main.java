@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 public class Main extends Application {
 			
 	public ControllerGame_layout gamecontroller;
-	
+	public Player player; // Creating an instance of player
 	
     @Override
     public void start(Stage stage) {
         try {
-            Parent startpage = FXMLLoader.load(getClass().getResource("Game_layout.fxml"));
+            Parent startpage = FXMLLoader.load(getClass().getResource("startpage.fxml"));
             Scene scene = new Scene(startpage);
             stage.setScene(scene);
             stage.show();
@@ -24,7 +24,14 @@ public class Main extends Application {
        // gamecontroller = new ControllerGame_layout();
        // gamecontroller.layoutcontroller();
     //    gamecontroller.Main = this;
+        
+        
+        
+        player = new Player("test");
+        //player.Main = this;
+        player.test();
     }
+
 
 
 

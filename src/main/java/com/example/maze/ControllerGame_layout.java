@@ -35,7 +35,6 @@ public class ControllerGame_layout implements Initializable {
 System.out.println("teeeeeeeest");
 	
 	
-
 		Button enemy = new Button();
 		GridPane.setRowIndex(enemy, 20);
 		GridPane.setColumnIndex(enemy, 20);
