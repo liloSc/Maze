@@ -53,17 +53,12 @@ public class ControllerGame_layout implements Initializable {
     private Direction direction = Direction.RIGHT;
 
     Image image;
-    
-    
-    
-    
+
   //Variable to look if key is pressed
     boolean isActive = false;
     
     private int gameTicks = 0;
-    
-    
-    
+
     Game_layout gameLayout;
     private int[][] grid;
 	private int length = 60;
