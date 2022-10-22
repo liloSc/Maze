@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 
 public class ControllerGame_layout implements Initializable {
@@ -43,9 +44,14 @@ System.out.println("teeeeeeeest");
 		Label label = new Label("test");
 	    GridPane.setConstraints(label, 25, 25); // column=2 row=0
 
+	    
+	    
+	   // GridPane.setHover(Color.AZURE);
+		
 	    GridPane.setConstraints(label, 30,30);
 		
 	    gamelayoutgrid.getChildren().addAll(label, enemy);
+	    
 		
 	}
 
