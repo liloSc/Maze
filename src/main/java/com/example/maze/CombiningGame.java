@@ -45,7 +45,7 @@ public class CombiningGame implements Initializable {
     private Rectangle rectangleid;
 
     //Rectangle is 50x50
-    private final double rectangleSize = 50.0;
+    private final double rectangleSize = 20.0;
     //The Rectangle is created, at position (250,250)
     private final Rectangle rectangle_player = new Rectangle(250, 250, rectangleSize, rectangleSize);
 
@@ -80,6 +80,7 @@ public class CombiningGame implements Initializable {
     //Method called after the stage is loaded
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         image = getCharacterImage();
         rectangle_player.setFill(new ImagePattern(image));
         anchorPane.getChildren().addAll(rectangle_player);
@@ -134,26 +135,26 @@ public class CombiningGame implements Initializable {
             //  }
 
         }
-        Image image;
+        Image characterImage;
         try {
-            image = new Image(new FileInputStream(path));
+            characterImage = new Image(new FileInputStream(path));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return image;
+        return characterImage;
     }
-
-
     @FXML
     void start(MouseEvent event) {
         //TODO: Restart not implemented yet
     }
 
 
+
+
     //Change position with key pressed
     @FXML
     void moveSquareKeyPressed(KeyEvent event) {
-        System.out.println("I am in KeyPressed");
+
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
             isActive = true;
 
