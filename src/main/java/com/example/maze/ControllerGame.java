@@ -94,7 +94,7 @@ public class ControllerGame implements Initializable {
       //  playerOnDoor();
         
         System.out.println("DoorPos : [" + xPosDoor + ", " + yPosDoor + "]");
-        System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
+     //   System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
     }
     
     public void Play() {
@@ -179,10 +179,7 @@ public class ControllerGame implements Initializable {
             rectangle_player.setFill(new ImagePattern(image));
         }
     }
-    Player player;
-    public void setPlayer(Player p) {
-        this.player = p;
-    }
+    
 /*
     public Player getPlayer() {
         return this.player;
