@@ -16,7 +16,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -37,7 +36,7 @@ public class CombiningGame implements Initializable {
     private final double rectangleSize = 20.0;
     @FXML
     private Rectangle rectangleid;
-
+    public Player gamePlayer;
 
     //x and y position of the rectangle different from starting position
     double xPos;
@@ -68,7 +67,7 @@ public class CombiningGame implements Initializable {
     //Method called after the stage is loaded
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    	
         image = getCharacterImage();
         rectangleid.setFill(new ImagePattern(image));
 
@@ -84,26 +83,27 @@ public class CombiningGame implements Initializable {
 
 
     private Image getCharacterImage() {
-        String path = "resources/player/dog_left_1.png";
+    	String path = null;
+    	if(gamePlayer.getCharacter()=="charca1"){
+    		path = "resources/player/dog_left_1.png";
+    	}
+        if(gamePlayer.getCharacter()=="charca2"){
 
-      /*  if(player==Player.Char2){
+        	path = "resources/player/heart.png";
+        }
+        if(gamePlayer.getCharacter()=="charca3"){
 
-            path = "resources/player/heart.png";
+        	path = "resources/player/banana.png";
 
         }
-        if(player==Player.Char3){
+        if(gamePlayer.getCharacter()=="charca4"){
 
-            path = "resources/player/banana.png";
+        	path = "resources/player/pacman.png";
 
         }
-        if(player==Player.Char4){
-
-            path = "resources/player/pacman.png";
-
-        }*/
         if (isActive) {
-
-            //Dog
+        	
+            //Dog //TODO for all other characters
             //    if(player==Player.Char1){
             if (direction == Direction.UP) {
                 System.out.println("Get Character Image UP");
@@ -117,7 +117,7 @@ public class CombiningGame implements Initializable {
             if (direction == Direction.LEFT) {
                 System.out.println("Get Character ImageLEFT ");
                 path = "resources/player/dog_left_1.png";
-            }
+            } 
             if (direction == Direction.RIGHT) {
                 System.out.println("Get Character Image RIght");
                 path = "resources/player/dog_right_1.png";
@@ -210,6 +210,11 @@ public class CombiningGame implements Initializable {
             return false;
         }
     }
+    public void initData2(Player player) { // THIS METHOD accepts a player to initialize the view
+    	gamePlayer = player;
+    	System.out.println("3 Now we have a new char in game " + gamePlayer);
+    }
+   
 }
 
 

@@ -1,54 +1,37 @@
 package com.example.maze;
-/*
-public enum Player {
-    Char1, Char2, Char3, Char4
 
-
-}*/
-/*
-public class Player{
-    String character= "Char1";
-    public Player
-    public void setPlayerCharacter(Player choosedPlayer) {
-        player = choosedPlayer;
-
-    }
-
-    public Player getPlayerCharacter() {
-        return player;
-    }
-        }
-*/
+import javafx.beans.property.SimpleStringProperty;
 
 public class Player {
-    private String character;
-
-    private Player player;
-
-   public  Player(String character) {
-        this.character=character;
+    private SimpleStringProperty character;  
+    
+    public static Player example() {
+    	Player tester = new Player("testervalue");
+    	return tester;
+    }
+    
+    
+   
+    public  Player(String character){
+	   this.character = new SimpleStringProperty(character);
     }
 	
 	public void test() {
-		System.out.println("test");
-		character = "cool";
+		//character = "cool";
+		System.out.println(character);	
 	}
 	
-
 	public void setCharacter(String character) {
-		this.character = character;
+		this.character = new SimpleStringProperty(character);
 		System.out.println(character +" is your chosen character");
 		return;
 	}
 	
 	public String getCharacter() {
 		System.out.println(character +" The character is taken");
-		return character;
+		return character.get();
 	}
-	
-	
-    
-    
-    
+
+
 
 }

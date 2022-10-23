@@ -5,14 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ControllerCharacterSelection {
+public class ControllerCharacterSelection implements Initializable {
 
     @FXML
 
@@ -37,42 +39,34 @@ public class ControllerCharacterSelection {
     private ImageView charac4;
     @FXML
     private ImageView bigCharac4;
+    
+    
+    
+   
+    public Player ourPlayer = new Player(null);
+    
+   
+    
 
-    private Player player = new Player("charac1");
-   /*
-
-    public void setPlayerCharacter(Player choosedPlayer) {
-        this.player = choosedPlayer;
-
-    }
-
-    public Player getPlayerCharacter() {
-        return player;
-    }*/
-
-
-    public void switchToLevelSelection(MouseEvent event) {
+    public void switchToLevelSelection(MouseEvent event) throws IOException   // WE HAVE TO ADD PASSING THE PLAYER OBJECT  
+    {
         if (isCharacSelected() == true) {
-            // ControllerGame controllergame = new ControllerGame();
-
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("levelselection.fxml"));
+        		FXMLLoader loader = new FXMLLoader();
+        		loader.setLocation(getClass().getResource("levelselection.fxml"));
+        		Parent root = loader.load();
+                Scene root_scene = new Scene(root);
+                // Access the controller and call a method 
+                ControllerLevelSelection controller2 = loader.getController();
+                controller2.initData(ourPlayer);
+                
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                ControllerLevelSelection controllergame = new ControllerLevelSelection();
-                controllergame.setPlayer(player);
-                stage.setScene(scene);
+                stage.setScene(root_scene);
                 stage.show();
-                //  controllergame.setPlayer(player);
-
-            } catch (Exception e) {
-                System.out.println("Can not load the Scene Level Selection");
-            }
-
         }
-
     }
 
+    public Player playerselected;
+    
     private void hideImage() {
         bigCharac1.setVisible(false);
         bigCharac2.setVisible(false);
@@ -89,48 +83,37 @@ public class ControllerCharacterSelection {
     }
 
     public void animateCharacter(MouseEvent event) {
-
-
         if (event.getSource() == charac1) {
             hideImage();
             bigCharac1.setVisible(true);
-            //  player.setPlayer(player);
-            											//player.character = "charac1";
-            player.setCharacter("charac1");
-            //   setPlayerCharacter(Player.Char1);
-
+            ourPlayer.setCharacter("charac1");
+          
         } else if (event.getSource() == charac2) {
             hideImage();
             bigCharac2.setVisible(true);
-            //   player.setPlayer(player);
-           // System.out.println("open Charc2");
-            										// player.character = "charac2";
-            player.setCharacter("charac2");
-            // setPlayerCharacter(Player.Char2);
+          
+            ourPlayer.setCharacter("charac2");
+            String tesssst = ourPlayer.getCharacter();
+        	System.out.println("Now we have a new char  " + tesssst);
 
         } else if (event.getSource() == charac3) {
             hideImage();
             bigCharac3.setVisible(true);
-            											//player.character = "charac3";
-            player.setCharacter("charac3");
-            //   setPlayerCharacter(Player.Char3);
-
+            ourPlayer.setCharacter("charac3");
+          
         } else if (event.getSource() == charac4) {
             hideImage();
             bigCharac4.setVisible(true);
-            										//  player.character = "charac4";
-            player.setCharacter("charac4");
-            //   setPlayerCharacter(Player.Char4);
+            ourPlayer.setCharacter("charac4");
         }
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game_layout.fxml"));
-            Parent root = (Parent) loader.load();
-
-            System.out.println("Char Selection: " + player.getCharacter());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
+      
     }
+
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
 }

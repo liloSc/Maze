@@ -2,11 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerLevelSelection">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerLevelSelection">
    <children>
       <Label alignment="CENTER" layoutX="225.0" layoutY="132.0" text="Level selection" textAlignment="CENTER">
          <font>
@@ -33,8 +35,29 @@
       <Rectangle fx:id="rectangle_level3" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="40.0" layoutX="301.0" layoutY="319.0" onMouseClicked="#selectLevel" stroke="#72727200" strokeType="INSIDE" style="-fx-stroke: Blue;" visible="false" width="205.0" />
       <Label fx:id="level3" alignment="CENTER" layoutX="358.0" layoutY="330.0" onMouseClicked="#selectLevel" text="Advanced" textAlignment="CENTER">
          <font>
-            <Font name="Retro Gaming" size="14.0" />
+            <Font name="Retro sGaming" size="14.0" />
          </font>
       </Label>
+      <Label fx:id="yourplayer" layoutX="93.0" layoutY="405.0" prefHeight="117.0" prefWidth="122.0" text="Label" />
+      <ImageView id="charac1" fx:id="charac1" fitHeight="89.0" fitWidth="89.0" layoutX="530.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/dog_left_1.png" />
+         </image>
+      </ImageView>
+      <ImageView id="charac2" fx:id="charac2" fitHeight="89.0" fitWidth="89.0" layoutX="541.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/heart.png" />
+         </image>
+      </ImageView>
+      <ImageView id="charac3" fx:id="charac3" fitHeight="89.0" fitWidth="89.0" layoutX="619.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/banana.png" />
+         </image>
+      </ImageView>
+      <ImageView id="charac4" fx:id="charac4" fitHeight="89.0" fitWidth="89.0" layoutX="630.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/pacman.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
