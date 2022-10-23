@@ -10,6 +10,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -30,6 +31,7 @@ public class CombiningGame implements Initializable {
 
     @FXML
     private GridPane gamelayoutgrid;
+  
 
     // private FlowPane flowpane;
 
@@ -49,6 +51,17 @@ public class CombiningGame implements Initializable {
 
     //Variable to look if key is pressed
     boolean isActive = false;
+    
+    
+    Game_layout gameLayout;
+    private int[][] grid;
+	private int length = 61;
+	private int height = 41;
+	int i, j;
+	Image path = new Image("file:resources/player/GridB1.png",20,20, false, false);
+	Image wall = new Image("file:resources/player/GridW1.png",20,20, false, false);
+	
+	ImageView backgroundView;
 
 
     //Timeline that is running the game every time the KeyFrame is called (0.1s)
@@ -70,7 +83,8 @@ public class CombiningGame implements Initializable {
     	
         image = getCharacterImage();
         rectangleid.setFill(new ImagePattern(image));
-
+        
+	    
         doorClose.getLayoutBounds();
         xPosDoor = doorClose.getLayoutX();
         yPosDoor = doorClose.getLayoutY();
@@ -79,50 +93,28 @@ public class CombiningGame implements Initializable {
         //  playerOnDoor();
         System.out.println("DoorPos : [" + xPosDoor + ", " + yPosDoor + "]");
         System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
+        gamelayoutgrid.getChildren().addAll(printGrid());
     }
 
 
     private Image getCharacterImage() {
-    	String path = null;
-    	if(gamePlayer.getCharacter()=="charca1"){
-    		path = "resources/player/dog_left_1.png";
-    	}
-        if(gamePlayer.getCharacter()=="charca2"){
 
-        	path = "resources/player/heart.png";
-        }
-        if(gamePlayer.getCharacter()=="charca3"){
+        String path = "resources/player/dog_left_1.png";
 
-        	path = "resources/player/banana.png";
-
-        }
-        if(gamePlayer.getCharacter()=="charca4"){
-
-        	path = "resources/player/pacman.png";
-
-        }
         if (isActive) {
-        	
-            //Dog //TODO for all other characters
-            //    if(player==Player.Char1){
-            if (direction == Direction.UP) {
-                System.out.println("Get Character Image UP");
-                path = "resources/player/dog_up_1.png";
-            }
+       	 
+                if (direction == Direction.UP)
+                    path = "resources/player/dog_up_1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/dog_down_1.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/dog_left_1.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/dog_right_1.png";
 
-            if (direction == Direction.DOWN) {
-                System.out.println("Get Character Image DOWN");
-                path = "resources/player/dog_down_1.png";
-            }
-            if (direction == Direction.LEFT) {
-                System.out.println("Get Character ImageLEFT ");
-                path = "resources/player/dog_left_1.png";
-            } 
-            if (direction == Direction.RIGHT) {
-                System.out.println("Get Character Image RIght");
-                path = "resources/player/dog_right_1.png";
-            }
         }
+        
+ 
         //   Image image;
         try {
             image = new Image(new FileInputStream(path));
@@ -132,6 +124,45 @@ public class CombiningGame implements Initializable {
         return image;
     }
 
+    
+	//fill the grid with a simple background
+	private Node printGrid() {
+		grid = new int [length][height];
+		gameLayout = new Game_layout(grid);
+
+		
+
+		GridPane GPane = new GridPane();
+		i = 0;
+		j = 0;
+		for(i = 0; i<length-1; i++) {
+			for (j = 0; j<height-1; j++) {
+				
+				if (gameLayout.isWall(i, j) == true) {
+	
+				backgroundView = new ImageView();
+				backgroundView.setImage(wall);
+				
+				
+				//System.out.println(grid[i][j]);
+				}
+				
+				else {
+					backgroundView = new ImageView();
+					backgroundView.setImage(path);
+					
+					
+					//System.out.println(grid[i][j]);
+				}
+				
+				gamelayoutgrid.add(backgroundView, i, j);
+			}
+			
+		}
+		
+		return GPane;
+	}
+	
     @FXML
     void start(MouseEvent event) {
         //TODO: Restart not implemented yet

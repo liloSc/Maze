@@ -37,8 +37,8 @@ public class ControllerGame implements Initializable {
     ImageView doorClose;
     
     
-     double xPosDoor;
-     double yPosDoor;
+    double xPosDoor;
+    double yPosDoor;
     private Direction direction = Direction.RIGHT;
 
 

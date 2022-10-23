@@ -72,7 +72,7 @@ public class ControllerLevelSelection implements Initializable {
     public void switchToGame(MouseEvent event) throws IOException   {
         if (isLevelSelected() == true) {
         		FXMLLoader loader = new FXMLLoader();
-        		loader.setLocation(getClass().getResource("Game_layout.fxml"));
+        		loader.setLocation(getClass().getResource("combining_game.fxml"));
         		Parent root = loader.load();
         		scene = new Scene(root);
         		
