@@ -156,6 +156,7 @@ public class CombiningGame implements Initializable {
 				}
 				
 				gamelayoutgrid.add(backgroundView, i, j);
+                backgroundView.toBack();
 			}
 			
 		}
