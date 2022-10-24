@@ -4,16 +4,25 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class ControllerUnlockDoor {
+    private Stage stage;
+    private Scene scene;
 
     @FXML
     private Label label1;
@@ -86,12 +95,25 @@ public class ControllerUnlockDoor {
 
     DateFormat timeFormat = new SimpleDateFormat("mm:ss.SSS");
     long startTime = System.currentTimeMillis();
+    long intoLong = 10000; //Time that the user has for the quest in milliseconds 30s --> 30 000 ms
     Timeline timeline = new Timeline(
             new KeyFrame(
                     Duration.millis(50),
                     event -> {
                         final long diff = System.currentTimeMillis() - startTime;
-                        label_timer.setText(timeFormat.format(diff));
+                        final long timeReverse = intoLong - diff;
+                        if(timeReverse>0) {
+                            label_timer.setText(timeFormat.format(timeReverse));
+                        }else{
+                            label_timer.setText(timeFormat.format(0));
+                            try {
+                                switchToGameOver();
+
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                        }
                     }
             )
     );
@@ -104,5 +126,26 @@ public class ControllerUnlockDoor {
         timeline.play();
 
     }
+
+    public void switchToGameOver() throws IOException {
+timeline.pause();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("gameover.fxml"));
+        Parent root = loader.load();
+        scene = new Scene(root);
+
+
+        //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
+        // Access the controller and call a method
+        //CombiningGame controller3 = loader.getController();
+        //controller3.initData2(selectedPlayer);
+
+        stage = (Stage) label_timer.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+
+    }
+
 
 }
