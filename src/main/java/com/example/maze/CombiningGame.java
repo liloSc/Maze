@@ -67,7 +67,7 @@ public class CombiningGame implements Initializable {
     //Timeline that is running the game every time the KeyFrame is called (0.1s)
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
 
-        moveRectangle(rectangleid);
+        movePlayer();
 
     }));
 
@@ -202,10 +202,8 @@ public class CombiningGame implements Initializable {
         }
     }
 
-    int rowIndex;
-    int columnIndex;
 
-    private void moveRectangle(Rectangle rectangle) {
+    private void movePlayer() {
 
         if (direction.equals(Direction.RIGHT) && isActive) {
             gamelayoutgrid.setColumnIndex(rectangleid, GridPane.getColumnIndex(rectangleid) + 1);
@@ -220,7 +218,7 @@ public class CombiningGame implements Initializable {
             gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) + 1);
 
         }
-  
+
 
         //   System.out.println("[" + xPos + ", " + yPos + "]");
     }
