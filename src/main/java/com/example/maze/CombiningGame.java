@@ -167,18 +167,20 @@ public class CombiningGame implements Initializable {
         int i = gamelayoutgrid.getColumnIndex(rectangleid);
         int j = gamelayoutgrid.getRowIndex(rectangleid);
 
+        System.out.println(i + " " + j);
+        
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
 
 
             if (event.getCode().equals(KeyCode.UP)) {
 
-                if (gameLayout.isWall(i, j - 1) == true) {
+                if (gameLayout.isWall(i, j - 1) == false) {
                     gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) - 1);
                 }
             } else if (event.getCode().equals(KeyCode.DOWN)) {
 
 
-                if (gameLayout.isWall(i, j + 1) == true) {
+                if (gameLayout.isWall(i, j + 1) == false) {
                     gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) + 1);
                 }
             } else if (event.getCode().equals(KeyCode.LEFT)) {
