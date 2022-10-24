@@ -130,7 +130,7 @@ public class ControllerUnlockDoor {
     public void switchToGameOver() throws IOException {
 timeline.pause();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("startpage.fxml"));
+        loader.setLocation(getClass().getResource("gameover.fxml"));
         Parent root = loader.load();
         scene = new Scene(root);
 
