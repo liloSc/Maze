@@ -86,12 +86,14 @@ public class ControllerUnlockDoor {
 
     DateFormat timeFormat = new SimpleDateFormat("mm:ss.SSS");
     long startTime = System.currentTimeMillis();
+    long intoLong = 30000; //Time that the user has for the quest in milliseconds 30s --> 30 000 ms
     Timeline timeline = new Timeline(
             new KeyFrame(
                     Duration.millis(50),
                     event -> {
                         final long diff = System.currentTimeMillis() - startTime;
-                        label_timer.setText(timeFormat.format(diff));
+                        final long timeReverse = intoLong - diff;
+                        label_timer.setText(timeFormat.format(timeReverse));
                     }
             )
     );
