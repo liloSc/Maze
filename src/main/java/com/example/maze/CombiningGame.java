@@ -66,8 +66,7 @@ public class CombiningGame implements Initializable {
 
     //Timeline that is running the game every time the KeyFrame is called (0.1s)
     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
-
-        movePlayer();
+    		movePlayer();
 
     }));
 
@@ -81,19 +80,23 @@ public class CombiningGame implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        grid = new int[length][height];
+        gameLayout = new Game_layout(grid);
         image = getCharacterImage();
         rectangleid.setFill(new ImagePattern(image));
 
+        gamelayoutgrid.setConstraints(rectangleid, 0, 1);
 
         doorClose.getLayoutBounds();
         xPosDoor = doorClose.getLayoutX();
         yPosDoor = doorClose.getLayoutY();
+        gamelayoutgrid.getChildren().addAll(printGrid());
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
         //  playerOnDoor();
         System.out.println("DoorPos : [" + xPosDoor + ", " + yPosDoor + "]");
         System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
-        gamelayoutgrid.getChildren().addAll(printGrid());
+   
     }
 
 
@@ -127,8 +130,7 @@ public class CombiningGame implements Initializable {
 
     //fill the grid with a simple background
     private Node printGrid() {
-        grid = new int[length][height];
-        gameLayout = new Game_layout(grid);
+
 
 
         GridPane GPane = new GridPane();
@@ -157,6 +159,8 @@ public class CombiningGame implements Initializable {
             }
 
         }
+        
+
 
         return GPane;
     }
@@ -205,19 +209,30 @@ public class CombiningGame implements Initializable {
 
     private void movePlayer() {
 
+    	int i = gamelayoutgrid.getColumnIndex(rectangleid);
+    	int j = gamelayoutgrid.getRowIndex(rectangleid);
+    	
+    	
         if (direction.equals(Direction.RIGHT) && isActive) {
-            gamelayoutgrid.setColumnIndex(rectangleid, GridPane.getColumnIndex(rectangleid) + 1);
+        	if (gameLayout.isWall(i+1, j) == false) {
+        		 gamelayoutgrid.setColumnIndex(rectangleid, GridPane.getColumnIndex(rectangleid) + 1);
+            }
 
         } else if (direction.equals(Direction.LEFT) && isActive) {
-            gamelayoutgrid.setColumnIndex(rectangleid, GridPane.getColumnIndex(rectangleid) - 1);
+        	if (gameLayout.isWall(i-1, j) == false) {
+        		 gamelayoutgrid.setColumnIndex(rectangleid, GridPane.getColumnIndex(rectangleid) - 1);
+             }
 
         } else if (direction.equals(Direction.UP) && isActive) {
-            gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) - 1);
-
+        	if (gameLayout.isWall(i, j-1) == true) {
+        		 gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) - 1);
+             	}
+           
         } else if (direction.equals(Direction.DOWN) && isActive) {
-            gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) + 1);
-
-        }
+        	if(gameLayout.isWall(i, j+1)==true) {
+        		 gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) + 1);
+        	}
+            }
 
 
         //   System.out.println("[" + xPos + ", " + yPos + "]");
