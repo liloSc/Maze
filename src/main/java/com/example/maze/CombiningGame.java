@@ -2,6 +2,7 @@ package com.example.maze;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,8 +10,11 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -20,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class CombiningGame implements Initializable {
@@ -65,10 +70,13 @@ public class CombiningGame implements Initializable {
 
 
     //Timeline that is running the game every time the KeyFrame is called (0.1s)
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
-    		movePlayer();
 
-    }));
+  /*  Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
+
+        movePlayer();
+
+
+    }));*/
 
     Image image;
 
@@ -91,8 +99,10 @@ public class CombiningGame implements Initializable {
         xPosDoor = doorClose.getLayoutX();
         yPosDoor = doorClose.getLayoutY();
         gamelayoutgrid.getChildren().addAll(printGrid());
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+
+     //   timeline.setCycleCount(Animation.INDEFINITE);
+    //    timeline.play();
+
         //  playerOnDoor();
         System.out.println("DoorPos : [" + xPosDoor + ", " + yPosDoor + "]");
         System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
@@ -173,7 +183,7 @@ public class CombiningGame implements Initializable {
 
     //Change position with key pressed
     @FXML
-    void moveSquareKeyPressed(KeyEvent event) {
+    void moveSquareKeyPressed(KeyEvent event) throws IOException {
 
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
             isActive = true;
@@ -181,20 +191,25 @@ public class CombiningGame implements Initializable {
             if (event.getCode().equals(KeyCode.UP)) {
                 direction = Direction.UP;
                 isActive = true;
+                movePlayer(event);
             } else if (event.getCode().equals(KeyCode.DOWN)) {
                 direction = Direction.DOWN;
                 isActive = true;
+                movePlayer(event);
             } else if (event.getCode().equals(KeyCode.LEFT)) {
                 direction = Direction.LEFT;
                 isActive = true;
+                movePlayer(event);
             } else if (event.getCode().equals(KeyCode.RIGHT)) {
                 direction = Direction.RIGHT;
                 isActive = true;
+                movePlayer(event);
             }
             image = getCharacterImage();
             rectangleid.setFill(new ImagePattern(image));
             rectangleid.toFront();
         }
+
     }
 
 
@@ -207,7 +222,7 @@ public class CombiningGame implements Initializable {
     }
 
 
-    private void movePlayer() {
+    private void movePlayer(KeyEvent event) throws IOException {
 
     	int i = gamelayoutgrid.getColumnIndex(rectangleid);
     	int j = gamelayoutgrid.getRowIndex(rectangleid);
@@ -234,11 +249,52 @@ public class CombiningGame implements Initializable {
         	}
             }
 
+        isPlayerOnDoorLilo(event);
 
         //   System.out.println("[" + xPos + ", " + yPos + "]");
     }
 
-    private void playerOnDoor() {
+    private void isPlayerOnDoorLilo(KeyEvent event) throws IOException {
+        //get Position of Player
+        int playerColumn = gamelayoutgrid.getColumnIndex(rectangleid);
+        int playerRow = gamelayoutgrid.getRowIndex(rectangleid);
+
+        //getPositionDoor
+        int doorColumn = gamelayoutgrid.getColumnIndex(doorClose);
+        int doorRow = gamelayoutgrid.getRowIndex(doorClose);
+
+        if (playerColumn == doorColumn && playerRow == doorRow) {
+            switchToTask(event);
+        }else{
+            System.out.println("Not on Door");
+        }
+
+
+    }
+    private Stage stage;
+    private Scene scene;
+    public void switchToTask(KeyEvent event) throws IOException {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("unlockDoor.fxml"));
+            Parent root = loader.load();
+            scene = new Scene(root);
+
+
+            //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
+            // Access the controller and call a method
+            //CombiningGame controller3 = loader.getController();
+            //controller3.initData2(selectedPlayer);
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+
+    }
+
+
+   /* private void playerOnDoor() {
         if (isPlayerOnDoor()) {
             System.out.println("I'm on door");
             doorClose.setVisible(false);
@@ -257,7 +313,7 @@ public class CombiningGame implements Initializable {
         } else {
             return false;
         }
-    }
+    }*/
 
     public void initData2(Player player) { // THIS METHOD accepts a player to initialize the view
         gamePlayer = player;

@@ -19,14 +19,14 @@ import javafx.stage.Stage;
 public class ControllerLevelSelection implements Initializable {
 
 
-	 ControllerCharacterSelection controller;
+    ControllerCharacterSelection controller;
 
 
     private Stage stage;
     private Scene scene;
 
     private Parent root;
-    
+
     @FXML
     private Label level1;
     @FXML
@@ -49,14 +49,15 @@ public class ControllerLevelSelection implements Initializable {
     private ImageView charac3;
     @FXML
     private ImageView charac4;
-    
-    
+
+
     private void hideLevelSelection() {
         rectangle_level1.setVisible(false);
         rectangle_level2.setVisible(false);
         rectangle_level3.setVisible(false);
 
     }
+
     private void hideImageLevel() {
         charac1.setVisible(false);
         charac2.setVisible(false);
@@ -64,37 +65,28 @@ public class ControllerLevelSelection implements Initializable {
         charac4.setVisible(false);
     }
 
-  
-  
-  
 
-    
-    public void switchToGame(MouseEvent event) throws IOException   {
+    public void switchToGame(MouseEvent event) throws IOException {
         if (isLevelSelected() == true) {
-        		FXMLLoader loader = new FXMLLoader();
-        		loader.setLocation(getClass().getResource("combining_game.fxml"));
-        		Parent root = loader.load();
-        		scene = new Scene(root);
-        		
-        		//TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
-        		// Access the controller and call a method 
-                //CombiningGame controller3 = loader.getController();
-        		//controller3.initData2(selectedPlayer);
-        		
-        		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-                }
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("combining_game.fxml"));
+            Parent root = loader.load();
+            scene = new Scene(root);
+
+
+            //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
+            // Access the controller and call a method
+            //CombiningGame controller3 = loader.getController();
+            //controller3.initData2(selectedPlayer);
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        }
     }
-    
-   
-    
-    
-    
-    
-    
-    
-    
+
+
     private boolean isLevelSelected() {
         if (rectangle_level1.isVisible() || rectangle_level2.isVisible() || rectangle_level3.isVisible()) {
             return true;
@@ -117,41 +109,38 @@ public class ControllerLevelSelection implements Initializable {
         }
     }
 
-    
+
     private Player selectedPlayer;
+
     public void initData(Player player) { // THIS METHOD accepts a player to initialize the view
-    	System.out.println("1 Now we have a new char  " + player);
-    	selectedPlayer = player;
-    	System.out.println("2 Now we have a new char  " + selectedPlayer);
-    	yourplayer.setText(selectedPlayer.getCharacter());
-    	System.out.println("3 Now we have a new char  " + yourplayer);
-    	// SOMETHING WITH SHOW IT IN VIEW?
-    	 if (yourplayer.getText() == "charac1") {
-    	        hideImageLevel();
-    	        charac1.setVisible(true);
-    	    	}
-    	    else if (yourplayer.getText() == "charac2") {
-    	        hideImageLevel();
-    	        charac2.setVisible(true);
-    	    	}
-    	    else if (yourplayer.getText() == "charac3") {
-    	        hideImageLevel();
-    	        charac3.setVisible(true);
-    	    	}
-    	    else if (yourplayer.getText() == "charac4") {
-    	        hideImageLevel();
-    	        charac4.setVisible(true);
-    	    	}
-    	  
-    	    
-    	
+        System.out.println("1 Now we have a new char  " + player);
+        selectedPlayer = player;
+        System.out.println("2 Now we have a new char  " + selectedPlayer);
+        yourplayer.setText(selectedPlayer.getCharacter());
+        System.out.println("3 Now we have a new char  " + yourplayer);
+        // SOMETHING WITH SHOW IT IN VIEW?
+        if (yourplayer.getText() == "charac1") {
+            hideImageLevel();
+            charac1.setVisible(true);
+        } else if (yourplayer.getText() == "charac2") {
+            hideImageLevel();
+            charac2.setVisible(true);
+        } else if (yourplayer.getText() == "charac3") {
+            hideImageLevel();
+            charac3.setVisible(true);
+        } else if (yourplayer.getText() == "charac4") {
+            hideImageLevel();
+            charac4.setVisible(true);
+        }
+
+
     }
-    
-    
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-	}
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
 
 }
