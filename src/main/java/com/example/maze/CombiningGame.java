@@ -52,7 +52,7 @@ public class CombiningGame implements Initializable {
 
     //Variable to look if key is pressed
     boolean isActive = false;
-    
+
     Game_layout gameLayout;
     private int[][] grid;
     private int length = 61;
@@ -168,27 +168,31 @@ public class CombiningGame implements Initializable {
         int j = gamelayoutgrid.getRowIndex(rectangleid);
 
         System.out.println(i + " " + j);
-        
+
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
 
-
+            isActive = true;
             if (event.getCode().equals(KeyCode.UP)) {
+                direction = Direction.UP;
+
 
                 if (gameLayout.isWall(i, j - 1) == false) {
                     gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) - 1);
                 }
             } else if (event.getCode().equals(KeyCode.DOWN)) {
-
+                direction = Direction.DOWN;
 
                 if (gameLayout.isWall(i, j + 1) == false) {
                     gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) + 1);
                 }
             } else if (event.getCode().equals(KeyCode.LEFT)) {
+                direction = Direction.LEFT;
 
                 if (gameLayout.isWall(i - 1, j) == false) {
                     gamelayoutgrid.setColumnIndex(rectangleid, GridPane.getColumnIndex(rectangleid) - 1);
                 }
             } else if (event.getCode().equals(KeyCode.RIGHT)) {
+                direction = Direction.RIGHT;
 
                 if (gameLayout.isWall(i + 1, j) == false) {
                     gamelayoutgrid.setColumnIndex(rectangleid, GridPane.getColumnIndex(rectangleid) + 1);
@@ -196,6 +200,7 @@ public class CombiningGame implements Initializable {
             }
             image = getCharacterImage();
             rectangleid.setFill(new ImagePattern(image));
+
             rectangleid.toFront();
             isPlayerOnDoorLilo(event);
         }
@@ -252,7 +257,6 @@ public class CombiningGame implements Initializable {
         stage.show();
 
     }
-
 
 
     public void initData2(Player player) { // THIS METHOD accepts a player to initialize the view
