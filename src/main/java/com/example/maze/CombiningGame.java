@@ -58,8 +58,8 @@ public class CombiningGame implements Initializable {
     private int length = 61;
     private int height = 41;
     int i, j;
-    Image path = new Image("file:resources/player/GridB1.png", 20, 20, false, false);
-    Image wall = new Image("file:resources/player/GridW1.png", 20, 20, false, false);
+    Image path = new Image("file:resources/player/Grass.png", 20, 20, false, false);
+    Image wall = new Image("file:resources/player/Three.png", 20, 20, false, false);
 
     ImageView backgroundView;
 
