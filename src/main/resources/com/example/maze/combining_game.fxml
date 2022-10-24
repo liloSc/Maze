@@ -12,9 +12,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#moveSquareKeyPressed" onKeyReleased="#moveSquareKeyReleased" prefHeight="820.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.CombiningGame">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#movePlayerKeyPressed" onKeyReleased="#moveSquareKeyReleased" prefHeight="820.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.CombiningGame">
     <children>
-        <Button fx:id="startButton" mnemonicParsing="false" onKeyPressed="#moveSquareKeyPressed" onMouseClicked="#start" text="Restart">
+        <Button fx:id="startButton" mnemonicParsing="false" onKeyPressed="#movePlayerKeyPressed" onMouseClicked="#start" text="Restart">
             <font>
                 <Font name="Retro Gaming" size="13.0" />
             </font>
