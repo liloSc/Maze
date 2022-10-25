@@ -44,7 +44,7 @@ public class ControllerLevelSelection implements Initializable {
     @FXML
     private ImageView image_character4;
 
-    public Enemy ourEnemies = new Enemy();
+    public Enemy ourEnemies = new Enemy(20,30);
 
     private Player player;
 

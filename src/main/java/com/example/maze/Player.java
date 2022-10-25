@@ -4,17 +4,13 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Player {
     private SimpleStringProperty character;
-    private int life;
+    private int health;
 
-  /*  public static Player example() {
-        Player tester = new Player("testervalue",10);
-        return tester;
-    }*/
 
 
     public Player(String character, int life) {
         this.character = new SimpleStringProperty(character);
-        this.life = life;
+        this.health = life;
     }
 
 
@@ -27,14 +23,14 @@ public class Player {
         return character.get();
     }
 
-    public void setLife(int life2) {
-        this.life = life2;
-        System.out.println(life + " is your life of character");
+    public void setHealth(int life2) {
+        this.health = life2;
+        System.out.println(health + " is your life of character");
 
     }
 
-    public int getLife() {
-        return life;
+    public int getHealth() {
+        return health;
     }
 
 

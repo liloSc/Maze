@@ -46,14 +46,20 @@ public class ControllerGame implements Initializable {
     @FXML
     private Rectangle rectangle_player;
     @FXML
-    private Label label_life;
+    private Label label_lifePlayer;
+    @FXML
+    private Label label_healthEnemy1;
+    @FXML
+    private Label label_healthEnemy2;
+    @FXML
+    private Label label_healthEnemy3;
 
-    public Enemy GameClassEnemy1;
-    public Enemy GameClassEnemy2;
-    public Enemy GameClassEnemy3;
-    public Label EnemyLabel1;
-    public Label EnemyLabel2;
-    public Label EnemyLabel3;
+    public Enemy gameClassEnemy1;
+    public Enemy gameClassEnemy2;
+    public Enemy gameClassEnemy3;
+    public Label label_enemy1;
+    public Label label_enemy2;
+    public Label label_enemy3;
 
     public Player gamePlayer = new Player(null, 10);
     private int numberOfEnemies;
@@ -75,6 +81,7 @@ public class ControllerGame implements Initializable {
     Image image_wall = new Image("file:resources/player/Three.png", 20, 20, false, false);
     ImageView image_background;
     Image image_player;
+
 
     public ControllerGame() {
 
@@ -131,7 +138,7 @@ public class ControllerGame implements Initializable {
         xPosDoor = image_door.getLayoutX();
         yPosDoor = image_door.getLayoutY();
         gamelayoutgrid.getChildren().addAll(printGrid());
-        label_life.setText(String.valueOf(gamePlayer.getLife()));
+        label_lifePlayer.setText(String.valueOf(gamePlayer.getHealth()));
 
     }
 
@@ -312,10 +319,10 @@ public class ControllerGame implements Initializable {
     }
 
     private void reduceLife() {
-        if (gamePlayer.getLife() > 1) {
-            gamePlayer.setLife(gamePlayer.getLife() - 1);
-           // System.out.print("Life " + gamePlayer.getLife());
-            label_life.setText(String.valueOf(gamePlayer.getLife()));
+        if (gamePlayer.getHealth() > 1) {
+            gamePlayer.setHealth(gamePlayer.getHealth() - 1);
+            // System.out.print("Life " + gamePlayer.getLife());
+            label_lifePlayer.setText(String.valueOf(gamePlayer.getHealth()));
         } else {
             try {
                 switchToGameOver();
@@ -362,13 +369,13 @@ public class ControllerGame implements Initializable {
 
     // 3 off them are not right now needed, maybe later?
     public void initEnemy(Enemy ourEnemy1, Enemy ourEnemy2, Enemy ourEnemy3) {
-        this.GameClassEnemy1 = ourEnemy1;
-        this.GameClassEnemy2 = ourEnemy2;
-        this.GameClassEnemy3 = ourEnemy3;
+        this.gameClassEnemy1 = ourEnemy1;
+        this.gameClassEnemy2 = ourEnemy2;
+        this.gameClassEnemy3 = ourEnemy3;
         //   System.out.println("Level in game is " + GameClassEnemy1.getLevelEnemy());
         //  System.out.println("Level in game is " + GameClassEnemy2.getLevelEnemy());
         //   System.out.println("Level in game is " + GameClassEnemy3.getLevelEnemy());
-        this.numberOfEnemies = Integer.parseInt(GameClassEnemy3.getLevelEnemy());
+        this.numberOfEnemies = Integer.parseInt(gameClassEnemy3.getLevelEnemy());
         //	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits());  // ourEnemy can be whatever
         //	EnemyLabel2.setText(GameClassEnemy2.getPersonTraits());
         //	EnemyLabel3.setText(GameClassEnemy3.getPersonTraits());
@@ -384,6 +391,13 @@ public class ControllerGame implements Initializable {
             movePlayerKeyPressed(event);
             stopMovePlayerKeyReleased(event);
             setRandomEnemiesToGame(numberOfEnemies);
+            label_healthEnemy1.setText(String.valueOf(gameClassEnemy1.getHealth()));
+            label_healthEnemy2.setText(String.valueOf(gameClassEnemy2.getHealth()));
+            label_healthEnemy3.setText(String.valueOf(gameClassEnemy3.getHealth()));
+            if (numberOfEnemies >= 1) label_healthEnemy1.setVisible(true);
+            if (numberOfEnemies >= 2) label_healthEnemy2.setVisible(true);
+            if (numberOfEnemies >= 3) label_healthEnemy3.setVisible(true);
+
 
         }
     }

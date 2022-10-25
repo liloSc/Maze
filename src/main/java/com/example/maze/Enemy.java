@@ -13,10 +13,10 @@ public class Enemy {
     int force;
 
 
-    public static void enemies(String[] args) {
-        Enemy myFirstFigther = new Enemy();  // Object 1
-        Enemy mySecondFighter = new Enemy();  // Object 2
-        Enemy myThirdFighter = new Enemy(); // NULL IS THE CHARACTER WHICH IS THE
+    public void enemies(String[] args) {
+        Enemy myFirstFigther = new Enemy(health, force);  // Object 1
+        Enemy mySecondFighter = new Enemy(health, force);  // Object 2
+        Enemy myThirdFighter = new Enemy(health, force); // NULL IS THE CHARACTER WHICH IS THE
 
 
         System.out.println(myFirstFigther.health);
@@ -25,9 +25,11 @@ public class Enemy {
 
 
     // Every Enemy gets these properties
-    public Enemy() {
-        health = 20;
-        force = 30;
+    public Enemy(int health, int force) {
+        this.health = health;
+        this.force = force;
+        //  health = 20;
+        //   force = 30;
         // this.character = new SimpleStringProperty(character);
     }
 
@@ -84,6 +86,13 @@ public class Enemy {
         return LevelEnemy.get();
     }
 
+    public void setHealth(int life2) {
+        this.health = life2;
 
+    }
+
+    public int getHealth() {
+        return health;
+    }
 
 }
