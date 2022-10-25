@@ -74,6 +74,7 @@ public class CombiningGame implements Initializable {
 
     //Variable to look if key is pressed
     boolean isActive = false;
+    boolean isMoving = false;
 
     Game_layout gameLayout;
     private int[][] grid;
@@ -259,31 +260,36 @@ public class CombiningGame implements Initializable {
         //  System.out.println(i + " " + j);
 
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
-
             isActive = true;
             if (event.getCode().equals(KeyCode.UP)) {
                 direction = Direction.UP;
                 if (gameLayout.isWall(i, j - 1) == false) {
                     gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) - 1);
                 }
+
+                isMoving = true;
             } else if (event.getCode().equals(KeyCode.DOWN)) {
                 direction = Direction.DOWN;
 
                 if (gameLayout.isWall(i, j + 1) == false) {
                     gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) + 1);
                 }
+                isMoving = true;
+
             } else if (event.getCode().equals(KeyCode.LEFT)) {
                 direction = Direction.LEFT;
 
                 if (gameLayout.isWall(i - 1, j) == false) {
                     gamelayoutgrid.setColumnIndex(rectangleid, GridPane.getColumnIndex(rectangleid) - 1);
                 }
+                isMoving = true;
             } else if (event.getCode().equals(KeyCode.RIGHT)) {
                 direction = Direction.RIGHT;
 
                 if (gameLayout.isWall(i + 1, j) == false) {
                     gamelayoutgrid.setColumnIndex(rectangleid, GridPane.getColumnIndex(rectangleid) + 1);
                 }
+                isMoving = true;
             }
             image = getCharacterImage();
             rectangleid.setFill(new ImagePattern(image));
@@ -300,6 +306,7 @@ public class CombiningGame implements Initializable {
     void moveSquareKeyReleased(KeyEvent event) {
         if (KeyEvent.KEY_RELEASED.equals(event.getEventType())) {
             isActive = false;
+            isMoving = false;
         }
     }
 
@@ -339,7 +346,7 @@ public class CombiningGame implements Initializable {
             if (((playerColumn == enemyColumn) || (playerColumn + 1 == enemyColumn) || (playerColumn - 1 == enemyColumn)) && ((playerRow == enemyRow) || (playerRow + 1 == enemyRow) || (playerRow - 1 == enemyRow))) {
 
                 //   System.out.println("Next to Enemy");
-                reduceLife();
+                if (isMoving) reduceLife();
                 return true;
             }
         }
@@ -348,23 +355,23 @@ public class CombiningGame implements Initializable {
     }
 
     private void reduceLife() {
-       if(gamePlayer.getLife()>1) {
-           gamePlayer.setLife(gamePlayer.getLife() - 1);
-           //  gamePlayer.setLife(5);
-           System.out.print("Life " + gamePlayer.getLife());
-       }else{
-           try {
-               switchToGameOver();
-           } catch (IOException e) {
-               throw new RuntimeException(e);
-           }
-       }
+        if (gamePlayer.getLife() > 1) {
+            gamePlayer.setLife(gamePlayer.getLife() - 1);
+            //  gamePlayer.setLife(5);
+            System.out.print("Life " + gamePlayer.getLife());
+        } else {
+            try {
+                switchToGameOver();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private Stage stage;
     private Scene scene;
 
-    public void switchToTask(KeyEvent event)  {
+    public void switchToTask(KeyEvent event) {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("unlockDoor.fxml"));
