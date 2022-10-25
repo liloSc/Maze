@@ -59,6 +59,7 @@ public class CombiningGame implements Initializable {
 
 
     public Player gamePlayer = new Player(null, 10);
+    private int numberOfEnemies;
 
     // ControllerCharacterSelection controllerCharacterSelection= new ControllerCharacterSelection();
 
@@ -140,11 +141,10 @@ public class CombiningGame implements Initializable {
         image = getCharacterImage();
         rectangleid.setFill(new ImagePattern(image));
         rectangleid.setVisible(false);
-
         instructionPane.toFront();
-
         gamelayoutgrid.setConstraints(rectangleid, 0, 1);
-        setRandomEnemiesToGame(5);
+
+        // setRandomEnemiesToGame(5);
         doorClose.getLayoutBounds();
         xPosDoor = doorClose.getLayoutX();
         yPosDoor = doorClose.getLayoutY();
@@ -198,7 +198,7 @@ public class CombiningGame implements Initializable {
             } else if (gamePlayer.getCharacter().equals("charac4")) {
                 path = "resources/player/banana.png";
 
-           
+
             }
 
         }
@@ -212,7 +212,6 @@ public class CombiningGame implements Initializable {
         return image;
 
     }
-
 
     //fill the grid with a simple background
     private Node printGrid() {
@@ -229,12 +228,10 @@ public class CombiningGame implements Initializable {
                     backgroundView = new ImageView();
                     backgroundView.setImage(wall);
 
-
                     //System.out.println(grid[i][j]);
                 } else {
                     backgroundView = new ImageView();
                     backgroundView.setImage(path);
-
 
                     //System.out.println(grid[i][j]);
                 }
@@ -242,9 +239,7 @@ public class CombiningGame implements Initializable {
                 gamelayoutgrid.add(backgroundView, i, j);
                 backgroundView.toBack();
             }
-
         }
-
 
         return GPane;
     }
@@ -268,8 +263,6 @@ public class CombiningGame implements Initializable {
             isActive = true;
             if (event.getCode().equals(KeyCode.UP)) {
                 direction = Direction.UP;
-
-
                 if (gameLayout.isWall(i, j - 1) == false) {
                     gamelayoutgrid.setRowIndex(rectangleid, GridPane.getRowIndex(rectangleid) - 1);
                 }
@@ -300,7 +293,6 @@ public class CombiningGame implements Initializable {
 
             if (isPlayerNextToEnemy()) shootOnEnemy(event);
         }
-
     }
 
 
@@ -308,7 +300,6 @@ public class CombiningGame implements Initializable {
     void moveSquareKeyReleased(KeyEvent event) {
         if (KeyEvent.KEY_RELEASED.equals(event.getEventType())) {
             isActive = false;
-
         }
     }
 
@@ -327,8 +318,6 @@ public class CombiningGame implements Initializable {
         } else {
             //   System.out.println("Not on Door");
         }
-
-
     }
 
     private void shootOnEnemy(KeyEvent event) {
@@ -394,10 +383,15 @@ public class CombiningGame implements Initializable {
     }
 
 
+    // 3 off them are not right now needed, maybe later?
     public void initEnemy(Enemy ourEnemy1, Enemy ourEnemy2, Enemy ourEnemy3) {
         this.GameClassEnemy1 = ourEnemy1;
         this.GameClassEnemy2 = ourEnemy2;
         this.GameClassEnemy3 = ourEnemy3;
+        System.out.println("Level in game is " + GameClassEnemy1.getLevelEnemy());
+        System.out.println("Level in game is " + GameClassEnemy2.getLevelEnemy());
+        System.out.println("Level in game is " + GameClassEnemy3.getLevelEnemy());
+        this.numberOfEnemies = Integer.parseInt(GameClassEnemy3.getLevelEnemy());
         //	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits());  // ourEnemy can be whatever
         //	EnemyLabel2.setText(GameClassEnemy2.getPersonTraits());
         //	EnemyLabel3.setText(GameClassEnemy3.getPersonTraits());
@@ -412,11 +406,10 @@ public class CombiningGame implements Initializable {
             rectangleid.requestFocus();
             movePlayerKeyPressed(event);
             moveSquareKeyReleased(event);
+            setRandomEnemiesToGame(numberOfEnemies);
 
         }
     }
-
-
 }
 
 
