@@ -46,7 +46,7 @@
       </ImageView>
       <ImageView id="charac2" fx:id="charac2" fitHeight="89.0" fitWidth="89.0" layoutX="541.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@images/luchu_front.png" />
+            <Image url="@images/Luchu_front_bigger.png" />
          </image>
       </ImageView>
       <ImageView id="charac3" fx:id="charac3" fitHeight="89.0" fitWidth="89.0" layoutX="619.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" visible="false">

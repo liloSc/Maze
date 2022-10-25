@@ -17,13 +17,14 @@
       <font>
          <Font name="Retro Gaming" size="47.0" />
       </font></Label>
-   <ImageView fitHeight="150.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="283.0" fitWidth="338.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../../../../../../resources/player/Luchu/luchu_front.png" />
+         <Image url="@images/Luchu_front_bigger.png" />
       </image>
    </ImageView>
-    <Button onKeyPressed="#switchToCharacterSelection" style="-fx-background-color: Transparent;" text="press enter" textFill="#322eff">
+    <Button onKeyPressed="#switchToCharacterSelection" prefHeight="54.0" prefWidth="166.0" style="-fx-background-color: Transparent;" text="press enter" textAlignment="CENTER" textFill="#322eff">
       <font>
          <Font name="Retro Gaming" size="18.0" />
-      </font></Button>
+      </font>
+   </Button>
 </VBox>
