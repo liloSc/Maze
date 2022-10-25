@@ -49,13 +49,12 @@ public class ControllerLevelSelection implements Initializable {
     private ImageView charac3;
     @FXML
     private ImageView charac4;
-
+    private Player selectedPlayer;
 
     private void hideLevelSelection() {
         rectangle_level1.setVisible(false);
         rectangle_level2.setVisible(false);
         rectangle_level3.setVisible(false);
-
     }
 
     private void hideImageLevel() {
@@ -76,8 +75,9 @@ public class ControllerLevelSelection implements Initializable {
 
             //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
             // Access the controller and call a method
-            //CombiningGame controller3 = loader.getController();
-            //controller3.initData2(selectedPlayer);
+            CombiningGame controller3 = loader.getController();
+            System.out.println("Does the Select Player work? "+selectedPlayer.getCharacter());
+             controller3.initData2(selectedPlayer);
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -110,14 +110,13 @@ public class ControllerLevelSelection implements Initializable {
     }
 
 
-    private Player selectedPlayer;
-
     public void initData(Player player) { // THIS METHOD accepts a player to initialize the view
-        System.out.println("1 Now we have a new char  " + player);
-        selectedPlayer = player;
-        System.out.println("2 Now we have a new char  " + selectedPlayer);
+        //   System.out.println("1 Now we have a new char  " + player);
+        this.selectedPlayer = player;
+
+        //   System.out.println("2 Now we have a new char  " + selectedPlayer);
         yourplayer.setText(selectedPlayer.getCharacter());
-        System.out.println("3 Now we have a new char  " + yourplayer);
+        //   System.out.println("3 Now we have a new char  " + yourplayer);
         // SOMETHING WITH SHOW IT IN VIEW?
         if (yourplayer.getText() == "charac1") {
             hideImageLevel();

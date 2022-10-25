@@ -14,10 +14,10 @@ public class Main extends Application {
     public ControllerCharacterSelection controller;
 
     //Player player;
-    public void setPlayer(Player p) {
+  /*  public void setPlayer(Player p) {
         this.player = p;
     }
-
+*/
 
     @Override
     public void start(Stage stage) {

@@ -94,8 +94,8 @@ public class ControllerCharacterSelection implements Initializable {
             bigCharac2.setVisible(true);
           
             ourPlayer.setCharacter("charac2");
-            String tesssst = ourPlayer.getCharacter();
-        	System.out.println("Now we have a new char  " + tesssst);
+         //   String tesssst = ourPlayer.getCharacter();
+        	//System.out.println("Now we have a new char  " + tesssst);
 
         } else if (event.getSource() == charac3) {
             hideImage();

@@ -39,7 +39,8 @@ public class CombiningGame implements Initializable {
     private final double rectangleSize = 20.0;
     @FXML
     private Rectangle rectangleid;
-    public Player gamePlayer;
+    public Player gamePlayer= new Player(null);
+    // ControllerCharacterSelection controllerCharacterSelection= new ControllerCharacterSelection();
 
     //x and y position of the rectangle different from starting position
     double xPos;
@@ -86,17 +87,19 @@ public class CombiningGame implements Initializable {
         yPosDoor = doorClose.getLayoutY();
         gamelayoutgrid.getChildren().addAll(printGrid());
 
-        System.out.println("DoorPos : [" + xPosDoor + ", " + yPosDoor + "]");
-        System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
+        //   System.out.println("DoorPos : [" + xPosDoor + ", " + yPosDoor + "]");
+        //   System.out.println("CharPos : [" + xPos + ", " + yPos + "]");
 
     }
 
 
     private Image getCharacterImage() {
 
+
         String path = "resources/player/dog_left_1.png";
 
         if (isActive) {
+           // System.out.println("Get Character Image of " + );
 
             if (direction == Direction.UP)
                 path = "resources/player/dog_up_1.png";
@@ -106,8 +109,10 @@ public class CombiningGame implements Initializable {
                 path = "resources/player/dog_left_1.png";
             if (direction == Direction.RIGHT)
                 path = "resources/player/dog_right_1.png";
+            if(gamePlayer.getCharacter().equals("charac2"))   path = "resources/player/heart.png";
 
         }
+
 
 
         //   Image image;
@@ -167,7 +172,7 @@ public class CombiningGame implements Initializable {
         int i = gamelayoutgrid.getColumnIndex(rectangleid);
         int j = gamelayoutgrid.getRowIndex(rectangleid);
 
-        System.out.println(i + " " + j);
+        //  System.out.println(i + " " + j);
 
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
 
@@ -260,9 +265,10 @@ public class CombiningGame implements Initializable {
 
 
     public void initData2(Player player) { // THIS METHOD accepts a player to initialize the view
-        gamePlayer = player;
-        System.out.println("3 Now we have a new char in game " + gamePlayer);
+        this.gamePlayer = player;
+        System.out.println("3 Now we have a new char in game " + gamePlayer.getCharacter());
     }
+
 
 }
 
