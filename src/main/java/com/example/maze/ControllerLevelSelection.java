@@ -71,19 +71,19 @@ public class ControllerLevelSelection implements Initializable {
     public void switchToGame(MouseEvent event) throws IOException {
         if (isLevelSelected() == true) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("combining_game.fxml"));
+            loader.setLocation(getClass().getResource("game.fxml"));
             Parent root = loader.load();
             scene = new Scene(root);
 
             //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
             // Access the controller and call a method
             
-            CombiningGame controller2 = loader.getController();
+            ControllerGame controller2 = loader.getController();
             controller2.initEnemy(ourEnemies, ourEnemies, ourEnemies);
 
-            CombiningGame controller3 = loader.getController();
+            ControllerGame controller3 = loader.getController();
             System.out.println("Does the Select Player work? "+ selectedPlayer.getCharacter());
-            controller3.initData2(selectedPlayer);
+            controller3.initData(selectedPlayer);
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
