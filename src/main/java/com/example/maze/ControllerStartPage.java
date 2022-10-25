@@ -1,5 +1,7 @@
 package com.example.maze;
 
+import java.io.File;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.scene.media.*;
 
 public class ControllerStartPage {
 
@@ -32,5 +35,5 @@ public class ControllerStartPage {
         }
 
     }
-
+    
 }

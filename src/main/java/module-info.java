@@ -3,6 +3,8 @@ module com.example.maze {
     requires javafx.fxml;
 	requires javafx.graphics;
 	requires javafx.base;
+	requires java.desktop;
+	requires javafx.media;
 
 
     opens com.example.maze to javafx.fxml;
