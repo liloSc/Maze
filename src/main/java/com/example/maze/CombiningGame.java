@@ -74,8 +74,8 @@ public class CombiningGame implements Initializable {
     //Method called after the stage is loaded
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-     //   gamePlayer = new Player("charac2");
-    //    gamePlayer.setCharacter("charac2");
+        //   gamePlayer = new Player("charac2");
+        //    gamePlayer.setCharacter("charac2");
 
         grid = new int[length][height];
         gameLayout = new Game_layout(grid);
@@ -96,6 +96,9 @@ public class CombiningGame implements Initializable {
 
     private Image getCharacterImage() {
         String path = "resources/player/dog_left_1.png";
+        //    String path = null;
+        //    image = new Image(null);
+
         if (isActive) {
             if (gamePlayer.getCharacter().equals("charac1")) {
                 path = "resources/player/dog_left_1.png";
@@ -122,6 +125,30 @@ public class CombiningGame implements Initializable {
                 if (direction == Direction.RIGHT)
                     path = "resources/player/Luchu/luchu_right2.png";
 
+            } else if (gamePlayer.getCharacter().equals("charac3")) {
+                path = "resources/player/heart.png";
+
+             /*   if (direction == Direction.UP)
+                    path = "resources/player/Luchu/luchu_back1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Luchu/luchu_front.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Luchu/luchu_left2.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Luchu/luchu_right2.png";
+*/
+            } else if (gamePlayer.getCharacter().equals("charac4")) {
+                path = "resources/player/banana.png";
+
+            /*    if (direction == Direction.UP)
+                    path = "resources/player/Luchu/luchu_back1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Luchu/luchu_front.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Luchu/luchu_left2.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Luchu/luchu_right2.png";
+*/
             }
         }
         try {
