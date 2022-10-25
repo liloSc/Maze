@@ -18,7 +18,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -34,6 +36,8 @@ public class CombiningGame implements Initializable {
     private GridPane gamelayoutgrid;
 
 
+    @FXML
+    private BorderPane instructionPane;
     // private FlowPane flowpane;
 
     private final double rectangleSize = 20.0;
@@ -79,12 +83,12 @@ public class CombiningGame implements Initializable {
 
         grid = new int[length][height];
         gameLayout = new Game_layout(grid);
-        gamePlayer.getCharacter();
-        gamePlayer.setCharacter(null);
-        //initData2(gamePlayer);
+        
         image = getCharacterImage();
         rectangleid.setFill(new ImagePattern(image));
+        rectangleid.setVisible(false);
 
+        instructionPane.toFront();
         
         gamelayoutgrid.setConstraints(rectangleid, 0, 1);
 
@@ -280,7 +284,7 @@ public class CombiningGame implements Initializable {
         int i = gamelayoutgrid.getColumnIndex(rectangleid);
         int j = gamelayoutgrid.getRowIndex(rectangleid);
 
-        //  System.out.println(i + " " + j);
+          System.out.println(i + " " + j);
 
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
 
@@ -377,6 +381,17 @@ public class CombiningGame implements Initializable {
         System.out.println("3 Now we have a new char in game " + gamePlayer.getCharacter());
     }
 
+    @FXML
+    public void hideInstructionPane(KeyEvent event) throws IOException {
+    	if(event.getCode().equals((KeyCode.ENTER))) {
+    		instructionPane.setVisible(false);
+    		rectangleid.setVisible(true);
+    		rectangleid.requestFocus();
+    		movePlayerKeyPressed(event);
+    		moveSquareKeyReleased(event);
+    		
+    	}
+    }
 
 }
 
