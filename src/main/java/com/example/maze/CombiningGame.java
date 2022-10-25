@@ -43,21 +43,21 @@ public class CombiningGame implements Initializable {
 
     @FXML
     private BorderPane instructionPane;
- 
+
 
     private final double rectangleSize = 20.0;
     @FXML
     private Rectangle rectangleid;
-    
-   // public Player gamePlayer; 
+
+    // public Player gamePlayer;
     public Enemy GameClassEnemy1;
     public Enemy GameClassEnemy2;
     public Enemy GameClassEnemy3;
     public Label EnemyLabel1;
     public Label EnemyLabel2;
     public Label EnemyLabel3;
-    
-    
+
+
     public Player gamePlayer = new Player(null, 10);
 
     // ControllerCharacterSelection controllerCharacterSelection= new ControllerCharacterSelection();
@@ -198,87 +198,10 @@ public class CombiningGame implements Initializable {
             } else if (gamePlayer.getCharacter().equals("charac4")) {
                 path = "resources/player/banana.png";
 
-            /*    if (direction == Direction.UP)
-                    path = "resources/player/Luchu/luchu_back1.png";
-                if (direction == Direction.DOWN)
-                    path = "resources/player/Luchu/luchu_front.png";
-                if (direction == Direction.LEFT)
-                    path = "resources/player/Luchu/luchu_left2.png";
-                if (direction == Direction.RIGHT)
-                    path = "resources/player/Luchu/luchu_right2.png";
-*/
+           
             }
-            //  System.out.print("Life " + gamePlayer.getLife());
+
         }
-        
-        
-/*
-        if (gamePlayer.getCharacter().equals("charac1")) {
-        	if (isActive) {
-            
-                path = "resources/player/dog_left_1.png";
-                // System.out.println("Get Character Image of " + );
-                if (direction == Direction.UP)
-                    path = "resources/player/dog_up_1.png";
-                if (direction == Direction.DOWN)
-                    path = "resources/player/dog_down_1.png";
-                if (direction == Direction.LEFT)
-                    path = "resources/player/dog_left_1.png";
-                if (direction == Direction.RIGHT)
-                    path = "resources/player/dog_right_1.png";
-                //    if (gamePlayer.getCharacter().equals("charac2")) path = "resources/player/heart.png";
-
-            } 
-        }
-        
-        else if (gamePlayer.getCharacter().equals("charac2")) {
-        	if (isActive) {
-                path = "resources/player/Luchu/luchu_left1.png";
-
-                if (direction == Direction.UP)
-                    path = "resources/player/Luchu/luchu_back1.png";
-                if (direction == Direction.DOWN)
-                    path = "resources/player/Luchu/luchu_front.png";
-                if (direction == Direction.LEFT)
-                    path = "resources/player/Luchu/luchu_left2.png";
-                if (direction == Direction.RIGHT)
-                    path = "resources/player/Luchu/luchu_right2.png";
-        	}
-        	
-
-            
-        }
-        else if (gamePlayer.getCharacter().equals("charac3")) {
-        	if(isActive) {
-                path = "resources/player/heart.png";
-
-                if (direction == Direction.UP)
-                    path = "resources/player/Boba/boba_back.png";
-                if (direction == Direction.DOWN)
-                    path = "resources/player/Boba/boba_down.png";
-                if (direction == Direction.LEFT)
-                    path = "resources/player/Boba/boba_left.png";
-                if (direction == Direction.RIGHT)
-                    path = "resources/player/Boba/boba_right1.png";
-
-            }
-        }
-        else if (gamePlayer.getCharacter().equals("charac4")) {
-                path = "resources/player/banana.png";
-                if(isActive) {
-
-              if (direction == Direction.UP)
-                    path = "resources/player/Luchu/luchu_back1.png";
-                if (direction == Direction.DOWN)
-                    path = "resources/player/Luchu/luchu_front.png";
-                if (direction == Direction.LEFT)
-                    path = "resources/player/Luchu/luchu_left2.png";
-                if (direction == Direction.RIGHT)
-                    path = "resources/player/Luchu/luchu_right2.png";
-                	}
-                
-            }
-        */
 
 
         try {
@@ -374,7 +297,8 @@ public class CombiningGame implements Initializable {
 
             rectangleid.toFront();
             isPlayerOnDoorLilo(event);
-            isPlayerNextToEnemy(event);
+
+            if (isPlayerNextToEnemy()) shootOnEnemy(event);
         }
 
     }
@@ -407,7 +331,13 @@ public class CombiningGame implements Initializable {
 
     }
 
-    private void isPlayerNextToEnemy(KeyEvent event) throws IOException {
+    private void shootOnEnemy(KeyEvent event) {
+        if (event.getCode() == KeyCode.SPACE) {
+            System.out.println("Shoot on Enemy");
+        }
+    }
+
+    private boolean isPlayerNextToEnemy() {
         //get Position of Player
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangleid);
         int playerRow = gamelayoutgrid.getRowIndex(rectangleid);
@@ -418,16 +348,13 @@ public class CombiningGame implements Initializable {
             int enemyRow = gamelayoutgrid.getRowIndex(e);
 
             if (((playerColumn == enemyColumn) || (playerColumn + 1 == enemyColumn) || (playerColumn - 1 == enemyColumn)) && ((playerRow == enemyRow) || (playerRow + 1 == enemyRow) || (playerRow - 1 == enemyRow))) {
-                //  switchToTask(event);
+
                 //   System.out.println("Next to Enemy");
                 reduceLife();
-            } else {
-
+                return true;
             }
-            //   System.out.print("Life "+gamePlayer.getLife());
         }
-        //getPositionDoor
-
+        return false;
 
     }
 
@@ -465,17 +392,16 @@ public class CombiningGame implements Initializable {
         this.gamePlayer = player;
         //  System.out.println("3 Now we have a new char in game " + gamePlayer.getCharacter());
     }
-    
-    
-    
-    public void initEnemy(Enemy ourEnemy1,Enemy ourEnemy2,Enemy ourEnemy3) {
-		this.GameClassEnemy1 = ourEnemy1;
-		this.GameClassEnemy2 = ourEnemy2;
-		this.GameClassEnemy3 = ourEnemy3;
-	//	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits());  // ourEnemy can be whatever
-	//	EnemyLabel2.setText(GameClassEnemy2.getPersonTraits());
-	//	EnemyLabel3.setText(GameClassEnemy3.getPersonTraits());
-	}
+
+
+    public void initEnemy(Enemy ourEnemy1, Enemy ourEnemy2, Enemy ourEnemy3) {
+        this.GameClassEnemy1 = ourEnemy1;
+        this.GameClassEnemy2 = ourEnemy2;
+        this.GameClassEnemy3 = ourEnemy3;
+        //	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits());  // ourEnemy can be whatever
+        //	EnemyLabel2.setText(GameClassEnemy2.getPersonTraits());
+        //	EnemyLabel3.setText(GameClassEnemy3.getPersonTraits());
+    }
 
 
     @FXML
