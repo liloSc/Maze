@@ -38,23 +38,23 @@
             <Font name="Retro sGaming" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="yourplayer" layoutX="93.0" layoutY="405.0" prefHeight="117.0" prefWidth="122.0" text="Label" />
-      <ImageView id="charac1" fx:id="charac1" fitHeight="89.0" fitWidth="89.0" layoutX="530.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <Label fx:id="label_yourPlayer" layoutX="93.0" layoutY="405.0" prefHeight="117.0" prefWidth="122.0" text="Label" />
+      <ImageView id="charac1" fx:id="image_character1" fitHeight="89.0" fitWidth="89.0" layoutX="530.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@images/dog_left_1.png" />
          </image>
       </ImageView>
-      <ImageView id="charac2" fx:id="charac2" fitHeight="89.0" fitWidth="89.0" layoutX="541.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView id="charac2" fx:id="image_character2" fitHeight="89.0" fitWidth="89.0" layoutX="541.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@images/Luchu_front_bigger.png" />
          </image>
       </ImageView>
-      <ImageView id="charac3" fx:id="charac3" fitHeight="89.0" fitWidth="89.0" layoutX="619.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView id="charac3" fx:id="image_character3" fitHeight="89.0" fitWidth="89.0" layoutX="619.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@images/Boba_front.png" />
          </image>
       </ImageView>
-      <ImageView id="charac4" fx:id="charac4" fitHeight="89.0" fitWidth="89.0" layoutX="630.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView id="charac4" fx:id="image_character4" fitHeight="89.0" fitWidth="89.0" layoutX="630.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@images/pacman.png" />
          </image>

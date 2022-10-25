@@ -18,14 +18,8 @@ import javafx.stage.Stage;
 
 public class ControllerLevelSelection implements Initializable {
 
-
-    ControllerCharacterSelection controller;
-
-
     private Stage stage;
     private Scene scene;
-
-    private Parent root;
 
     @FXML
     private Label level1;
@@ -40,19 +34,19 @@ public class ControllerLevelSelection implements Initializable {
     @FXML
     private Rectangle rectangle_level3;
     @FXML
-    private Label yourplayer;
+    private Label label_yourPlayer;
     @FXML
-    private ImageView charac1;
+    private ImageView image_character1;
     @FXML
-    private ImageView charac2;
+    private ImageView image_character2;
     @FXML
-    private ImageView charac3;
+    private ImageView image_character3;
     @FXML
-    private ImageView charac4;
+    private ImageView image_character4;
 
     public Enemy ourEnemies = new Enemy();
 
-    private Player selectedPlayer;
+    private Player player;
 
     private void hideLevelSelection() {
         rectangle_level1.setVisible(false);
@@ -61,10 +55,10 @@ public class ControllerLevelSelection implements Initializable {
     }
 
     private void hideImageLevel() {
-        charac1.setVisible(false);
-        charac2.setVisible(false);
-        charac3.setVisible(false);
-        charac4.setVisible(false);
+        image_character1.setVisible(false);
+        image_character2.setVisible(false);
+        image_character3.setVisible(false);
+        image_character4.setVisible(false);
     }
 
 
@@ -77,13 +71,11 @@ public class ControllerLevelSelection implements Initializable {
 
             //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
             // Access the controller and call a method
-            
-            ControllerGame controller2 = loader.getController();
-            controller2.initEnemy(ourEnemies, ourEnemies, ourEnemies);
 
-            ControllerGame controller3 = loader.getController();
-            System.out.println("Does the Select Player work? "+ selectedPlayer.getCharacter());
-            controller3.initData(selectedPlayer);
+            ControllerGame controllerGame = loader.getController();
+            controllerGame.initEnemy(ourEnemies, ourEnemies, ourEnemies);
+            //    ControllerGame controller3 = loader.getController();
+            controllerGame.initData(player);
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -120,23 +112,20 @@ public class ControllerLevelSelection implements Initializable {
 
 
     public void initData(Player player) { // THIS METHOD accepts a player to initialize the view
-        //   System.out.println("1 Now we have a new char  " + player);
-        this.selectedPlayer = player;
-        //   System.out.println("2 Now we have a new char  " + selectedPlayer);
-        yourplayer.setText(selectedPlayer.getCharacter());
-        //   System.out.println("3 Now we have a new char  " + yourplayer)
-        if (yourplayer.getText() == "charac1") {
+        this.player = player;
+        label_yourPlayer.setText(this.player.getCharacter());
+        if (label_yourPlayer.getText() == "charac1") {
             hideImageLevel();
-            charac1.setVisible(true);
-        } else if (yourplayer.getText() == "charac2") {
+            image_character1.setVisible(true);
+        } else if (label_yourPlayer.getText() == "charac2") {
             hideImageLevel();
-            charac2.setVisible(true);
-        } else if (yourplayer.getText() == "charac3") {
+            image_character2.setVisible(true);
+        } else if (label_yourPlayer.getText() == "charac3") {
             hideImageLevel();
-            charac3.setVisible(true);
-        } else if (yourplayer.getText() == "charac4") {
+            image_character3.setVisible(true);
+        } else if (label_yourPlayer.getText() == "charac4") {
             hideImageLevel();
-            charac4.setVisible(true);
+            image_character4.setVisible(true);
         }
 
 

@@ -43,8 +43,6 @@ public class ControllerGame implements Initializable {
     @FXML
     private BorderPane instructionPane;
 
-
-    private final double player_rectangleSize = 20.0;
     @FXML
     private Rectangle rectangle_player;
 
@@ -73,10 +71,7 @@ public class ControllerGame implements Initializable {
     int i, j;
     Image image_grass = new Image("file:resources/player/Grass.png", 20, 20, false, false);
     Image image_wall = new Image("file:resources/player/Three.png", 20, 20, false, false);
-
     ImageView image_background;
-
-
     Image image_player;
 
     public ControllerGame() {

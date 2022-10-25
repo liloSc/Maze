@@ -119,8 +119,6 @@ public class ControllerUnlockDoor {
     );
 
     public void setTimer() {
-
-        //  label_timer.setText(timeFormat.format(0));
         timeline.setCycleCount(Animation.INDEFINITE);
         startTime = System.currentTimeMillis();
         timeline.play();
@@ -133,13 +131,6 @@ public class ControllerUnlockDoor {
         loader.setLocation(getClass().getResource("gameover.fxml"));
         Parent root = loader.load();
         scene = new Scene(root);
-
-
-        //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
-        // Access the controller and call a method
-        //CombiningGame controller3 = loader.getController();
-        //controller3.initData2(selectedPlayer);
-
         stage = (Stage) label_timer.getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();

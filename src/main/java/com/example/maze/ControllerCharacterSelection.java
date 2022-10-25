@@ -19,60 +19,56 @@ public class ControllerCharacterSelection implements Initializable {
     @FXML
 
     private Stage stage;
-    private Scene scene;
 
-    private Parent root;
 
     @FXML
-    private ImageView charac1;
+    private ImageView image_charac1;
     @FXML
-    private ImageView bigCharac1;
+    private ImageView image_bigCharac1;
     @FXML
-    private ImageView charac2;
+    private ImageView image_charac2;
     @FXML
-    private ImageView bigCharac2;
+    private ImageView image_bigCharac2;
     @FXML
-    private ImageView charac3;
+    private ImageView image_charac3;
     @FXML
-    private ImageView bigCharac3;
+    private ImageView image_bigCharac3;
     @FXML
-    private ImageView charac4;
+    private ImageView image_charac4;
     @FXML
-    private ImageView bigCharac4;
+    private ImageView image_bigCharac4;
 
-    public Player ourPlayer = new Player(null, 10);
+    public Player player = new Player(null, 10);
 
     public void switchToLevelSelection(MouseEvent event) throws IOException   // WE HAVE TO ADD PASSING THE PLAYER OBJECT  
     {
-        if (isCharacSelected() == true) {
-        		FXMLLoader loader = new FXMLLoader();
-        		loader.setLocation(getClass().getResource("levelselection.fxml"));
-        		Parent root = loader.load();
-                Scene root_scene = new Scene(root);
-                
-                
-                // Access the controller and call a method 
-                ControllerLevelSelection controller2 = loader.getController();
-                controller2.initData(ourPlayer);
-                
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(root_scene);
-                stage.show();
+        if (isCharacterSelected() == true) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("levelselection.fxml"));
+            Parent root = loader.load();
+            Scene root_scene = new Scene(root);
+
+            // Access the controller and call a method
+            ControllerLevelSelection controllerLevelSelection = loader.getController();
+            controllerLevelSelection.initData(player);
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(root_scene);
+            stage.show();
 
         }
     }
 
-    public Player playerselected;
 
     private void hideImage() {
-        bigCharac1.setVisible(false);
-        bigCharac2.setVisible(false);
-        bigCharac3.setVisible(false);
-        bigCharac4.setVisible(false);
+        image_bigCharac1.setVisible(false);
+        image_bigCharac2.setVisible(false);
+        image_bigCharac3.setVisible(false);
+        image_bigCharac4.setVisible(false);
     }
 
-    private boolean isCharacSelected() {
-        if (bigCharac1.isVisible() || bigCharac2.isVisible() || bigCharac3.isVisible() || bigCharac4.isVisible()) {
+    private boolean isCharacterSelected() {
+        if (image_bigCharac1.isVisible() || image_bigCharac2.isVisible() || image_bigCharac3.isVisible() || image_bigCharac4.isVisible()) {
             return true;
         } else {
             return false;
@@ -80,30 +76,26 @@ public class ControllerCharacterSelection implements Initializable {
     }
 
     public void animateCharacter(MouseEvent event) {
-        if (event.getSource() == charac1) {
+        if (event.getSource() == image_charac1) {
             hideImage();
-            bigCharac1.setVisible(true);
-            ourPlayer.setCharacter("charac1");
+            image_bigCharac1.setVisible(true);
+            player.setCharacter("charac1");
 
-        } else if (event.getSource() == charac2) {
+        } else if (event.getSource() == image_charac2) {
             hideImage();
-            bigCharac2.setVisible(true);
+            image_bigCharac2.setVisible(true);
+            player.setCharacter("charac2");
 
-            ourPlayer.setCharacter("charac2");
-            //   String tesssst = ourPlayer.getCharacter();
-            //System.out.println("Now we have a new char  " + tesssst);
-
-        } else if (event.getSource() == charac3) {
+        } else if (event.getSource() == image_charac3) {
             hideImage();
-            bigCharac3.setVisible(true);
-            ourPlayer.setCharacter("charac3");
+            image_bigCharac3.setVisible(true);
+            player.setCharacter("charac3");
 
-        } else if (event.getSource() == charac4) {
+        } else if (event.getSource() == image_charac4) {
             hideImage();
-            bigCharac4.setVisible(true);
-            ourPlayer.setCharacter("charac4");
+            image_bigCharac4.setVisible(true);
+            player.setCharacter("charac4");
         }
-
     }
 
 

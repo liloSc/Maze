@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ControllerGameOver {
@@ -16,9 +15,7 @@ public class ControllerGameOver {
     public void switchToHomeScreen(KeyEvent event) {
         if (event.getCode().equals((KeyCode.ENTER))) {
             try {
-
                 Parent root = FXMLLoader.load(getClass().getResource("startpage.fxml"));
-
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
@@ -30,6 +27,8 @@ public class ControllerGameOver {
         }
 
     }
+
     public void quit() {
-        System.exit(-1);}
+        System.exit(-1);
+    }
 }
