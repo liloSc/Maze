@@ -100,8 +100,8 @@ public class ControllerGame implements Initializable {
             // Obtain a number between [0 - 49].
 
             if (!gameLayout.isWall(enemyYPosition, enemyXPosition)) { //Checks if tile is a wall
-                //   gamelayoutgrid.add(enemy1, enemyYPosition, enemyXPosition);
-                gamelayoutgrid.add(enemy1, 5, 1);
+                   gamelayoutgrid.add(enemy1, enemyYPosition, enemyXPosition);
+              //  gamelayoutgrid.add(enemy1, 5, 1);
                 listEnemies.add(enemy1);
                 enemyYPosition = randomNumber.nextInt(grid_length - 1);
                 enemyXPosition = randomNumber.nextInt(grid_height - 1);
@@ -296,7 +296,7 @@ public class ControllerGame implements Initializable {
 
     private void shootOnEnemy(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-            System.out.println("Shoot on Enemy");
+         //   System.out.println("Shoot on Enemy");
             if (nextenemy.getHealth() > 1) {
                 nextenemy.setHealth(nextenemy.getHealth() - 1);
                 label_healthEnemy1.setText(String.valueOf(nextenemy.getHealth()));
