@@ -23,8 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -48,7 +47,7 @@ public class CombiningGame implements Initializable {
     private final double rectangleSize = 20.0;
     @FXML
     private Rectangle rectangleid;
-    public Player gamePlayer = new Player(null);
+    public Player gamePlayer = new Player(null, 10);
     // ControllerCharacterSelection controllerCharacterSelection= new ControllerCharacterSelection();
 
     //x and y position of the rectangle different from starting position
@@ -79,7 +78,9 @@ public class CombiningGame implements Initializable {
     public CombiningGame() {
 
     }
-List<Rectangle> listEnemies= new ArrayList<>();
+
+    List<Rectangle> listEnemies = new ArrayList<>();
+
     public void setRandomEnemiesToGame(int numberOfEnemies) {
         // int numberOfEnemies=2;
         Random rand = new Random();
@@ -195,6 +196,7 @@ List<Rectangle> listEnemies= new ArrayList<>();
                     path = "resources/player/Luchu/luchu_right2.png";
 */
             }
+            //  System.out.print("Life " + gamePlayer.getLife());
         }
         
         
@@ -324,7 +326,7 @@ List<Rectangle> listEnemies= new ArrayList<>();
         int i = gamelayoutgrid.getColumnIndex(rectangleid);
         int j = gamelayoutgrid.getRowIndex(rectangleid);
 
-      //  System.out.println(i + " " + j);
+        //  System.out.println(i + " " + j);
 
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
 
@@ -387,7 +389,7 @@ List<Rectangle> listEnemies= new ArrayList<>();
         if (playerColumn == doorColumn && playerRow == doorRow) {
             switchToTask(event);
         } else {
-         //   System.out.println("Not on Door");
+            //   System.out.println("Not on Door");
         }
 
 
@@ -398,22 +400,29 @@ List<Rectangle> listEnemies= new ArrayList<>();
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangleid);
         int playerRow = gamelayoutgrid.getRowIndex(rectangleid);
 
-        for (Rectangle e:listEnemies
-             ) {
+        for (Rectangle e : listEnemies
+        ) {
             int enemyColumn = gamelayoutgrid.getColumnIndex(e);
             int enemyRow = gamelayoutgrid.getRowIndex(e);
 
-            if (((playerColumn == enemyColumn)||(playerColumn+1 == enemyColumn)||(playerColumn-1 == enemyColumn)) && ((playerRow == enemyRow)||(playerRow+1 == enemyRow)||(playerRow-1 == enemyRow))) {
+            if (((playerColumn == enemyColumn) || (playerColumn + 1 == enemyColumn) || (playerColumn - 1 == enemyColumn)) && ((playerRow == enemyRow) || (playerRow + 1 == enemyRow) || (playerRow - 1 == enemyRow))) {
                 //  switchToTask(event);
-                System.out.println("Next to Enemy");
+                //   System.out.println("Next to Enemy");
+                reduceLife();
             } else {
 
             }
+            //   System.out.print("Life "+gamePlayer.getLife());
         }
         //getPositionDoor
 
 
+    }
 
+    private void reduceLife() {
+        gamePlayer.setLife(gamePlayer.getLife() - 1);
+        //  gamePlayer.setLife(5);
+        System.out.print("Life " + gamePlayer.getLife());
     }
 
     private Stage stage;
@@ -442,7 +451,7 @@ List<Rectangle> listEnemies= new ArrayList<>();
 
     public void initData2(Player player) { // THIS METHOD accepts a player to initialize the view
         this.gamePlayer = player;
-        System.out.println("3 Now we have a new char in game " + gamePlayer.getCharacter());
+        //  System.out.println("3 Now we have a new char in game " + gamePlayer.getCharacter());
     }
 
     @FXML

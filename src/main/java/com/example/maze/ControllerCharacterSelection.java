@@ -40,34 +40,28 @@ public class ControllerCharacterSelection implements Initializable {
     private ImageView charac4;
     @FXML
     private ImageView bigCharac4;
-    
-    
-    
-   
-    public Player ourPlayer = new Player(null);
-    
-   
-    
+
+    public Player ourPlayer = new Player(null, 10);
 
     public void switchToLevelSelection(MouseEvent event) throws IOException   // WE HAVE TO ADD PASSING THE PLAYER OBJECT  
     {
         if (isCharacSelected() == true) {
-        		FXMLLoader loader = new FXMLLoader();
-        		loader.setLocation(getClass().getResource("levelselection.fxml"));
-        		Parent root = loader.load();
-                Scene root_scene = new Scene(root);
-                // Access the controller and call a method 
-                ControllerLevelSelection controller2 = loader.getController();
-                controller2.initData(ourPlayer);
-                
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(root_scene);
-                stage.show();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("levelselection.fxml"));
+            Parent root = loader.load();
+            Scene root_scene = new Scene(root);
+            // Access the controller and call a method
+            ControllerLevelSelection controller2 = loader.getController();
+            controller2.initData(ourPlayer);
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(root_scene);
+            stage.show();
         }
     }
 
     public Player playerselected;
-    
+
     private void hideImage() {
         bigCharac1.setVisible(false);
         bigCharac2.setVisible(false);
@@ -88,33 +82,32 @@ public class ControllerCharacterSelection implements Initializable {
             hideImage();
             bigCharac1.setVisible(true);
             ourPlayer.setCharacter("charac1");
-          
+
         } else if (event.getSource() == charac2) {
             hideImage();
             bigCharac2.setVisible(true);
-          
+
             ourPlayer.setCharacter("charac2");
-         //   String tesssst = ourPlayer.getCharacter();
-        	//System.out.println("Now we have a new char  " + tesssst);
+            //   String tesssst = ourPlayer.getCharacter();
+            //System.out.println("Now we have a new char  " + tesssst);
 
         } else if (event.getSource() == charac3) {
             hideImage();
             bigCharac3.setVisible(true);
             ourPlayer.setCharacter("charac3");
-          
+
         } else if (event.getSource() == charac4) {
             hideImage();
             bigCharac4.setVisible(true);
             ourPlayer.setCharacter("charac4");
         }
-      
+
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 }
