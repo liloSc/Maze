@@ -51,7 +51,7 @@
       </ImageView>
       <ImageView id="charac3" fx:id="charac3" fitHeight="89.0" fitWidth="89.0" layoutX="619.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@images/banana.png" />
+            <Image url="@images/Boba_front.png" />
          </image>
       </ImageView>
       <ImageView id="charac4" fx:id="charac4" fitHeight="89.0" fitWidth="89.0" layoutX="630.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false">

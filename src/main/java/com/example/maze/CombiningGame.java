@@ -4,6 +4,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -19,7 +22,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -35,12 +41,15 @@ public class CombiningGame implements Initializable {
     private GridPane gamelayoutgrid;
 
 
-    // private FlowPane flowpane;
+    @FXML
+    private BorderPane instructionPane;
+ 
 
     private final double rectangleSize = 20.0;
     @FXML
     private Rectangle rectangleid;
-    public Player gamePlayer; 
+    
+   // public Player gamePlayer; 
     public Enemy GameClassEnemy1;
     public Enemy GameClassEnemy2;
     public Enemy GameClassEnemy3;
@@ -49,6 +58,8 @@ public class CombiningGame implements Initializable {
     public Label EnemyLabel3;
     
     
+    public Player gamePlayer = new Player(null, 10);
+
     // ControllerCharacterSelection controllerCharacterSelection= new ControllerCharacterSelection();
 
     //x and y position of the rectangle different from starting position
@@ -80,6 +91,43 @@ public class CombiningGame implements Initializable {
 
     }
 
+    List<Rectangle> listEnemies = new ArrayList<>();
+
+    public void setRandomEnemiesToGame(int numberOfEnemies) {
+        // int numberOfEnemies=2;
+        Random rand = new Random();
+        int enemyYPosition = rand.nextInt(length - 1);
+        int enemyXPosition = rand.nextInt(height - 1);
+        for (int i = 0; i < numberOfEnemies; ) {
+            Rectangle enemy1 = new Rectangle(20, 20);
+            enemy1.setFill(Color.RED);
+            // Obtain a number between [0 - 49].
+
+            if (!gameLayout.isWall(enemyYPosition, enemyXPosition)) { //Checks if tile is a wall
+                gamelayoutgrid.add(enemy1, enemyYPosition, enemyXPosition);
+                listEnemies.add(enemy1);
+                enemyYPosition = rand.nextInt(length - 1);
+                enemyXPosition = rand.nextInt(height - 1);
+                i++;
+            } else {
+                if (enemyYPosition < length - 1) {
+                    enemyYPosition++;
+                } else {
+                    enemyYPosition = 0;
+                }
+                if (enemyXPosition < height - 1) {
+                    enemyXPosition++;
+                } else {
+                    enemyXPosition = 0;
+                }
+
+
+            }
+        }
+
+
+    }
+
     //Method called after the stage is loaded
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,11 +136,15 @@ public class CombiningGame implements Initializable {
 
         grid = new int[length][height];
         gameLayout = new Game_layout(grid);
+
         image = getCharacterImage();
         rectangleid.setFill(new ImagePattern(image));
+        rectangleid.setVisible(false);
+
+        instructionPane.toFront();
 
         gamelayoutgrid.setConstraints(rectangleid, 0, 1);
-
+        setRandomEnemiesToGame(5);
         doorClose.getLayoutBounds();
         xPosDoor = doorClose.getLayoutX();
         yPosDoor = doorClose.getLayoutY();
@@ -105,9 +157,6 @@ public class CombiningGame implements Initializable {
 
     private Image getCharacterImage() {
         String path = "resources/player/dog_left_1.png";
-        //    String path = null;
-        //    image = new Image(null);
-
         if (isActive) {
             if (gamePlayer.getCharacter().equals("charac1")) {
                 path = "resources/player/dog_left_1.png";
@@ -123,7 +172,7 @@ public class CombiningGame implements Initializable {
                 //    if (gamePlayer.getCharacter().equals("charac2")) path = "resources/player/heart.png";
 
             } else if (gamePlayer.getCharacter().equals("charac2")) {
-                path = "resources/player/Luchu/luchu_left1.png";
+                path = "resources/player/Luchu/luchu_front.png";
 
                 if (direction == Direction.UP)
                     path = "resources/player/Luchu/luchu_back1.png";
@@ -135,17 +184,17 @@ public class CombiningGame implements Initializable {
                     path = "resources/player/Luchu/luchu_right2.png";
 
             } else if (gamePlayer.getCharacter().equals("charac3")) {
-                path = "resources/player/heart.png";
+                path = "resources/player/boba_front.png";
 
-             /*   if (direction == Direction.UP)
-                    path = "resources/player/Luchu/luchu_back1.png";
+                if (direction == Direction.UP)
+                    path = "resources/player/Boba/boba_back.png";
                 if (direction == Direction.DOWN)
-                    path = "resources/player/Luchu/luchu_front.png";
+                    path = "resources/player/Boba/boba_down.png";
                 if (direction == Direction.LEFT)
-                    path = "resources/player/Luchu/luchu_left2.png";
+                    path = "resources/player/Boba/boba_left.png";
                 if (direction == Direction.RIGHT)
-                    path = "resources/player/Luchu/luchu_right2.png";
-*/
+                    path = "resources/player/Boba/boba_right1.png";
+
             } else if (gamePlayer.getCharacter().equals("charac4")) {
                 path = "resources/player/banana.png";
 
@@ -159,7 +208,79 @@ public class CombiningGame implements Initializable {
                     path = "resources/player/Luchu/luchu_right2.png";
 */
             }
+            //  System.out.print("Life " + gamePlayer.getLife());
         }
+        
+        
+/*
+        if (gamePlayer.getCharacter().equals("charac1")) {
+        	if (isActive) {
+            
+                path = "resources/player/dog_left_1.png";
+                // System.out.println("Get Character Image of " + );
+                if (direction == Direction.UP)
+                    path = "resources/player/dog_up_1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/dog_down_1.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/dog_left_1.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/dog_right_1.png";
+                //    if (gamePlayer.getCharacter().equals("charac2")) path = "resources/player/heart.png";
+
+            } 
+        }
+        
+        else if (gamePlayer.getCharacter().equals("charac2")) {
+        	if (isActive) {
+                path = "resources/player/Luchu/luchu_left1.png";
+
+                if (direction == Direction.UP)
+                    path = "resources/player/Luchu/luchu_back1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Luchu/luchu_front.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Luchu/luchu_left2.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Luchu/luchu_right2.png";
+        	}
+        	
+
+            
+        }
+        else if (gamePlayer.getCharacter().equals("charac3")) {
+        	if(isActive) {
+                path = "resources/player/heart.png";
+
+                if (direction == Direction.UP)
+                    path = "resources/player/Boba/boba_back.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Boba/boba_down.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Boba/boba_left.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Boba/boba_right1.png";
+
+            }
+        }
+        else if (gamePlayer.getCharacter().equals("charac4")) {
+                path = "resources/player/banana.png";
+                if(isActive) {
+
+              if (direction == Direction.UP)
+                    path = "resources/player/Luchu/luchu_back1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Luchu/luchu_front.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Luchu/luchu_left2.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Luchu/luchu_right2.png";
+                	}
+                
+            }
+        */
+
+
         try {
             image = new Image(new FileInputStream(path));
         } catch (FileNotFoundException e) {
@@ -253,6 +374,7 @@ public class CombiningGame implements Initializable {
 
             rectangleid.toFront();
             isPlayerOnDoorLilo(event);
+            isPlayerNextToEnemy(event);
         }
 
     }
@@ -279,10 +401,40 @@ public class CombiningGame implements Initializable {
         if (playerColumn == doorColumn && playerRow == doorRow) {
             switchToTask(event);
         } else {
-            System.out.println("Not on Door");
+            //   System.out.println("Not on Door");
         }
 
 
+    }
+
+    private void isPlayerNextToEnemy(KeyEvent event) throws IOException {
+        //get Position of Player
+        int playerColumn = gamelayoutgrid.getColumnIndex(rectangleid);
+        int playerRow = gamelayoutgrid.getRowIndex(rectangleid);
+
+        for (Rectangle e : listEnemies
+        ) {
+            int enemyColumn = gamelayoutgrid.getColumnIndex(e);
+            int enemyRow = gamelayoutgrid.getRowIndex(e);
+
+            if (((playerColumn == enemyColumn) || (playerColumn + 1 == enemyColumn) || (playerColumn - 1 == enemyColumn)) && ((playerRow == enemyRow) || (playerRow + 1 == enemyRow) || (playerRow - 1 == enemyRow))) {
+                //  switchToTask(event);
+                //   System.out.println("Next to Enemy");
+                reduceLife();
+            } else {
+
+            }
+            //   System.out.print("Life "+gamePlayer.getLife());
+        }
+        //getPositionDoor
+
+
+    }
+
+    private void reduceLife() {
+        gamePlayer.setLife(gamePlayer.getLife() - 1);
+        //  gamePlayer.setLife(5);
+        System.out.print("Life " + gamePlayer.getLife());
     }
 
     private Stage stage;
@@ -311,7 +463,7 @@ public class CombiningGame implements Initializable {
 
     public void initData2(Player player) { // THIS METHOD accepts a player to initialize the view
         this.gamePlayer = player;
-        System.out.println("3 Now we have a new char in game " + gamePlayer.getCharacter());
+        //  System.out.println("3 Now we have a new char in game " + gamePlayer.getCharacter());
     }
     
     
@@ -325,12 +477,20 @@ public class CombiningGame implements Initializable {
 	//	EnemyLabel3.setText(GameClassEnemy3.getPersonTraits());
 	}
 
-    
-    
-    
-    
-    
-    
+
+    @FXML
+    public void hideInstructionPane(KeyEvent event) throws IOException {
+        if (event.getCode().equals((KeyCode.ENTER))) {
+            instructionPane.setVisible(false);
+            rectangleid.setVisible(true);
+            rectangleid.requestFocus();
+            movePlayerKeyPressed(event);
+            moveSquareKeyReleased(event);
+
+        }
+    }
+
+
 }
 
 
