@@ -79,9 +79,13 @@ public class CombiningGame implements Initializable {
 
         grid = new int[length][height];
         gameLayout = new Game_layout(grid);
+        gamePlayer.getCharacter();
+        gamePlayer.setCharacter(null);
+        //initData2(gamePlayer);
         image = getCharacterImage();
         rectangleid.setFill(new ImagePattern(image));
 
+        
         gamelayoutgrid.setConstraints(rectangleid, 0, 1);
 
         doorClose.getLayoutBounds();
@@ -96,9 +100,6 @@ public class CombiningGame implements Initializable {
 
     private Image getCharacterImage() {
         String path = "resources/player/dog_left_1.png";
-        //    String path = null;
-        //    image = new Image(null);
-
         if (isActive) {
             if (gamePlayer.getCharacter().equals("charac1")) {
                 path = "resources/player/dog_left_1.png";
@@ -114,7 +115,7 @@ public class CombiningGame implements Initializable {
                 //    if (gamePlayer.getCharacter().equals("charac2")) path = "resources/player/heart.png";
 
             } else if (gamePlayer.getCharacter().equals("charac2")) {
-                path = "resources/player/Luchu/luchu_left1.png";
+                path = "resources/player/Luchu/luchu_front.png";
 
                 if (direction == Direction.UP)
                     path = "resources/player/Luchu/luchu_back1.png";
@@ -126,17 +127,17 @@ public class CombiningGame implements Initializable {
                     path = "resources/player/Luchu/luchu_right2.png";
 
             } else if (gamePlayer.getCharacter().equals("charac3")) {
-                path = "resources/player/heart.png";
+                path = "resources/player/boba_front.png";
 
-             /*   if (direction == Direction.UP)
-                    path = "resources/player/Luchu/luchu_back1.png";
+                if (direction == Direction.UP)
+                    path = "resources/player/Boba/boba_back.png";
                 if (direction == Direction.DOWN)
-                    path = "resources/player/Luchu/luchu_front.png";
+                    path = "resources/player/Boba/boba_down.png";
                 if (direction == Direction.LEFT)
-                    path = "resources/player/Luchu/luchu_left2.png";
+                    path = "resources/player/Boba/boba_left.png";
                 if (direction == Direction.RIGHT)
-                    path = "resources/player/Luchu/luchu_right2.png";
-*/
+                    path = "resources/player/Boba/boba_right1.png";
+                
             } else if (gamePlayer.getCharacter().equals("charac4")) {
                 path = "resources/player/banana.png";
 
@@ -151,6 +152,77 @@ public class CombiningGame implements Initializable {
 */
             }
         }
+        
+        
+/*
+        if (gamePlayer.getCharacter().equals("charac1")) {
+        	if (isActive) {
+            
+                path = "resources/player/dog_left_1.png";
+                // System.out.println("Get Character Image of " + );
+                if (direction == Direction.UP)
+                    path = "resources/player/dog_up_1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/dog_down_1.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/dog_left_1.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/dog_right_1.png";
+                //    if (gamePlayer.getCharacter().equals("charac2")) path = "resources/player/heart.png";
+
+            } 
+        }
+        
+        else if (gamePlayer.getCharacter().equals("charac2")) {
+        	if (isActive) {
+                path = "resources/player/Luchu/luchu_left1.png";
+
+                if (direction == Direction.UP)
+                    path = "resources/player/Luchu/luchu_back1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Luchu/luchu_front.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Luchu/luchu_left2.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Luchu/luchu_right2.png";
+        	}
+        	
+
+            
+        }
+        else if (gamePlayer.getCharacter().equals("charac3")) {
+        	if(isActive) {
+                path = "resources/player/heart.png";
+
+                if (direction == Direction.UP)
+                    path = "resources/player/Boba/boba_back.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Boba/boba_down.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Boba/boba_left.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Boba/boba_right1.png";
+
+            }
+        }
+        else if (gamePlayer.getCharacter().equals("charac4")) {
+                path = "resources/player/banana.png";
+                if(isActive) {
+
+              if (direction == Direction.UP)
+                    path = "resources/player/Luchu/luchu_back1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Luchu/luchu_front.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Luchu/luchu_left2.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Luchu/luchu_right2.png";
+                	}
+                
+            }
+        */
+        
+        
         try {
             image = new Image(new FileInputStream(path));
         } catch (FileNotFoundException e) {

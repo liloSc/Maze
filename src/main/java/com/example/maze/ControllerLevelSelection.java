@@ -49,7 +49,7 @@ public class ControllerLevelSelection implements Initializable {
     private ImageView charac3;
     @FXML
     private ImageView charac4;
-    private Player selectedPlayer;
+    private Player selectedPlayer ;
 
     private void hideLevelSelection() {
         rectangle_level1.setVisible(false);

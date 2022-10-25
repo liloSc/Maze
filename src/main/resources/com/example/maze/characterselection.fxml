@@ -29,7 +29,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c9c9c9" height="113.0" layoutX="412.0" layoutY="97.0" stroke="#d7d7d7" strokeType="INSIDE" width="113.0" />
       <ImageView id="charac3" fx:id="charac3" fitHeight="89.0" fitWidth="89.0" layoutX="424.0" layoutY="109.0" onMouseClicked="#animateCharacter" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/banana.png" />
+            <Image url="@images/Boba_front.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c9c9c9" height="113.0" layoutX="588.0" layoutY="97.0" stroke="#d7d7d7" strokeType="INSIDE" width="113.0" />
@@ -55,7 +55,7 @@
       </ImageView>
       <ImageView id="bigCharac3" fx:id="bigCharac3" fitHeight="247.0" fitWidth="247.0" layoutX="277.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@images/banana.png" />
+            <Image url="@images/Boba_front.png" />
          </image>
       </ImageView>
       <ImageView id="bigCharac4" fx:id="bigCharac4" fitHeight="247.0" fitWidth="247.0" layoutX="287.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" visible="false">
