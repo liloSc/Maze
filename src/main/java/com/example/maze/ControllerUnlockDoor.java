@@ -102,9 +102,9 @@ public class ControllerUnlockDoor {
                     event -> {
                         final long diff = System.currentTimeMillis() - startTime;
                         final long timeReverse = intoLong - diff;
-                        if(timeReverse>0) {
+                        if (timeReverse > 0) {
                             label_timer.setText(timeFormat.format(timeReverse));
-                        }else{
+                        } else {
                             label_timer.setText(timeFormat.format(0));
                             try {
                                 switchToGameOver();
@@ -128,7 +128,7 @@ public class ControllerUnlockDoor {
     }
 
     public void switchToGameOver() throws IOException {
-timeline.pause();
+        timeline.pause();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("gameover.fxml"));
         Parent root = loader.load();

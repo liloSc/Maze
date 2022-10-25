@@ -348,19 +348,32 @@ public class CombiningGame implements Initializable {
     }
 
     private void reduceLife() {
-        gamePlayer.setLife(gamePlayer.getLife() - 1);
-        //  gamePlayer.setLife(5);
-        System.out.print("Life " + gamePlayer.getLife());
+       if(gamePlayer.getLife()>1) {
+           gamePlayer.setLife(gamePlayer.getLife() - 1);
+           //  gamePlayer.setLife(5);
+           System.out.print("Life " + gamePlayer.getLife());
+       }else{
+           try {
+               switchToGameOver();
+           } catch (IOException e) {
+               throw new RuntimeException(e);
+           }
+       }
     }
 
     private Stage stage;
     private Scene scene;
 
-    public void switchToTask(KeyEvent event) throws IOException {
+    public void switchToTask(KeyEvent event)  {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("unlockDoor.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         scene = new Scene(root);
 
 
@@ -409,6 +422,26 @@ public class CombiningGame implements Initializable {
             setRandomEnemiesToGame(numberOfEnemies);
 
         }
+    }
+
+    public void switchToGameOver() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("gameover.fxml"));
+        Parent root = loader.load();
+        scene = new Scene(root);
+
+
+        //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
+        // Access the controller and call a method
+        //CombiningGame controller3 = loader.getController();
+        //controller3.initData2(selectedPlayer);
+
+        stage = (Stage) rectangleid.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+
     }
 }
 
