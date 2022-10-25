@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -56,6 +55,8 @@ public class ControllerCharacterSelection implements Initializable {
         		loader.setLocation(getClass().getResource("levelselection.fxml"));
         		Parent root = loader.load();
                 Scene root_scene = new Scene(root);
+                
+                
                 // Access the controller and call a method 
                 ControllerLevelSelection controller2 = loader.getController();
                 controller2.initData(ourPlayer);

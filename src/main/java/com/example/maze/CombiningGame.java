@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -39,7 +40,15 @@ public class CombiningGame implements Initializable {
     private final double rectangleSize = 20.0;
     @FXML
     private Rectangle rectangleid;
-    public Player gamePlayer = new Player(null);
+    public Player gamePlayer; 
+    public Enemy GameClassEnemy1;
+    public Enemy GameClassEnemy2;
+    public Enemy GameClassEnemy3;
+    public Label EnemyLabel1;
+    public Label EnemyLabel2;
+    public Label EnemyLabel3;
+    
+    
     // ControllerCharacterSelection controllerCharacterSelection= new ControllerCharacterSelection();
 
     //x and y position of the rectangle different from starting position
@@ -304,8 +313,25 @@ public class CombiningGame implements Initializable {
         this.gamePlayer = player;
         System.out.println("3 Now we have a new char in game " + gamePlayer.getCharacter());
     }
+    
+    
+    
+    public void initEnemy(Enemy ourEnemy1,Enemy ourEnemy2,Enemy ourEnemy3) {
+		this.GameClassEnemy1 = ourEnemy1;
+		this.GameClassEnemy2 = ourEnemy2;
+		this.GameClassEnemy3 = ourEnemy3;
+	//	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits());  // ourEnemy can be whatever
+	//	EnemyLabel2.setText(GameClassEnemy2.getPersonTraits());
+	//	EnemyLabel3.setText(GameClassEnemy3.getPersonTraits());
+	}
 
-
+    
+    
+    
+    
+    
+    
 }
+
 
 
