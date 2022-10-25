@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -75,6 +77,40 @@ public class CombiningGame implements Initializable {
 
     }
 
+    public void setRandomEnemiesToGame(int numberOfEnemies) {
+        // int numberOfEnemies=2;
+        Random rand = new Random();
+        int enemyYPosition = rand.nextInt(length-1);
+        int enemyXPosition = rand.nextInt(height-1);
+        for (int i = 0; i < numberOfEnemies; ) {
+            Rectangle enemy1 = new Rectangle(20, 20);
+            enemy1.setFill(Color.RED);
+            // Obtain a number between [0 - 49].
+
+            if (!gameLayout.isWall(enemyYPosition, enemyXPosition)) {
+                gamelayoutgrid.add(enemy1, enemyYPosition, enemyXPosition);
+                enemyYPosition = rand.nextInt(length-1);
+                enemyXPosition = rand.nextInt(height-1);
+                i++;
+            } else {
+                if (enemyYPosition < length-1) {
+                    enemyYPosition++;
+                } else {
+                    enemyYPosition = 0;
+                }
+                if (enemyXPosition < height-1) {
+                    enemyXPosition++;
+                } else {
+                    enemyXPosition = 0;
+                }
+
+
+            }
+        }
+
+
+    }
+
     //Method called after the stage is loaded
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -83,15 +119,15 @@ public class CombiningGame implements Initializable {
 
         grid = new int[length][height];
         gameLayout = new Game_layout(grid);
-        
+
         image = getCharacterImage();
         rectangleid.setFill(new ImagePattern(image));
         rectangleid.setVisible(false);
 
         instructionPane.toFront();
-        
-        gamelayoutgrid.setConstraints(rectangleid, 0, 1);
 
+        gamelayoutgrid.setConstraints(rectangleid, 0, 1);
+        setRandomEnemiesToGame(5);
         doorClose.getLayoutBounds();
         xPosDoor = doorClose.getLayoutX();
         yPosDoor = doorClose.getLayoutY();
@@ -141,7 +177,7 @@ public class CombiningGame implements Initializable {
                     path = "resources/player/Boba/boba_left.png";
                 if (direction == Direction.RIGHT)
                     path = "resources/player/Boba/boba_right1.png";
-                
+
             } else if (gamePlayer.getCharacter().equals("charac4")) {
                 path = "resources/player/banana.png";
 
@@ -225,8 +261,8 @@ public class CombiningGame implements Initializable {
                 
             }
         */
-        
-        
+
+
         try {
             image = new Image(new FileInputStream(path));
         } catch (FileNotFoundException e) {
@@ -284,7 +320,7 @@ public class CombiningGame implements Initializable {
         int i = gamelayoutgrid.getColumnIndex(rectangleid);
         int j = gamelayoutgrid.getRowIndex(rectangleid);
 
-          System.out.println(i + " " + j);
+        System.out.println(i + " " + j);
 
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
 
@@ -383,14 +419,14 @@ public class CombiningGame implements Initializable {
 
     @FXML
     public void hideInstructionPane(KeyEvent event) throws IOException {
-    	if(event.getCode().equals((KeyCode.ENTER))) {
-    		instructionPane.setVisible(false);
-    		rectangleid.setVisible(true);
-    		rectangleid.requestFocus();
-    		movePlayerKeyPressed(event);
-    		moveSquareKeyReleased(event);
-    		
-    	}
+        if (event.getCode().equals((KeyCode.ENTER))) {
+            instructionPane.setVisible(false);
+            rectangleid.setVisible(true);
+            rectangleid.requestFocus();
+            movePlayerKeyPressed(event);
+            moveSquareKeyReleased(event);
+
+        }
     }
 
 }
