@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -76,29 +78,30 @@ public class CombiningGame implements Initializable {
     public CombiningGame() {
 
     }
-
+List<Rectangle> listEnemies= new ArrayList<>();
     public void setRandomEnemiesToGame(int numberOfEnemies) {
         // int numberOfEnemies=2;
         Random rand = new Random();
-        int enemyYPosition = rand.nextInt(length-1);
-        int enemyXPosition = rand.nextInt(height-1);
+        int enemyYPosition = rand.nextInt(length - 1);
+        int enemyXPosition = rand.nextInt(height - 1);
         for (int i = 0; i < numberOfEnemies; ) {
             Rectangle enemy1 = new Rectangle(20, 20);
             enemy1.setFill(Color.RED);
             // Obtain a number between [0 - 49].
 
-            if (!gameLayout.isWall(enemyYPosition, enemyXPosition)) {
+            if (!gameLayout.isWall(enemyYPosition, enemyXPosition)) { //Checks if tile is a wall
                 gamelayoutgrid.add(enemy1, enemyYPosition, enemyXPosition);
-                enemyYPosition = rand.nextInt(length-1);
-                enemyXPosition = rand.nextInt(height-1);
+                listEnemies.add(enemy1);
+                enemyYPosition = rand.nextInt(length - 1);
+                enemyXPosition = rand.nextInt(height - 1);
                 i++;
             } else {
-                if (enemyYPosition < length-1) {
+                if (enemyYPosition < length - 1) {
                     enemyYPosition++;
                 } else {
                     enemyYPosition = 0;
                 }
-                if (enemyXPosition < height-1) {
+                if (enemyXPosition < height - 1) {
                     enemyXPosition++;
                 } else {
                     enemyXPosition = 0;
@@ -320,7 +323,7 @@ public class CombiningGame implements Initializable {
         int i = gamelayoutgrid.getColumnIndex(rectangleid);
         int j = gamelayoutgrid.getRowIndex(rectangleid);
 
-        System.out.println(i + " " + j);
+      //  System.out.println(i + " " + j);
 
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
 
@@ -356,6 +359,7 @@ public class CombiningGame implements Initializable {
 
             rectangleid.toFront();
             isPlayerOnDoorLilo(event);
+            isPlayerNextToEnemy(event);
         }
 
     }
@@ -382,8 +386,31 @@ public class CombiningGame implements Initializable {
         if (playerColumn == doorColumn && playerRow == doorRow) {
             switchToTask(event);
         } else {
-            System.out.println("Not on Door");
+         //   System.out.println("Not on Door");
         }
+
+
+    }
+
+    private void isPlayerNextToEnemy(KeyEvent event) throws IOException {
+        //get Position of Player
+        int playerColumn = gamelayoutgrid.getColumnIndex(rectangleid);
+        int playerRow = gamelayoutgrid.getRowIndex(rectangleid);
+
+        for (Rectangle e:listEnemies
+             ) {
+            int enemyColumn = gamelayoutgrid.getColumnIndex(e);
+            int enemyRow = gamelayoutgrid.getRowIndex(e);
+
+            if (((playerColumn == enemyColumn)||(playerColumn+1 == enemyColumn)||(playerColumn-1 == enemyColumn)) && ((playerRow == enemyRow)||(playerRow+1 == enemyRow)||(playerRow-1 == enemyRow))) {
+                //  switchToTask(event);
+                System.out.println("Next to Enemy");
+            } else {
+
+            }
+        }
+        //getPositionDoor
+
 
 
     }
