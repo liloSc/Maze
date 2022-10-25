@@ -39,7 +39,7 @@ public class CombiningGame implements Initializable {
     private final double rectangleSize = 20.0;
     @FXML
     private Rectangle rectangleid;
-    public Player gamePlayer= new Player(null);
+    public Player gamePlayer = new Player(null);
     // ControllerCharacterSelection controllerCharacterSelection= new ControllerCharacterSelection();
 
     //x and y position of the rectangle different from starting position
@@ -74,6 +74,8 @@ public class CombiningGame implements Initializable {
     //Method called after the stage is loaded
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+     //   gamePlayer = new Player("charac2");
+    //    gamePlayer.setCharacter("charac2");
 
         grid = new int[length][height];
         gameLayout = new Game_layout(grid);
@@ -92,36 +94,43 @@ public class CombiningGame implements Initializable {
 
     }
 
-
     private Image getCharacterImage() {
-
-
         String path = "resources/player/dog_left_1.png";
-
         if (isActive) {
-           // System.out.println("Get Character Image of " + );
-
-            if (direction == Direction.UP)
-                path = "resources/player/dog_up_1.png";
-            if (direction == Direction.DOWN)
-                path = "resources/player/dog_down_1.png";
-            if (direction == Direction.LEFT)
+            if (gamePlayer.getCharacter().equals("charac1")) {
                 path = "resources/player/dog_left_1.png";
-            if (direction == Direction.RIGHT)
-                path = "resources/player/dog_right_1.png";
-            if(gamePlayer.getCharacter().equals("charac2"))   path = "resources/player/heart.png";
+                // System.out.println("Get Character Image of " + );
+                if (direction == Direction.UP)
+                    path = "resources/player/dog_up_1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/dog_down_1.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/dog_left_1.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/dog_right_1.png";
+                //    if (gamePlayer.getCharacter().equals("charac2")) path = "resources/player/heart.png";
 
+            } else if (gamePlayer.getCharacter().equals("charac2")) {
+                path = "resources/player/Luchu/luchu_left1.png";
+
+                if (direction == Direction.UP)
+                    path = "resources/player/Luchu/luchu_back1.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Luchu/luchu_front.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Luchu/luchu_left2.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Luchu/luchu_right2.png";
+
+            }
         }
-
-
-
-        //   Image image;
         try {
             image = new Image(new FileInputStream(path));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         return image;
+
     }
 
 
