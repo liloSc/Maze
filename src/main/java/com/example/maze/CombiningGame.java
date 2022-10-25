@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -42,7 +43,7 @@ public class CombiningGame implements Initializable {
 
     @FXML
     private BorderPane instructionPane;
-    // private FlowPane flowpane;
+ 
 
     private final double rectangleSize = 20.0;
     @FXML
