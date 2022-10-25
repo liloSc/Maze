@@ -45,6 +45,8 @@ public class ControllerGame implements Initializable {
 
     @FXML
     private Rectangle rectangle_player;
+    @FXML
+    private Label label_life;
 
     public Enemy GameClassEnemy1;
     public Enemy GameClassEnemy2;
@@ -129,6 +131,7 @@ public class ControllerGame implements Initializable {
         xPosDoor = image_door.getLayoutX();
         yPosDoor = image_door.getLayoutY();
         gamelayoutgrid.getChildren().addAll(printGrid());
+        label_life.setText(String.valueOf(gamePlayer.getLife()));
 
     }
 
@@ -253,7 +256,7 @@ public class ControllerGame implements Initializable {
             rectangle_player.setFill(new ImagePattern(image_player));
 
             rectangle_player.toFront();
-            isPlayerOnDoorLilo(event);
+            isPlayerOnDoor(event);
 
             if (isPlayerNextToEnemy()) shootOnEnemy(event);
         }
@@ -269,7 +272,7 @@ public class ControllerGame implements Initializable {
     }
 
 
-    private void isPlayerOnDoorLilo(KeyEvent event) {
+    private void isPlayerOnDoor(KeyEvent event) {
         //get Position of Player
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
         int playerRow = gamelayoutgrid.getRowIndex(rectangle_player);
@@ -311,7 +314,8 @@ public class ControllerGame implements Initializable {
     private void reduceLife() {
         if (gamePlayer.getLife() > 1) {
             gamePlayer.setLife(gamePlayer.getLife() - 1);
-            System.out.print("Life " + gamePlayer.getLife());
+           // System.out.print("Life " + gamePlayer.getLife());
+            label_life.setText(String.valueOf(gamePlayer.getLife()));
         } else {
             try {
                 switchToGameOver();
