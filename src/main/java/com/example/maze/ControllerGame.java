@@ -55,6 +55,8 @@ public class ControllerGame implements Initializable {
     private Label label_healthEnemy2;
     @FXML
     private Label label_healthEnemy3;
+    @FXML
+    private Label label_foundKeys;
     Image image_enemy;
 
     public Enemy gameClassEnemy1;
@@ -70,7 +72,7 @@ public class ControllerGame implements Initializable {
     public Enemy myfighter3 = new Fighter3(20, 30);
 
     private int numberOfEnemies;
-    private int numberOfKeys = 4;
+    private int numberOfKeys = 3;
 
     double xPosDoor;
     double yPosDoor;
@@ -142,10 +144,14 @@ public class ControllerGame implements Initializable {
 
     public void setKeys(int numberOfKeysToSet) {
         //  int numberOfKeys = 1;
-
+        // Obtain a number between [0 - 49].
+        Random randomNumber = new Random();
+        int keyPositionY = randomNumber.nextInt(grid_length - 1);
+        int keyPositionX = randomNumber.nextInt(grid_height - 1);
+        //    int keyPositionY = 1;
+        //     int keyPositionX = 5;
         for (int i = 0; i < numberOfKeysToSet; ) {
             Rectangle key = new Rectangle(20, 20);
-            key.setFill(Color.ORANGE);
             Image image_key = null;
             String path = "resources/objects/key.png";
             try {
@@ -156,13 +162,7 @@ public class ControllerGame implements Initializable {
             key.setFill(new ImagePattern(image_key));
 
 
-            // Obtain a number between [0 - 49].
-            Random randomNumber = new Random();
-            //   int keyPositionY = randomNumber.nextInt(grid_length - 1);
-            //     int keyPositionX = randomNumber.nextInt(grid_height - 1);
-            int keyPositionY = 1;
-            int keyPositionX = 5;
-            if (!gameLayout.isWall(keyPositionX, keyPositionY)) { //Checks if tile is a wall
+            if (!gameLayout.isWall(keyPositionY, keyPositionX)) { //Checks if tile is a wall
                 gamelayoutgrid.add(key, keyPositionY, keyPositionX);
                 //  gamelayoutgrid.add(enemy1, 5, 1);
                 listOfKeys.add(key);
@@ -170,12 +170,12 @@ public class ControllerGame implements Initializable {
                 keyPositionX = randomNumber.nextInt(grid_height - 1);
                 i++;
             } else {
-                if (keyPositionY < grid_length - 1) {
+                if (keyPositionY < grid_length - 2) {
                     keyPositionY++;
                 } else {
                     keyPositionY = 0;
                 }
-                if (keyPositionX < grid_height - 1) {
+                if (keyPositionX < grid_height - 2) {
                     keyPositionX++;
                 } else {
                     keyPositionX = 0;
@@ -191,6 +191,7 @@ public class ControllerGame implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         grid = new int[grid_length][grid_height];
+        image_door.setVisible(false);
         gameLayout = new Game_layout(grid);
         image_player = getCharacterImage();
         rectangle_player.setFill(new ImagePattern(image_player));
@@ -365,7 +366,7 @@ public class ControllerGame implements Initializable {
         int doorRow = gamelayoutgrid.getRowIndex(image_door);
 
         if (playerColumn == doorColumn && playerRow == doorRow) {
-            switchToTask(event);
+            if (foundKeys == numberOfKeys) switchToTask(event);
         }
     }
 
@@ -379,10 +380,23 @@ public class ControllerGame implements Initializable {
             int keyColumn = gamelayoutgrid.getColumnIndex(key);
             int keyRow = gamelayoutgrid.getRowIndex(key);
             if (playerColumn == keyColumn && playerRow == keyRow) {
-                key.setVisible(false);
+                //    key.setVisible(false);
+             //   foundKeys++;
+                label_foundKeys.setText(String.valueOf(++foundKeys));
+
+                gamelayoutgrid.getChildren().remove(key); //Remove Key when Player is on it
+                revealDoor();
             }
         }
+    }
 
+    int foundKeys = 0;
+
+    private void revealDoor() {
+        if (foundKeys == numberOfKeys) {
+            image_door.setVisible(true);
+
+        }
 
     }
 
