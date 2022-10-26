@@ -258,15 +258,15 @@
          <font>
             <Font name="Retro Gaming" size="16.0" />
          </font></Label>
-        <Label fx:id="label_healthEnemy1" layoutX="1245.0" layoutY="222.0" text="1">
+        <Label fx:id="label_healthEnemy1" layoutX="1245.0" layoutY="222.0" text="1" visible="false">
          <font>
             <Font name="Retro Gaming" size="14.0" />
          </font></Label>
-        <Label fx:id="label_healthEnemy2" layoutX="1245.0" layoutY="263.0" text="2">
+        <Label fx:id="label_healthEnemy2" layoutX="1245.0" layoutY="263.0" text="2" visible="false">
          <font>
             <Font name="Retro Gaming" size="14.0" />
          </font></Label>
-        <Label fx:id="label_healthEnemy3" layoutX="1245.0" layoutY="305.0" text="3">
+        <Label fx:id="label_healthEnemy3" layoutX="1245.0" layoutY="305.0" text="3" visible="false">
          <font>
             <Font name="Retro Gaming" size="14.0" />
          </font></Label>
