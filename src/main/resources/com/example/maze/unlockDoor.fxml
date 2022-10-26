@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerUnlockDoor">
    <children>
@@ -15,13 +16,25 @@
       <Label fx:id="label3" layoutX="313.0" layoutY="312.0" text="0" />
       <Slider fx:id="slider4" blockIncrement="0.5" cache="true" centerShape="false" layoutX="397.0" layoutY="41.0" majorTickUnit="1.0" max="9.0" minorTickCount="1" onMouseReleased="#onSliderChanged" orientation="VERTICAL" prefHeight="255.0" prefWidth="32.0" showTickLabels="true" showTickMarks="true" />
       <Label fx:id="label4" layoutX="397.0" layoutY="312.0" text="0" />
-      <Label layoutX="33.0" layoutY="14.0" text="Unlock the Door" />
+      <Label layoutX="33.0" layoutY="14.0" text="Unlock the Door">
+         <font>
+            <Font name="Retro Gaming" size="13.0" />
+         </font></Label>
       <StackPane fx:id="pane_timer" layoutX="464.0" layoutY="23.0" prefHeight="36.0" prefWidth="114.0">
          <children>
-            <Label fx:id="label_timer" text="Label" />
+            <Label fx:id="label_timer" text="Label">
+               <font>
+                  <Font name="Retro Gaming" size="13.0" />
+               </font></Label>
          </children>
       </StackPane>
-      <Label layoutX="42.0" layoutY="353.0" text="Code to unlock" />
-      <Label fx:id="label_codeToUnlock" layoutX="139.0" layoutY="353.0" text="Code" />
+      <Label layoutX="42.0" layoutY="353.0" text="Code to unlock">
+         <font>
+            <Font name="Retro Gaming" size="11.0" />
+         </font></Label>
+      <Label fx:id="label_codeToUnlock" layoutX="163.0" layoutY="353.0" text="Code">
+         <font>
+            <Font name="Retro Gaming" size="11.0" />
+         </font></Label>
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#movePlayerKeyPressed" onKeyReleased="#stopMovePlayerKeyReleased" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerGame">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#movePlayerKeyPressed" onKeyReleased="#stopMovePlayerKeyReleased" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerGame">
     <children>
         <FlowPane prefHeight="800.0" prefWidth="1200.0">
             <children>
@@ -179,7 +179,7 @@
                                                                                 </ImageView>
                                                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Use the keyboards' arrows to move around the game" wrappingWidth="366.2616491317749">
                                                                                     <font>
-                                                                                        <Font size="26.0" />
+                                                                                        <Font name="Retro Gaming" size="18.0" />
                                                                                     </font>
                                                                                     <HBox.margin>
                                                                                         <Insets top="10.0" />
@@ -202,7 +202,7 @@
                                                                                 </ImageView>
                                                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="User the space-bar to attack your ennemies" wrappingWidth="366.2616491317749">
                                                                                     <font>
-                                                                                        <Font size="26.0" />
+                                                                                        <Font name="Retro Gaming" size="20.0" />
                                                                                     </font>
                                                                                 </Text>
                                                                             </children>
@@ -222,7 +222,7 @@
                                                         </BorderPane>
                                                         <Button alignment="CENTER_RIGHT" onKeyPressed="#hideInstructionPane" prefHeight="54.0" prefWidth="400.0" style="-fx-background-color: Transparent;" text="press enter to skip" textAlignment="CENTER" textFill="#322eff" StackPane.alignment="BOTTOM_CENTER">
                                                             <font>
-                                                                <Font size="24.0" />
+                                                                <Font name="Retro Gaming" size="16.0" />
                                                             </font>
                                                             <StackPane.margin>
                                                                 <Insets />
@@ -249,13 +249,31 @@
                 </StackPane>
             </children>
         </FlowPane>
-        <Label layoutX="1238.0" layoutY="49.0" prefHeight="17.0" prefWidth="124.0" text="Player" />
-        <Label fx:id="label_lifePlayer" layoutX="1238.0" layoutY="90.0" prefHeight="17.0" prefWidth="59.0" text="Your Health" />
-        <Label layoutX="1238.0" layoutY="173.0" text="Enemies" />
-        <Label fx:id="label_healthEnemy1" layoutX="1244.0" layoutY="239.0" text="1" visible="false" />
-        <Label fx:id="label_healthEnemy2" layoutX="1244.0" layoutY="280.0" text="2" visible="false" />
-        <Label fx:id="label_healthEnemy3" layoutX="1244.0" layoutY="335.0" text="3" visible="false" />
-      <Label fx:id="label_foundKeys" layoutX="1238.0" layoutY="305.0" text="Found Keys" />
-      <ProgressBar fx:id="bar_healthPlayer" layoutX="1238.0" layoutY="125.0" prefHeight="20.0" prefWidth="150.0" progress="1.0" />
+        <Label layoutX="1238.0" layoutY="49.0" prefHeight="17.0" prefWidth="124.0" text="Player">
+         <font>
+            <Font name="Retro Gaming" size="19.0" />
+         </font></Label>
+        <Label fx:id="label_lifePlayer" layoutX="1238.0" layoutY="90.0" prefHeight="17.0" prefWidth="59.0" text="Your Health" visible="false" />
+        <Label layoutX="1238.0" layoutY="173.0" text="Enemies">
+         <font>
+            <Font name="Retro Gaming" size="16.0" />
+         </font></Label>
+        <Label fx:id="label_healthEnemy1" layoutX="1245.0" layoutY="222.0" text="1">
+         <font>
+            <Font name="Retro Gaming" size="14.0" />
+         </font></Label>
+        <Label fx:id="label_healthEnemy2" layoutX="1245.0" layoutY="263.0" text="2">
+         <font>
+            <Font name="Retro Gaming" size="14.0" />
+         </font></Label>
+        <Label fx:id="label_healthEnemy3" layoutX="1245.0" layoutY="305.0" text="3">
+         <font>
+            <Font name="Retro Gaming" size="14.0" />
+         </font></Label>
+      <Label fx:id="label_foundKeys" layoutX="1238.0" layoutY="367.0" text="Found Keys">
+         <font>
+            <Font name="Retro Gaming" size="14.0" />
+         </font></Label>
+      <ProgressBar fx:id="bar_healthPlayer" layoutX="1238.0" layoutY="97.0" prefHeight="20.0" prefWidth="150.0" progress="1.0" />
     </children>
 </AnchorPane>

@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerLevelSelection">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerLevelSelection">
    <children>
       <ImageView fitHeight="600.0" fitWidth="851.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,19 +28,19 @@
       <Rectangle fx:id="rectangle_level1" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="54.0" layoutX="212.0" layoutY="298.0" onMouseClicked="#selectLevel" stroke="#72727200" strokeType="INSIDE" style="-fx-stroke: BLue;" visible="false" width="109.0" />
       <Label fx:id="level1" alignment="CENTER" layoutX="251.0" layoutY="311.0" onMouseClicked="#selectLevel" text="Easy" textAlignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font name="Retro Gaming" size="18.0" />
          </font>
       </Label>
       <Rectangle fx:id="rectangle_level2" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="46.0" layoutX="330.0" layoutY="301.0" onMouseClicked="#selectLevel" stroke="#72727200" strokeType="INSIDE" style="-fx-stroke: Blue;" visible="false" width="153.0" />
       <Label fx:id="level2" alignment="CENTER" layoutX="352.0" layoutY="311.0" onMouseClicked="#selectLevel" text="Intermediate" textAlignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font name="Retro Gaming" size="18.0" />
          </font>
       </Label>
       <Rectangle fx:id="rectangle_level3" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="46.0" layoutX="496.0" layoutY="301.0" onMouseClicked="#selectLevel" stroke="#72727200" strokeType="INSIDE" style="-fx-stroke: Blue;" visible="false" width="130.0" />
       <Label fx:id="level3" alignment="CENTER" layoutX="518.0" layoutY="311.0" onMouseClicked="#selectLevel" text="Advanced" textAlignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font name="Retro Gaming" size="18.0" />
          </font>
       </Label>
       <Label fx:id="label_yourPlayer" layoutX="93.0" layoutY="405.0" prefHeight="117.0" prefWidth="122.0" text="Label" />
