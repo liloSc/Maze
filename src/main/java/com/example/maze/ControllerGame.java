@@ -546,9 +546,6 @@ public class ControllerGame implements Initializable {
                     myfighter1.setHealth1(myfighter1.getHealth(1) - 1);
                     label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
                 } else {
-                    // label_healthEnemy1.setVisible(false);
-                    //  nextEnemyRectangle.setVisible(false); // THAT DOENST WORK (MAYBE CHANGE POSTION?
-                    //	label_healthEnemy1.setDisable(false);
                     removeEnemy(label_healthEnemy1, nextEnemyRectangle);
 
 
@@ -558,7 +555,6 @@ public class ControllerGame implements Initializable {
                     myfighter2.setHealth2(myfighter2.getHealth(2) - 1);
                     label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
                 } else {
-
                     removeEnemy(label_healthEnemy2, nextEnemyRectangle);
 
                 }
@@ -714,17 +710,13 @@ public class ControllerGame implements Initializable {
      * @param ourEnemy2
      * @param ourEnemy3
      */
-    public void initEnemy(Enemy myFirstFigther, Enemy ourEnemy2, Enemy ourEnemy3) {
-        this.myfighter1 = myFirstFigther;
+    public void initEnemy(Enemy ourEnemy1, Enemy ourEnemy2, Enemy ourEnemy3) {
+        this.myfighter1 = ourEnemy1;
         this.myfighter2 = ourEnemy2;
         this.myfighter3 = ourEnemy3;
-        //   System.out.println("Level in game is " + GameClassEnemy1.getLevelEnemy());
-        //  System.out.println("Level in game is " + GameClassEnemy2.getLevelEnemy());
-        //   System.out.println("Level in game is " + GameClassEnemy3.getLevelEnemy());
         this.numberOfEnemies = Integer.parseInt(myfighter3.getLevelEnemy());
-        //	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits());  // ourEnemy can be whatever
-        //	EnemyLabel2.setText(GameClassEnemy2.getPersonTraits());
-        //	EnemyLabel3.setText(GameClassEnemy3.getPersonTraits());
+        //	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits()); 
+    
     }
 
 
@@ -745,7 +737,7 @@ public class ControllerGame implements Initializable {
             setRandomEnemiesToGame(numberOfEnemies);
             setRandomlyKeys(numberOfKeys);
             setHealthCharger(numberOfEnemies);
-            label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
+            label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));  // translate enemy to label
             label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
             label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
             if (numberOfEnemies >= 1) label_healthEnemy1.setVisible(true);

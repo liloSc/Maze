@@ -7,8 +7,11 @@ public class Enemy {
 
     private SimpleStringProperty LevelEnemy;
    
- //ENEMY SHARE INFOMRMATION 
-   // Future implementation can include things such as different kind of items which have effect on enemy
+    /**
+     * ENEMY SHARE INFOMRMATION 
+     * Future implementation can include things such as different kind of items which have effect on enemy
+     */
+  
     int health;
     int health1 =20;
     int health2 =20;
