@@ -1,3 +1,5 @@
+
+
 package com.example.maze;
 
 import javafx.animation.Animation;
