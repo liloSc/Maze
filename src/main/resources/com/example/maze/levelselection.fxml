@@ -61,7 +61,7 @@
       </ImageView>
       <ImageView id="charac4" fx:id="image_character4" fitHeight="89.0" fitWidth="89.0" layoutX="96.0" layoutY="338.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/pacman.png" />
+            <Image url="@images/cube_front.png" />
          </image>
       </ImageView>
    </children>

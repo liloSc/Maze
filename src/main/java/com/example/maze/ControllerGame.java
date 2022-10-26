@@ -223,7 +223,7 @@ public class ControllerGame implements Initializable {
     }
 
     private Image getCharacterImage() {
-        String path = "resources/player/Rob/rob_left.png";
+        String path = "resources/player/Rob/rob_front.png";
         if (playerIsActive) {
             if (gamePlayer.getCharacter().equals("charac1")) {
                 path = "resources/player/Rob/rob_left.png";
@@ -263,7 +263,15 @@ public class ControllerGame implements Initializable {
                     path = "resources/player/Boba/bob_right.png";
 
             } else if (gamePlayer.getCharacter().equals("charac4")) {
-                path = "resources/player/banana.png";
+                path = "resources/player/Cube/cube_front.png";
+                if (direction == Direction.UP)
+                    path = "resources/player/Cube/cube_back.png";
+                if (direction == Direction.DOWN)
+                    path = "resources/player/Cube/cube_down.png";
+                if (direction == Direction.LEFT)
+                    path = "resources/player/Cube/cube_left.png";
+                if (direction == Direction.RIGHT)
+                    path = "resources/player/Cube/cube_right.png";
             }
         }
 

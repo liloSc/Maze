@@ -18,24 +18,24 @@
             <Font name="Retro Gaming" size="18.0" />
          </font>
       </Label>
-      <ImageView id="charac1" fx:id="image_charac1" fitHeight="89.0" fitWidth="89.0" layoutX="99.0" layoutY="339.0" onMouseClicked="#animateCharacter" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="charac1" fx:id="image_charac1" fitHeight="89.0" fitWidth="89.0" layoutX="61.0" layoutY="339.0" onMouseClicked="#animateCharacter" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/rob_front.png" />
          </image>
       </ImageView>
-      <ImageView id="charac2" fx:id="image_charac2" fitHeight="89.0" fitWidth="89.0" layoutX="188.0" layoutY="339.0" onMouseClicked="#animateCharacter" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="charac2" fx:id="image_charac2" fitHeight="89.0" fitWidth="89.0" layoutX="162.0" layoutY="339.0" onMouseClicked="#animateCharacter" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/Luchu_front_bigger.png" />
          </image>
       </ImageView>
-      <ImageView id="charac3" fx:id="image_charac3" fitHeight="89.0" fitWidth="89.0" layoutX="524.0" layoutY="339.0" onMouseClicked="#animateCharacter" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="charac3" fx:id="image_charac3" fitHeight="89.0" fitWidth="89.0" layoutX="554.0" layoutY="339.0" onMouseClicked="#animateCharacter" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/bob_front.png" />
          </image>
       </ImageView>
-      <ImageView id="charac4" fx:id="image_charac4" fitHeight="89.0" fitWidth="89.0" layoutX="621.0" layoutY="339.0" onMouseClicked="#animateCharacter" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="charac4" fx:id="image_charac4" fitHeight="89.0" fitWidth="89.0" layoutX="675.0" layoutY="339.0" onMouseClicked="#animateCharacter" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/pacman.png" />
+            <Image url="@images/cube_front.png" />
          </image>
       </ImageView>
       <ImageView id="bigCharac1" fx:id="image_bigCharac1" fitHeight="235.0" fitWidth="221.0" layoutX="290.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -58,9 +58,9 @@
             <Image url="@images/bob_front.png" />
          </image>
       </ImageView>
-      <ImageView id="bigCharac4" fx:id="image_bigCharac4" fitHeight="247.0" fitWidth="247.0" layoutX="277.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView id="bigCharac4" fx:id="image_bigCharac4" fitHeight="221.0" fitWidth="233.0" layoutX="291.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@images/pacman.png" />
+            <Image url="@images/cube_front.png" />
          </image>
       </ImageView>
    </children>
