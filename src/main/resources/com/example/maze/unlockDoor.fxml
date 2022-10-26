@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerUnlockDoor">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerUnlockDoor">
    <children>
       <ImageView fitHeight="424.0" fitWidth="686.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,21 +18,45 @@
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffe8" height="329.0" layoutX="198.0" layoutY="10.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
       <Slider fx:id="slider1" blockIncrement="0.5" cache="true" centerShape="false" layoutX="230.0" layoutY="41.0" majorTickUnit="1.0" max="9.0" minorTickCount="1" onMouseReleased="#onSliderChanged" orientation="VERTICAL" prefHeight="255.0" prefWidth="32.0" showTickLabels="true" showTickMarks="true" />
-      <Label fx:id="label1" layoutX="242.0" layoutY="312.0" text="0" />
+      <Label fx:id="label1" layoutX="242.0" layoutY="312.0" text="0">
+         <font>
+            <Font name="Retro Gaming" size="14.0" />
+         </font></Label>
       <Slider fx:id="slider2" blockIncrement="0.5" cache="true" centerShape="false" layoutX="285.0" layoutY="41.0" majorTickUnit="1.0" max="9.0" minorTickCount="1" onMouseReleased="#onSliderChanged" orientation="VERTICAL" prefHeight="255.0" prefWidth="32.0" showTickLabels="true" showTickMarks="true" />
-      <Label fx:id="label2" layoutX="297.0" layoutY="312.0" text="0" />
+      <Label fx:id="label2" layoutX="297.0" layoutY="312.0" text="0">
+         <font>
+            <Font name="Retro Gaming" size="12.0" />
+         </font></Label>
       <Slider fx:id="slider3" blockIncrement="0.5" cache="true" centerShape="false" layoutX="349.0" layoutY="41.0" majorTickUnit="1.0" max="9.0" minorTickCount="1" onMouseReleased="#onSliderChanged" orientation="VERTICAL" prefHeight="255.0" prefWidth="32.0" showTickLabels="true" showTickMarks="true" />
-      <Label fx:id="label3" layoutX="361.0" layoutY="312.0" text="0" />
+      <Label fx:id="label3" layoutX="361.0" layoutY="312.0" text="0">
+         <font>
+            <Font name="Retro Gaming" size="12.0" />
+         </font></Label>
       <Slider fx:id="slider4" blockIncrement="0.5" cache="true" centerShape="false" layoutX="414.0" layoutY="41.0" majorTickUnit="1.0" max="9.0" minorTickCount="1" onMouseReleased="#onSliderChanged" orientation="VERTICAL" prefHeight="255.0" prefWidth="32.0" showTickLabels="true" showTickMarks="true" />
-      <Label fx:id="label4" layoutX="426.0" layoutY="312.0" text="0" />
-      <Label layoutX="227.0" layoutY="14.0" prefHeight="18.0" prefWidth="94.0" text="Unlock the Door" />
+      <Label fx:id="label4" layoutX="426.0" layoutY="312.0" text="0">
+         <font>
+            <Font name="Retro Gaming" size="14.0" />
+         </font></Label>
+      <Label layoutX="227.0" layoutY="14.0" prefHeight="18.0" prefWidth="144.0" text="Unlock the Door">
+         <font>
+            <Font name="Retro Gaming" size="13.0" />
+         </font></Label>
       <StackPane fx:id="pane_timer" layoutX="497.0" layoutY="23.0" prefHeight="36.0" prefWidth="50.0">
          <children>
-            <Label fx:id="label_timer" prefHeight="31.0" prefWidth="46.0" text="Label" />
+            <Label fx:id="label_timer" prefHeight="31.0" prefWidth="46.0" text="Label">
+               <font>
+                  <Font name="Retro Gaming" size="10.0" />
+               </font></Label>
          </children>
       </StackPane>
-      <Label layoutX="497.0" layoutY="65.0" text="Code to unlock" />
-      <Label fx:id="label_codeToUnlock" layoutX="497.0" layoutY="98.0" text="Code" />
+      <Label layoutX="497.0" layoutY="67.0" text="Code">
+         <font>
+            <Font name="Retro Gaming" size="10.0" />
+         </font></Label>
+      <Label fx:id="label_codeToUnlock" layoutX="497.0" layoutY="98.0" text="Code">
+         <font>
+            <Font name="Retro Gaming" size="10.0" />
+         </font></Label>
       <ImageView fitHeight="18.0" fitWidth="15.0" layoutX="475.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/arrow.png" />
