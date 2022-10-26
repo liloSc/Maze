@@ -1,43 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onKeyReleased="#switchToHomeScreen" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.maze.ControllerGameWon"
-            prefHeight="600.0" prefWidth="800.0">
+<AnchorPane onKeyReleased="#switchToHomeScreen" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerGameWon">
     <children>
         <ImageView fitHeight="628.0" fitWidth="823.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@images/bg.png"/>
+                <Image url="@images/bg.png" />
             </image>
         </ImageView>
-        <Label layoutX="263.0" layoutY="164.0" text="Game Won" textFill="WHITE">
+        <Label layoutX="255.0" layoutY="164.0" text="Game Won" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="60.0"/>
+                <Font name="System Bold" size="60.0" />
             </font>
         </Label>
-        <Label layoutX="328.0" layoutY="237.0" text="Press enter to restart" textFill="WHITE">
+        <Label layoutX="320.0" layoutY="237.0" text="Press enter to restart" textFill="WHITE">
             <font>
-                <Font name="Retro Gaming" size="20.0"/>
+                <Font name="Retro Gaming" size="20.0" />
             </font>
         </Label>
-        <Button layoutX="340.0" layoutY="521.0" mnemonicParsing="false" onAction="#quit" prefHeight="41.0"
-                prefWidth="142.0" style="-fx-background-color: Chocolate;" text="EXIT">
+        <Button layoutX="340.0" layoutY="521.0" mnemonicParsing="false" onAction="#quit" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: Chocolate;" text="EXIT">
             <font>
-                <Font name="Retro Gaming" size="14.0"/>
+                <Font name="Retro Gaming" size="14.0" />
             </font>
         </Button>
-        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="520.0" layoutY="342.0" pickOnBounds="true"
-                   preserveRatio="true" rotate="112.9">
+        <ImageView fitHeight="188.0" fitWidth="183.0" layoutX="627.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true" rotate="-0.7">
             <image>
-                <Image url="@images/Luchu_front_bigger.png"/>
+                <Image url="@images/Luchu_front_bigger.png" />
             </image>
         </ImageView>
+      <ImageView fitHeight="152.0" fitWidth="234.0" layoutX="492.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/cube_front.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="152.0" fitWidth="176.0" layoutX="168.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/rob_front.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="152.0" fitWidth="301.0" layoutX="30.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/bob_front.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
