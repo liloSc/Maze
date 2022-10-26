@@ -223,19 +223,19 @@ public class ControllerGame implements Initializable {
     }
 
     private Image getCharacterImage() {
-        String path = "resources/player/dog_left_1.png";
+        String path = "resources/player/Rob/rob_left.png";
         if (playerIsActive) {
             if (gamePlayer.getCharacter().equals("charac1")) {
-                path = "resources/player/dog_left_1.png";
+                path = "resources/player/Rob/rob_left.png";
                 // System.out.println("Get Character Image of " + );
                 if (direction == Direction.UP)
-                    path = "resources/player/dog_up_1.png";
+                    path = "resources/player/Rob/rob_back.png";
                 if (direction == Direction.DOWN)
-                    path = "resources/player/dog_down_1.png";
+                    path = "resources/player/Rob/rob_down.png";
                 if (direction == Direction.LEFT)
-                    path = "resources/player/dog_left_1.png";
+                    path = "resources/player/Rob/rob_left.png";
                 if (direction == Direction.RIGHT)
-                    path = "resources/player/dog_right_1.png";
+                    path = "resources/player/Rob/rob_right.png";
                 //    if (gamePlayer.getCharacter().equals("charac2")) path = "resources/player/heart.png";
 
             } else if (gamePlayer.getCharacter().equals("charac2")) {
@@ -254,13 +254,13 @@ public class ControllerGame implements Initializable {
                 path = "resources/player/boba_front.png";
 
                 if (direction == Direction.UP)
-                    path = "resources/player/Boba/boba_back.png";
+                    path = "resources/player/Boba/bob_back.png";
                 if (direction == Direction.DOWN)
-                    path = "resources/player/Boba/boba_down.png";
+                    path = "resources/player/Boba/bob_down.png";
                 if (direction == Direction.LEFT)
-                    path = "resources/player/Boba/boba_left.png";
+                    path = "resources/player/Boba/bob_left.png";
                 if (direction == Direction.RIGHT)
-                    path = "resources/player/Boba/boba_right1.png";
+                    path = "resources/player/Boba/bob_right.png";
 
             } else if (gamePlayer.getCharacter().equals("charac4")) {
                 path = "resources/player/banana.png";
