@@ -202,8 +202,11 @@
                                                                                 </ImageView>
                                                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="User the space-bar to attack your ennemies" wrappingWidth="366.2616491317749">
                                                                                     <font>
-                                                                                        <Font name="Retro Gaming" size="20.0" />
+                                                                                        <Font size="18.0" />
                                                                                     </font>
+                                                               <HBox.margin>
+                                                                  <Insets top="25.0" />
+                                                               </HBox.margin>
                                                                                 </Text>
                                                                             </children>
                                                                             <padding>
@@ -228,6 +231,14 @@
                                                                 <Insets />
                                                             </StackPane.margin>
                                                         </Button>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Find all the keys on the way to unlock the door and win." wrappingWidth="770.2616279125214">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <StackPane.margin>
+                                                <Insets top="150.0" />
+                                             </StackPane.margin>
+                                          </Text>
                                                     </children>
                                                     <BorderPane.margin>
                                                         <Insets />
