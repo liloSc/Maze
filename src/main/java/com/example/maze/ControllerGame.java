@@ -68,9 +68,7 @@ public class ControllerGame implements Initializable {
     public Enemy gameClassEnemy1;
     public Enemy gameClassEnemy2;
     public Enemy gameClassEnemy3;
-    public Label label_enemy1;
-    public Label label_enemy2;
-    public Label label_enemy3;
+   
 
     public Player gamePlayer = new Player(null, 10);
     public Enemy myfighter1 = new Fighter1(20, 30);
