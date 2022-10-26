@@ -31,7 +31,18 @@ public class Game_layout {
     }
 
 
-    //This is the model for the grid. At each position [i,j] the value is 0
+   /*
+    * @param
+    * walkable path:0
+    * wall: 8
+    * 
+    * This function creates the grid and fill it with either 0 or 8. 
+    * It is a 2D array.
+    * At each position, the value of the grid is set to 0.
+    * 
+    * The walls are put by changing the value of the grid from 0 to 8 in different for-loops.
+    * 
+    */
     public void createGrid() {
         i = 0;
         j = 0;
