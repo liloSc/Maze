@@ -107,6 +107,12 @@ public class ControllerGame implements Initializable {
 
     List<Rectangle> listEnemies = new ArrayList<>();
 
+    /**
+     * Method to set the enemies randomly to the game
+     * Depending on the selected level
+     *
+     * @param numberOfEnemies
+     */
     public void setRandomEnemiesToGame(int numberOfEnemies) {
         // int numberOfEnemies=2;
         Random randomNumber = new Random();
@@ -152,6 +158,11 @@ public class ControllerGame implements Initializable {
     //Horizontal, Vertikal
     int[][] healthPosition = {{14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}};
 
+    /**
+     * Method to set the Hearts in the game at defined position
+     *
+     * @param numberOfEnemies
+     */
     public void setHealthCharger(int numberOfEnemies) {
         if (numberOfEnemies == 1)//Level 1
             healthPosition = new int[][]{{14, 2}, {33, 3}, {49, 4}, {40, 5}, {2, 10}, {2, 10}, {20, 10}, {35, 10}, {49, 10}, {14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}, {2, 20}, {2, 30}, {9, 38}, {25, 38}, {35, 38}, {50, 38}, {56, 30}, {45, 30},};
@@ -190,6 +201,11 @@ public class ControllerGame implements Initializable {
 
     List<Rectangle> listOfKeys = new ArrayList<>();
 
+    /**
+     * Method to set the Keys Randomly in the grid
+     *
+     * @param numberOfKeysToSet
+     */
     public void setRandomlyKeys(int numberOfKeysToSet) {
         //  int numberOfKeys = 1;
         // Obtain a number between [0 - 49].
@@ -255,6 +271,11 @@ public class ControllerGame implements Initializable {
 
     }
 
+    /**
+     * Method to get the image of the enemy
+     *
+     * @return
+     */
     private Image getEnemyImage() {
         String path = "resources/enemy/ghost.png";
         try {
@@ -265,7 +286,8 @@ public class ControllerGame implements Initializable {
         return image_enemy;
     }
 
-    /*
+    /**
+     * Method to get the image of character
      * This function changes the image of the character depending on it's direction
      */
     private Image getCharacterImage() {
@@ -330,9 +352,9 @@ public class ControllerGame implements Initializable {
 
     }
 
-    /*
-     * In this function the model Game_layout.java is called and for each value of the grid, a GridPane is filled with 
-     * either an image of the path or of the wall (here represented with threes)	
+    /**
+     * In this function the model Game_layout.java is called and for each value of the grid, a GridPane is filled with
+     * either an image of the path or of the wall (here represented with threes)
      */
     private Node printGrid() {
         GridPane grid = new GridPane();
@@ -358,7 +380,11 @@ public class ControllerGame implements Initializable {
     }
 
 
-    //Change position with key pressed
+    /**Change position with key pressed
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void movePlayerKeyPressed(KeyEvent event) throws IOException {
         int i = gamelayoutgrid.getColumnIndex(rectangle_player);
@@ -413,7 +439,10 @@ public class ControllerGame implements Initializable {
         }
     }
 
-
+    /**
+     *
+     * @param event
+     */
     @FXML
     void stopMovePlayerKeyReleased(KeyEvent event) {
         if (KeyEvent.KEY_RELEASED.equals(event.getEventType())) {
@@ -422,7 +451,10 @@ public class ControllerGame implements Initializable {
         }
     }
 
-
+    /**
+     * Method to check if the player is on door
+     * @param event
+     */
     private void isPlayerOnDoor(KeyEvent event) {
         //get Position of Player
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
@@ -437,6 +469,9 @@ public class ControllerGame implements Initializable {
         }
     }
 
+    /**
+     * Check if Player is on Heart
+     */
     private void isPlayerOnHeart() {
         //get Position of Player
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
@@ -461,6 +496,9 @@ public class ControllerGame implements Initializable {
 
     }
 
+    /** Method to check if Player is on KeyObject
+     *
+     */
 
     private void isPlayerOnKey() {
         //get Position of Player
@@ -486,6 +524,9 @@ public class ControllerGame implements Initializable {
 
     int foundKeys = 0;
 
+    /**
+     * Method to reveal the door if all keys were found
+     */
     private void revealDoor() {
         if (foundKeys == numberOfKeys) {
             image_door.setVisible(true);
@@ -494,6 +535,10 @@ public class ControllerGame implements Initializable {
 
     }
 
+    /**
+     * Shoot on Enemy if you are next to it
+     * @param event
+     */
     private void shootOnEnemy(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
             //   System.out.println("Shoot on Enemy");
@@ -530,6 +575,11 @@ public class ControllerGame implements Initializable {
         }
     }
 
+    /**
+     * Method to remove the enemy after he dies
+     * @param label_healthEnemy1
+     * @param rectangle
+     */
     private void removeEnemy(Label label_healthEnemy1, Rectangle rectangle) {
         gamelayoutgrid.getChildren().remove(rectangle);
         anchorPane.getChildren().remove(label_healthEnemy1);
@@ -544,6 +594,10 @@ public class ControllerGame implements Initializable {
     Rectangle nextEnemyRectangle;
 
 
+    /**
+     * Method to check if player is next to enemy
+     * @return
+     */
     private boolean isPlayerNextToEnemy() {
         //get Position of Player
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
@@ -585,6 +639,11 @@ public class ControllerGame implements Initializable {
 
     }
 
+    /**
+     * Method to reduce life of the player
+     * when he moves or when he is next to Enemy
+     * @param isNextToEnemy
+     */
     private void reduceLife(boolean isNextToEnemy) {
         double loosesHealth = 0.01;
         // double loosesHealth = 0;
@@ -604,6 +663,10 @@ public class ControllerGame implements Initializable {
         }
     }
 
+    /**
+     * Method to Augment the Life of the player
+     *
+     */
     private void augmentLife() {
         //double gainsHealth = 0.2;
         bar_healthPlayer.setProgress(1);
@@ -617,6 +680,10 @@ public class ControllerGame implements Initializable {
     private Stage stage;
     private Scene scene;
 
+    /**
+     * Method to switch Scene
+     * @param event
+     */
     public void switchToTask(KeyEvent event) {
 
         FXMLLoader loader = new FXMLLoader();
@@ -642,7 +709,12 @@ public class ControllerGame implements Initializable {
     }
 
 
-    // 3 off them are not right now needed, maybe later?
+    /**
+     * Method to initialize the enemy
+     * @param myFirstFigther
+     * @param ourEnemy2
+     * @param ourEnemy3
+     */
     public void initEnemy(Enemy myFirstFigther, Enemy ourEnemy2, Enemy ourEnemy3) {
         this.myfighter1 = myFirstFigther;
         this.myfighter2 = ourEnemy2;
@@ -658,10 +730,10 @@ public class ControllerGame implements Initializable {
 
 
     /*
-     * This function is called when the user press enter. 
+     * This function is called when the user press enter.
      * The instruction pane, visible at the beginning is set non visible.
      * The objects present in the maze are initialize as well as their event handlers
-     * 
+     *
      */
     @FXML
     public void hideInstructionPane(KeyEvent event) throws IOException {
