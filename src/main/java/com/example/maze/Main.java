@@ -15,7 +15,7 @@ public class Main extends Application {
 
         try {
             music();
-            Parent startpage = FXMLLoader.load(getClass().getResource("unlockDoor.fxml"));
+            Parent startpage = FXMLLoader.load(getClass().getResource("startpage.fxml"));
             Scene scene = new Scene(startpage);
             stage.setResizable(false); //Window can not be changed
             stage.centerOnScreen();
