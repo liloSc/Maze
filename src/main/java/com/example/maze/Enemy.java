@@ -1,76 +1,28 @@
 package com.example.maze;
 
+
+
+
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringPropertyBase;
+
 
 public class Enemy {
 
-    private SimpleStringProperty character;
-    private SimpleStringProperty PersonTraits;
     private SimpleStringProperty LevelEnemy;
-
+   
+ //ENEMY SHARE INFOMRMATION SUCH AS?
     int health;
-    int force;
-
-
-    public void enemies(String[] args) {
-        Enemy myFirstFigther = new Enemy(health, force);  // Object 1
-        Enemy mySecondFighter = new Enemy(health, force);  // Object 2
-        Enemy myThirdFighter = new Enemy(health, force); // NULL IS THE CHARACTER WHICH IS THE
-
-
-        System.out.println(myFirstFigther.health);
-        System.out.println(myFirstFigther.force);
-    }
-
+    int health1 =20;
+    int health2 =20;
+    int health3 =20;
+    int forceAgainstPlayer;
 
     // Every Enemy gets these properties
-    public Enemy(int health, int force) {
+    public Enemy(int health, int forceAgainstPlayer) {
         this.health = health;
-        this.force = force;
-        //  health = 20;
-        //   force = 30;
-        // this.character = new SimpleStringProperty(character);
+        this.forceAgainstPlayer = forceAgainstPlayer;
     }
 
-    public void setCharacter(String character) {
-        this.character = new SimpleStringProperty(character);
-        System.out.println(character + " is your Enemy");
-        return;
-    }
-
-
-    public String getCharacter() {
-        System.out.println(character + " The Enemy is taken");
-        return character.get();
-    }
-
-    //public String getPersonTraits() {
-    //	System.out.println(PersonTraits +" The Enemy has this info"); // add logic? which enemy?
-    //	return PersonTraits.get();
-    //}
-	
-
-	
-	
-	
-	/*
-	// we can do more with knowing the level here, add some logic
-	 * EXAMPLE
-	 if(LevelEnemy == new SimpleStringProperty("1")) {	
-		 // DO Stuff like initialising one enemy 
-		 StringPropertyBase oneCharacter;
-		//return oneCharacter.get();
-	 }
-	 else if (LevelEnemy == new SimpleStringProperty("2")) {
-		 StringPropertyBase twoCharacter; 
-		// return twoCharacter.get();
-	 }
-	 else if (LevelEnemy == new SimpleStringProperty("3")) {
-		 StringPropertyBase threeCharacter;
-		// return threeCharacter.get(); 
-	 }
-	*/
 
 
     // Given by the Levelselection Class
@@ -86,13 +38,78 @@ public class Enemy {
         return LevelEnemy.get();
     }
 
-    public void setHealth(int life2) {
-        this.health = life2;
-
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
+   
+	public int getHealth(int k) {
+		if(k==1) {
+			return health1;
+		}
+		else if (k==2) {
+			return health2;
+		}
+		else {
+			return health3;
+		}
+	}
+	void setHealth1(int life2 ) {
+	      this.health1 = life2;
+	   
 }
+	void setHealth2( int fighter2) {
+	      this.health2 = fighter2;
+}
+	void setHealth3( int fighter3) {
+	    
+	      this.health3 = fighter3;
+}
+  
+}
+
+
+class Fighter1 extends Enemy {
+  public Fighter1(int health, int forceAgainstPlayer) {
+		super(health, forceAgainstPlayer);
+		// TODO Auto-generated constructor stub
+	} 
+  void setHealth(int life2) {
+      this.health = life2;
+  }
+  int getHealth() {
+      return health;
+  }
+}   
+
+
+
+class Fighter2 extends Enemy {
+  Fighter2(int health, int forceAgainstPlayer) {
+		super(health, forceAgainstPlayer);
+		// TODO Auto-generated constructor stub
+	}
+  void setHealth(int life2) {
+      this.health = life2;
+  }
+  int getHealth() {
+      return health;
+  }
+
+}   
+
+
+class Fighter3 extends Enemy {
+	  Fighter3(int health, int forceAgainstPlayer) {
+		super(health, forceAgainstPlayer);
+		// TODO Auto-generated constructor stub
+	}
+	void setHealth(int life2) {
+	      this.health = life2;
+	}
+	int getHealth() {
+	      return health;
+	}
+}
+
+
+
+
+    
+    

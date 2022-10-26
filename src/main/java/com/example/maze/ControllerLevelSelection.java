@@ -71,7 +71,6 @@ public class ControllerLevelSelection implements Initializable {
 
             //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
             // Access the controller and call a method
-
             ControllerGame controllerGame = loader.getController();
             controllerGame.initEnemy(ourEnemies, ourEnemies, ourEnemies);
             //    ControllerGame controller3 = loader.getController();

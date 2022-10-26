@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +32,7 @@ import javafx.stage.Stage;
 
 public class ControllerGame implements Initializable {
 
+	
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -62,6 +64,10 @@ public class ControllerGame implements Initializable {
     public Label label_enemy3;
 
     public Player gamePlayer = new Player(null, 10);
+    public Enemy myfighter1 = new Fighter1(20, 30); 
+    public Enemy myfighter2 = new Fighter2(20, 30); 
+    public Enemy myfighter3 = new Fighter3(20, 30); 
+  
     private int numberOfEnemies;
 
     double xPosDoor;
@@ -76,6 +82,10 @@ public class ControllerGame implements Initializable {
     private int[][] grid;
     private int grid_length = 61;
     private int grid_height = 41;
+    
+   
+    
+    
     int i, j;
     Image image_grass = new Image("file:resources/player/Grass.png", 20, 20, false, false);
     Image image_wall = new Image("file:resources/player/Three.png", 20, 20, false, false);
@@ -84,7 +94,7 @@ public class ControllerGame implements Initializable {
 
 
     public ControllerGame() {
-
+    	
     }
 
     List<Rectangle> listEnemies = new ArrayList<>();
@@ -267,6 +277,8 @@ public class ControllerGame implements Initializable {
             isPlayerOnDoor(event);
 
             if (isPlayerNextToEnemy()) shootOnEnemy(event);
+         //   if (isPlayerNextToEnemy()) System.out.print(nextenemy  + " test ");
+         //   if (isPlayerNextToEnemy()) System.out.print(whichcharacterisclose  + " whichcharacterisclose ");
         }
     }
 
@@ -296,21 +308,50 @@ public class ControllerGame implements Initializable {
 
     private void shootOnEnemy(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-         //   System.out.println("Shoot on Enemy");
-            if (nextenemy.getHealth() > 1) {
-                nextenemy.setHealth(nextenemy.getHealth() - 1);
-                label_healthEnemy1.setText(String.valueOf(nextenemy.getHealth()));
-            } else {
-                label_healthEnemy1.setVisible(false);
-                nextEnemyRectangle.setVisible(false);
-
-            }
+        	System.out.println("Shoot on Enemy");
+        	if(!(nextenemy1 == null)) {
+        		if (myfighter1.getHealth(1) > 1) {
+                    myfighter1.setHealth1(myfighter1.getHealth(1) - 1);
+                    label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
+                } else {
+                    label_healthEnemy1.setVisible(false);
+                    nextEnemyRectangle.setVisible(false); // THAT DOENST WORK (MAYBE CHANGE POSTION?
+                	label_healthEnemy1.setDisable(false);
+                    // NEEDS TO BE DEACTIVATED HERE!
+                }  
+        	} else if(!(nextenemy2 == null)){
+        		if (myfighter2.getHealth(2) > 1) {
+                    myfighter2.setHealth2(myfighter2.getHealth(2) - 1);
+                    label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
+                } else {
+                    label_healthEnemy2.setVisible(false);
+                    nextEnemyRectangle.setVisible(false);
+                	label_healthEnemy2.setDisable(false);
+                    // NEEDS TO BE DEACTIVATED HERE!
+                }
+        	} else {
+            	if (myfighter3.getHealth(3) > 1) {
+            		myfighter3.setHealth3(myfighter3.getHealth(3) - 1);
+            		label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
+            	} else {
+            		label_healthEnemy3.setVisible(false);
+            		label_healthEnemy3.setDisable(false);
+            		nextEnemyRectangle.setVisible(false);	
+            		// NEEDS TO BE DEACTIVATED HERE!
+            	}
+        	}
         }
     }
-
-    Enemy nextenemy;
+    
+     
+    Enemy nextenemy1;
+    Enemy nextenemy2;
+    Enemy nextenemy3;
     Rectangle nextEnemyRectangle;
-
+    public void whichcharacterisclose() {
+    	
+    };
+    
     private boolean isPlayerNextToEnemy() {
         //get Position of Player
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
@@ -323,13 +364,28 @@ public class ControllerGame implements Initializable {
 
             if (((playerColumn == enemyColumn) || (playerColumn + 1 == enemyColumn) || (playerColumn - 1 == enemyColumn)) && ((playerRow == enemyRow) || (playerRow + 1 == enemyRow) || (playerRow - 1 == enemyRow))) {
                 if (playerIsMoving) reduceLife();
-                if (i == 1) nextenemy = gameClassEnemy1;
-                if (i == 2) nextenemy = gameClassEnemy2;
-                if (i == 3) nextenemy = gameClassEnemy3;
+                if (i == 1) {
+                	nextenemy1 = myfighter1;
+                	nextenemy2 = null;
+                	nextenemy3 = null;
+                }
+                System.out.print(nextenemy1  + " test ");
+
+                if (i == 2) {
+                	nextenemy2 = myfighter1;
+                	nextenemy1 = null;
+                	nextenemy3 = null;
+                }                	
+                System.out.print(nextenemy2  + " tester ");
+                if (i == 3) {
+                	nextenemy3 = myfighter1;
+                	nextenemy1 = null;
+                	nextenemy2 = null;
+                }
+                System.out.print(nextenemy3  + " tester3 ");
+
                 nextEnemyRectangle= e;
                 return true;
-
-
             }
             i++;
         }
@@ -365,13 +421,6 @@ public class ControllerGame implements Initializable {
             throw new RuntimeException(e);
         }
         scene = new Scene(root);
-
-
-        //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
-        // Access the controller and call a method
-        //CombiningGame controller3 = loader.getController();
-        //controller3.initData2(selectedPlayer);
-
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();
@@ -382,19 +431,19 @@ public class ControllerGame implements Initializable {
 
     public void initData(Player player) { // THIS METHOD accepts a player to initialize the view
         this.gamePlayer = player;
-        //  System.out.println("3 Now we have a new char in game " + gamePlayer.getCharacter());
+      
     }
 
 
     // 3 off them are not right now needed, maybe later?
-    public void initEnemy(Enemy ourEnemy1, Enemy ourEnemy2, Enemy ourEnemy3) {
-        this.gameClassEnemy1 = ourEnemy1;
-        this.gameClassEnemy2 = ourEnemy2;
-        this.gameClassEnemy3 = ourEnemy3;
+    public void initEnemy(Enemy myFirstFigther, Enemy ourEnemy2, Enemy ourEnemy3) {
+        this.myfighter1 = myFirstFigther;
+        this.myfighter2 = ourEnemy2;
+        this.myfighter3 = ourEnemy3;
         //   System.out.println("Level in game is " + GameClassEnemy1.getLevelEnemy());
         //  System.out.println("Level in game is " + GameClassEnemy2.getLevelEnemy());
         //   System.out.println("Level in game is " + GameClassEnemy3.getLevelEnemy());
-        this.numberOfEnemies = Integer.parseInt(gameClassEnemy3.getLevelEnemy());
+        this.numberOfEnemies = Integer.parseInt(myfighter3.getLevelEnemy());
         //	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits());  // ourEnemy can be whatever
         //	EnemyLabel2.setText(GameClassEnemy2.getPersonTraits());
         //	EnemyLabel3.setText(GameClassEnemy3.getPersonTraits());
@@ -410,9 +459,9 @@ public class ControllerGame implements Initializable {
             movePlayerKeyPressed(event);
             stopMovePlayerKeyReleased(event);
             setRandomEnemiesToGame(numberOfEnemies);
-            label_healthEnemy1.setText(String.valueOf(gameClassEnemy1.getHealth()));
-            label_healthEnemy2.setText(String.valueOf(gameClassEnemy2.getHealth()));
-            label_healthEnemy3.setText(String.valueOf(gameClassEnemy3.getHealth()));
+            label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
+            label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
+            label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
             if (numberOfEnemies >= 1) label_healthEnemy1.setVisible(true);
             if (numberOfEnemies >= 2) label_healthEnemy2.setVisible(true);
             if (numberOfEnemies >= 3) label_healthEnemy3.setVisible(true);

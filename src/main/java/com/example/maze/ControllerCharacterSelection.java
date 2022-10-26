@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class ControllerCharacterSelection implements Initializable {
 
     @FXML
@@ -58,7 +59,8 @@ public class ControllerCharacterSelection implements Initializable {
 
         }
     }
-
+   
+    
 
     private void hideImage() {
         image_bigCharac1.setVisible(false);
