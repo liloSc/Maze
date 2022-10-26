@@ -63,6 +63,10 @@ public class ControllerUnlockDoor implements Initializable {
 
     boolean isNewGame = true;
 
+    /**Method to check if the slider was changed
+     *
+     * @param event
+     */
     public void onSliderChanged(MouseEvent event) {
         if (isNewGame) {
             setTimer();
@@ -89,6 +93,10 @@ public class ControllerUnlockDoor implements Initializable {
         }
     }
 
+    /**Check if Code is correct
+     *
+     * @return
+     */
     public boolean isCodeCorrect() {
 
         try {
@@ -131,6 +139,9 @@ public class ControllerUnlockDoor implements Initializable {
             )
     );
 
+    /**Method to set the timer
+     *
+     */
     public void setTimer() {
         timeline.setCycleCount(Animation.INDEFINITE);
         startTime = System.currentTimeMillis();
@@ -138,6 +149,10 @@ public class ControllerUnlockDoor implements Initializable {
 
     }
 
+    /**Method to go to Game Over Screen
+     *
+     * @throws IOException
+     */
     public void switchToGameOver() throws IOException {
         timeline.pause();
         FXMLLoader loader = new FXMLLoader();
@@ -151,6 +166,10 @@ public class ControllerUnlockDoor implements Initializable {
 
     }
 
+    /**
+     * Method to Game Won
+     * @throws IOException
+     */
     public void switchToGameWon() throws IOException {
         timeline.pause();
         FXMLLoader loader = new FXMLLoader();
