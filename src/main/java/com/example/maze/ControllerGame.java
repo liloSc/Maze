@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -57,6 +58,10 @@ public class ControllerGame implements Initializable {
     private Label label_healthEnemy3;
     @FXML
     private Label label_foundKeys;
+
+
+    @FXML
+    private ProgressBar bar_healthPlayer;
     Image image_enemy;
 
     public Enemy gameClassEnemy1;
@@ -204,6 +209,7 @@ public class ControllerGame implements Initializable {
         gamelayoutgrid.getChildren().addAll(printGrid());
         label_lifePlayer.setText(String.valueOf(gamePlayer.getHealth()));
 
+
     }
 
     private Image getEnemyImage() {
@@ -303,6 +309,7 @@ public class ControllerGame implements Initializable {
 
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
             playerIsActive = true;
+
             if (event.getCode().equals(KeyCode.UP)) {
                 direction = Direction.UP;
                 if (gameLayout.isWall(i, j - 1) == false) {
@@ -333,6 +340,8 @@ public class ControllerGame implements Initializable {
                 }
                 playerIsMoving = true;
             }
+            if (playerIsMoving) reduceLife(false);
+            //bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - 0.01);
             image_player = getCharacterImage();
             rectangle_player.setFill(new ImagePattern(image_player));
 
@@ -457,26 +466,26 @@ public class ControllerGame implements Initializable {
             int enemyRow = gamelayoutgrid.getRowIndex(e);
 
             if (((playerColumn == enemyColumn) || (playerColumn + 1 == enemyColumn) || (playerColumn - 1 == enemyColumn)) && ((playerRow == enemyRow) || (playerRow + 1 == enemyRow) || (playerRow - 1 == enemyRow))) {
-                if (playerIsMoving) reduceLife();
+                if (playerIsMoving) reduceLife(true);
                 if (i == 1) {
                     nextenemy1 = myfighter1;
                     nextenemy2 = null;
                     nextenemy3 = null;
                 }
-                System.out.print(nextenemy1 + " test ");
+                //   System.out.print(nextenemy1 + " test ");
 
                 if (i == 2) {
                     nextenemy2 = myfighter1;
                     nextenemy1 = null;
                     nextenemy3 = null;
                 }
-                System.out.print(nextenemy2 + " tester ");
+                //   System.out.print(nextenemy2 + " tester ");
                 if (i == 3) {
                     nextenemy3 = myfighter1;
                     nextenemy1 = null;
                     nextenemy2 = null;
                 }
-                System.out.print(nextenemy3 + " tester3 ");
+                //  System.out.print(nextenemy3 + " tester3 ");
 
                 nextEnemyRectangle = e;
                 return true;
@@ -487,11 +496,15 @@ public class ControllerGame implements Initializable {
 
     }
 
-    private void reduceLife() {
-        if (gamePlayer.getHealth() > 1) {
-            gamePlayer.setHealth(gamePlayer.getHealth() - 1);
+    private void reduceLife(boolean isNextToEnemy) {
+        double loosesHealth = 0.01;
+        if (isNextToEnemy) loosesHealth = 0.1;
+        if (/*gamePlayer.getHealth() > 1 && */bar_healthPlayer.getProgress() > 0.05) {
+            //  gamePlayer.setHealth(gamePlayer.getHealth() - 1);
             // System.out.print("Life " + gamePlayer.getLife());
-            label_lifePlayer.setText(String.valueOf(gamePlayer.getHealth()));
+            //  label_lifePlayer.setText(String.valueOf(gamePlayer.getHealth()));
+            //   bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - (gamePlayer.getHealth() / 100));
+            bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - loosesHealth);
         } else {
             try {
                 switchToGameOver();
