@@ -70,6 +70,7 @@ public class ControllerGame implements Initializable {
     public Enemy myfighter3 = new Fighter3(20, 30);
 
     private int numberOfEnemies;
+    private int numberOfKeys = 4;
 
     double xPosDoor;
     double yPosDoor;
@@ -108,7 +109,7 @@ public class ControllerGame implements Initializable {
             image_enemy = getEnemyImage();
             enemy1.setFill(new ImagePattern(image_enemy));
 
-         //   enemy1.setFill(Color.RED);
+            //   enemy1.setFill(Color.RED);
             // Obtain a number between [0 - 49].
 
             if (!gameLayout.isWall(enemyYPosition, enemyXPosition)) { //Checks if tile is a wall
@@ -137,6 +138,55 @@ public class ControllerGame implements Initializable {
 
     }
 
+    List<Rectangle> listOfKeys = new ArrayList<>();
+
+    public void setKeys(int numberOfKeysToSet) {
+        //  int numberOfKeys = 1;
+
+        for (int i = 0; i < numberOfKeysToSet; ) {
+            Rectangle key = new Rectangle(20, 20);
+            key.setFill(Color.ORANGE);
+            Image image_key = null;
+            String path = "resources/objects/key.png";
+            try {
+                image_key = new Image(new FileInputStream(path));
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            key.setFill(new ImagePattern(image_key));
+
+
+            // Obtain a number between [0 - 49].
+            Random randomNumber = new Random();
+            //   int keyPositionY = randomNumber.nextInt(grid_length - 1);
+            //     int keyPositionX = randomNumber.nextInt(grid_height - 1);
+            int keyPositionY = 1;
+            int keyPositionX = 5;
+            if (!gameLayout.isWall(keyPositionX, keyPositionY)) { //Checks if tile is a wall
+                gamelayoutgrid.add(key, keyPositionY, keyPositionX);
+                //  gamelayoutgrid.add(enemy1, 5, 1);
+                listOfKeys.add(key);
+                keyPositionY = randomNumber.nextInt(grid_length - 1);
+                keyPositionX = randomNumber.nextInt(grid_height - 1);
+                i++;
+            } else {
+                if (keyPositionY < grid_length - 1) {
+                    keyPositionY++;
+                } else {
+                    keyPositionY = 0;
+                }
+                if (keyPositionX < grid_height - 1) {
+                    keyPositionX++;
+                } else {
+                    keyPositionX = 0;
+                }
+
+
+            }
+        }
+
+    }
+
     //Method called after the stage is loaded
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -155,15 +205,16 @@ public class ControllerGame implements Initializable {
 
     }
 
-private Image getEnemyImage(){
+    private Image getEnemyImage() {
         String path = "resources/enemy/ghost.png";
-    try {
-        image_enemy = new Image(new FileInputStream(path));
-    } catch (FileNotFoundException e) {
-        throw new RuntimeException(e);
+        try {
+            image_enemy = new Image(new FileInputStream(path));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return image_enemy;
     }
-    return image_enemy;
-}
+
     private Image getCharacterImage() {
         String path = "resources/player/dog_left_1.png";
         if (playerIsActive) {
@@ -286,6 +337,7 @@ private Image getEnemyImage(){
 
             rectangle_player.toFront();
             isPlayerOnDoor(event);
+            isPlayerOnKey(event);
 
             if (isPlayerNextToEnemy()) shootOnEnemy(event);
             //   if (isPlayerNextToEnemy()) System.out.print(nextenemy  + " test ");
@@ -315,6 +367,23 @@ private Image getEnemyImage(){
         if (playerColumn == doorColumn && playerRow == doorRow) {
             switchToTask(event);
         }
+    }
+
+    private void isPlayerOnKey(KeyEvent event) {
+        //get Position of Player
+        int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
+        int playerRow = gamelayoutgrid.getRowIndex(rectangle_player);
+
+        for (Rectangle key : listOfKeys) {
+            //getPositionDoor
+            int keyColumn = gamelayoutgrid.getColumnIndex(key);
+            int keyRow = gamelayoutgrid.getRowIndex(key);
+            if (playerColumn == keyColumn && playerRow == keyRow) {
+                key.setVisible(false);
+            }
+        }
+
+
     }
 
     private void shootOnEnemy(KeyEvent event) {
@@ -360,7 +429,6 @@ private Image getEnemyImage(){
     Enemy nextenemy2;
     Enemy nextenemy3;
     Rectangle nextEnemyRectangle;
-
 
 
     private boolean isPlayerNextToEnemy() {
@@ -470,6 +538,7 @@ private Image getEnemyImage(){
             movePlayerKeyPressed(event);
             stopMovePlayerKeyReleased(event);
             setRandomEnemiesToGame(numberOfEnemies);
+            setKeys(numberOfKeys);
             label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
             label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
             label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));

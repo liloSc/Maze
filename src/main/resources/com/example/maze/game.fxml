@@ -140,9 +140,6 @@
                                         <Image url="@images/DoorClose.png" />
                                     </image>
                                 </ImageView>
-                        <Label fx:id="EnemyLabel1" text="Label" GridPane.columnIndex="55" GridPane.rowIndex="31" />
-                        <Label fx:id="EnemyLabel2" text="Label" GridPane.columnIndex="55" GridPane.rowIndex="28" />
-                        <Label fx:id="EnemyLabel3" text="Label" GridPane.columnIndex="55" GridPane.rowIndex="25" />
                             </children>
                         </GridPane>
                   <BorderPane fx:id="instructionPane" onKeyReleased="#hideInstructionPane" prefHeight="200.0" prefWidth="200.0">
