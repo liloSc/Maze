@@ -32,7 +32,7 @@ import javafx.stage.Stage;
 
 public class ControllerGame implements Initializable {
 
-	
+
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -64,10 +64,10 @@ public class ControllerGame implements Initializable {
     public Label label_enemy3;
 
     public Player gamePlayer = new Player(null, 10);
-    public Enemy myfighter1 = new Fighter1(20, 30); 
-    public Enemy myfighter2 = new Fighter2(20, 30); 
-    public Enemy myfighter3 = new Fighter3(20, 30); 
-  
+    public Enemy myfighter1 = new Fighter1(20, 30);
+    public Enemy myfighter2 = new Fighter2(20, 30);
+    public Enemy myfighter3 = new Fighter3(20, 30);
+
     private int numberOfEnemies;
 
     double xPosDoor;
@@ -82,10 +82,8 @@ public class ControllerGame implements Initializable {
     private int[][] grid;
     private int grid_length = 61;
     private int grid_height = 41;
-    
-   
-    
-    
+
+
     int i, j;
     Image image_grass = new Image("file:resources/player/Grass.png", 20, 20, false, false);
     Image image_wall = new Image("file:resources/player/Three.png", 20, 20, false, false);
@@ -94,7 +92,7 @@ public class ControllerGame implements Initializable {
 
 
     public ControllerGame() {
-    	
+
     }
 
     List<Rectangle> listEnemies = new ArrayList<>();
@@ -110,8 +108,8 @@ public class ControllerGame implements Initializable {
             // Obtain a number between [0 - 49].
 
             if (!gameLayout.isWall(enemyYPosition, enemyXPosition)) { //Checks if tile is a wall
-                   gamelayoutgrid.add(enemy1, enemyYPosition, enemyXPosition);
-              //  gamelayoutgrid.add(enemy1, 5, 1);
+                gamelayoutgrid.add(enemy1, enemyYPosition, enemyXPosition);
+                //  gamelayoutgrid.add(enemy1, 5, 1);
                 listEnemies.add(enemy1);
                 enemyYPosition = randomNumber.nextInt(grid_length - 1);
                 enemyXPosition = randomNumber.nextInt(grid_height - 1);
@@ -277,8 +275,8 @@ public class ControllerGame implements Initializable {
             isPlayerOnDoor(event);
 
             if (isPlayerNextToEnemy()) shootOnEnemy(event);
-         //   if (isPlayerNextToEnemy()) System.out.print(nextenemy  + " test ");
-         //   if (isPlayerNextToEnemy()) System.out.print(whichcharacterisclose  + " whichcharacterisclose ");
+            //   if (isPlayerNextToEnemy()) System.out.print(nextenemy  + " test ");
+            //   if (isPlayerNextToEnemy()) System.out.print(whichcharacterisclose  + " whichcharacterisclose ");
         }
     }
 
@@ -308,50 +306,54 @@ public class ControllerGame implements Initializable {
 
     private void shootOnEnemy(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-        	System.out.println("Shoot on Enemy");
-        	if(!(nextenemy1 == null)) {
-        		if (myfighter1.getHealth(1) > 1) {
+            System.out.println("Shoot on Enemy");
+            if (!(nextenemy1 == null)) {
+                if (myfighter1.getHealth(1) > 1) {
                     myfighter1.setHealth1(myfighter1.getHealth(1) - 1);
                     label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
                 } else {
-                    label_healthEnemy1.setVisible(false);
-                    nextEnemyRectangle.setVisible(false); // THAT DOENST WORK (MAYBE CHANGE POSTION?
-                	label_healthEnemy1.setDisable(false);
-                    // NEEDS TO BE DEACTIVATED HERE!
-                }  
-        	} else if(!(nextenemy2 == null)){
-        		if (myfighter2.getHealth(2) > 1) {
+                    // label_healthEnemy1.setVisible(false);
+                    //  nextEnemyRectangle.setVisible(false); // THAT DOENST WORK (MAYBE CHANGE POSTION?
+                    //	label_healthEnemy1.setDisable(false);
+                    gamelayoutgrid.getChildren().remove(nextEnemyRectangle);
+                    anchorPane.getChildren().remove(label_healthEnemy1);
+
+                }
+            } else if (!(nextenemy2 == null)) {
+                if (myfighter2.getHealth(2) > 1) {
                     myfighter2.setHealth2(myfighter2.getHealth(2) - 1);
                     label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
                 } else {
-                    label_healthEnemy2.setVisible(false);
-                    nextEnemyRectangle.setVisible(false);
-                	label_healthEnemy2.setDisable(false);
-                    // NEEDS TO BE DEACTIVATED HERE!
+
+                    gamelayoutgrid.getChildren().remove(nextEnemyRectangle);
+                    anchorPane.getChildren().remove(label_healthEnemy2);
+
                 }
-        	} else {
-            	if (myfighter3.getHealth(3) > 1) {
-            		myfighter3.setHealth3(myfighter3.getHealth(3) - 1);
-            		label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
-            	} else {
-            		label_healthEnemy3.setVisible(false);
-            		label_healthEnemy3.setDisable(false);
-            		nextEnemyRectangle.setVisible(false);	
-            		// NEEDS TO BE DEACTIVATED HERE!
-            	}
-        	}
+            } else {
+                if (myfighter3.getHealth(3) > 1) {
+                    myfighter3.setHealth3(myfighter3.getHealth(3) - 1);
+                    label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
+                } else {
+                    gamelayoutgrid.getChildren().remove(nextEnemyRectangle);
+                    anchorPane.getChildren().remove(label_healthEnemy3);
+
+                }
+            }
         }
     }
-    
-     
+
+
     Enemy nextenemy1;
     Enemy nextenemy2;
     Enemy nextenemy3;
     Rectangle nextEnemyRectangle;
+
     public void whichcharacterisclose() {
-    	
-    };
-    
+
+    }
+
+    ;
+
     private boolean isPlayerNextToEnemy() {
         //get Position of Player
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
@@ -365,26 +367,26 @@ public class ControllerGame implements Initializable {
             if (((playerColumn == enemyColumn) || (playerColumn + 1 == enemyColumn) || (playerColumn - 1 == enemyColumn)) && ((playerRow == enemyRow) || (playerRow + 1 == enemyRow) || (playerRow - 1 == enemyRow))) {
                 if (playerIsMoving) reduceLife();
                 if (i == 1) {
-                	nextenemy1 = myfighter1;
-                	nextenemy2 = null;
-                	nextenemy3 = null;
+                    nextenemy1 = myfighter1;
+                    nextenemy2 = null;
+                    nextenemy3 = null;
                 }
-                System.out.print(nextenemy1  + " test ");
+                System.out.print(nextenemy1 + " test ");
 
                 if (i == 2) {
-                	nextenemy2 = myfighter1;
-                	nextenemy1 = null;
-                	nextenemy3 = null;
-                }                	
-                System.out.print(nextenemy2  + " tester ");
-                if (i == 3) {
-                	nextenemy3 = myfighter1;
-                	nextenemy1 = null;
-                	nextenemy2 = null;
+                    nextenemy2 = myfighter1;
+                    nextenemy1 = null;
+                    nextenemy3 = null;
                 }
-                System.out.print(nextenemy3  + " tester3 ");
+                System.out.print(nextenemy2 + " tester ");
+                if (i == 3) {
+                    nextenemy3 = myfighter1;
+                    nextenemy1 = null;
+                    nextenemy2 = null;
+                }
+                System.out.print(nextenemy3 + " tester3 ");
 
-                nextEnemyRectangle= e;
+                nextEnemyRectangle = e;
                 return true;
             }
             i++;
@@ -431,7 +433,7 @@ public class ControllerGame implements Initializable {
 
     public void initData(Player player) { // THIS METHOD accepts a player to initialize the view
         this.gamePlayer = player;
-      
+
     }
 
 

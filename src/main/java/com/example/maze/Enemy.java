@@ -69,14 +69,14 @@ class Fighter1 extends Enemy {
   public Fighter1(int health, int forceAgainstPlayer) {
 		super(health, forceAgainstPlayer);
 		// TODO Auto-generated constructor stub
-	} 
+	}
   void setHealth(int life2) {
       this.health = life2;
   }
   int getHealth() {
       return health;
   }
-}   
+}
 
 
 
@@ -88,11 +88,11 @@ class Fighter2 extends Enemy {
   void setHealth(int life2) {
       this.health = life2;
   }
-  int getHealth() {
+  int getHealth2() {
       return health;
   }
 
-}   
+}
 
 
 class Fighter3 extends Enemy {
