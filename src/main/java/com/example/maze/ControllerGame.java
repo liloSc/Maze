@@ -154,8 +154,8 @@ public class ControllerGame implements Initializable {
 
     public void setHealthCharger(int numberOfEnemies) {
         if (numberOfEnemies == 1)//Level 1
-            healthPosition = new int[][]{{14, 2},{33, 3},{49, 4}, {40, 5},{2, 10},{2, 10},{20, 10},{35, 10},{49, 10},{14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}, {2, 20}, {2, 30},{9, 38}, {25, 38},{35, 38},{50, 38},{56, 30},{45, 30},   };
-                    //{15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}
+            healthPosition = new int[][]{{14, 2}, {33, 3}, {49, 4}, {40, 5}, {2, 10}, {2, 10}, {20, 10}, {35, 10}, {49, 10}, {14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}, {2, 20}, {2, 30}, {9, 38}, {25, 38}, {35, 38}, {50, 38}, {56, 30}, {45, 30},};
+        //{15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}
 
         if (numberOfEnemies == 2)//Level 2
             healthPosition = new int[][]{{14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}};
@@ -168,7 +168,6 @@ public class ControllerGame implements Initializable {
         //= new int[][]{{14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}};
 
         for (int i = 0; i < healthPosition.length; i++) {
-            //   listHealth.add(healthPosition);
             Rectangle heart = new Rectangle(20, 20);
             Image image_heart = null;
             String path = "resources/objects/heart.png";
@@ -450,8 +449,11 @@ public class ControllerGame implements Initializable {
             if (playerColumn == healthColumn && playerRow == healthRow) {
                 //    key.setVisible(false);
                 //   foundKeys++;
-                //    gamelayoutgrid.getChildren().remove(health); //Remove Key when Player is on it
-                //  listOfKeys.remove(health);
+                if (numberOfEnemies == 3) {
+                    gamelayoutgrid.getChildren().remove(health); //Remove Key when Player is on it
+                    listHealth.remove(health);
+                    return;
+                }
 
                 augmentLife();
             }
