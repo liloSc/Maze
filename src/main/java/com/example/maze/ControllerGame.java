@@ -266,6 +266,9 @@ public class ControllerGame implements Initializable {
         return image_enemy;
     }
 
+    /*
+     * This function changes the image of the character depending on it's direction
+     */
     private Image getCharacterImage() {
         String path = "resources/player/Rob/rob_front.png";
         if (playerIsActive) {
@@ -328,7 +331,10 @@ public class ControllerGame implements Initializable {
 
     }
 
-    //fill the grid with a simple background
+    /*
+     * In this function the model Game_layout.java is called and for each value of the grid, a GridPane is filled with 
+     * either an image of the path or of the wall (here represented with threes)	
+     */
     private Node printGrid() {
         GridPane grid = new GridPane();
         i = 0;
@@ -649,6 +655,12 @@ public class ControllerGame implements Initializable {
     }
 
 
+    /*
+     * This function is called when the user press enter. 
+     * The instruction pane, visible at the beginning is set non visible.
+     * The objects present in the maze are initialize as well as their event handlers
+     * 
+     */
     @FXML
     public void hideInstructionPane(KeyEvent event) throws IOException {
         if (event.getCode().equals((KeyCode.ENTER))) {

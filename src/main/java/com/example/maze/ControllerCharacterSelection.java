@@ -69,6 +69,7 @@ public class ControllerCharacterSelection implements Initializable {
         image_bigCharac4.setVisible(false);
     }
 
+
     private boolean isCharacterSelected() {
         if (image_bigCharac1.isVisible() || image_bigCharac2.isVisible() || image_bigCharac3.isVisible() || image_bigCharac4.isVisible()) {
             return true;
@@ -77,6 +78,9 @@ public class ControllerCharacterSelection implements Initializable {
         }
     }
 
+    /*
+     * This function checks which character has been clicked and prints the image of the character bigger on the screen
+     */
     public void animateCharacter(MouseEvent event) {
         if (event.getSource() == image_charac1) {
             hideImage();
