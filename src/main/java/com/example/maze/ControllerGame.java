@@ -150,7 +150,7 @@ public class ControllerGame implements Initializable {
     // int[][] healthPosition= {4,5,"c","a1","b1","c1","a2","b2","c2"};
     //  = new int[4][5];
     //Horizontal, Vertikal
-    int[][] healthPosition = {{14, 2}, {15, 22}, {2, 10}, {30, 10}, {30, 30}, {45, 30}};
+    int[][] healthPosition = {{14, 2}, {15, 22}, {2, 10}, {30, 10},{28, 25}, {30, 30}, {45, 30},{45, 15}};
 
     public void setHealthCharger() {
 
@@ -423,8 +423,8 @@ public class ControllerGame implements Initializable {
             if (playerColumn == healthColumn && playerRow == healthRow) {
                 //    key.setVisible(false);
                 //   foundKeys++;
-                gamelayoutgrid.getChildren().remove(health); //Remove Key when Player is on it
-                listOfKeys.remove(health);
+                //    gamelayoutgrid.getChildren().remove(health); //Remove Key when Player is on it
+                //  listOfKeys.remove(health);
 
                 augmentLife();
             }
@@ -558,7 +558,7 @@ public class ControllerGame implements Initializable {
 
     private void reduceLife(boolean isNextToEnemy) {
         double loosesHealth = 0.01;
-       // double loosesHealth = 0;
+        // double loosesHealth = 0;
         if (isNextToEnemy) loosesHealth = 0.1;
         if (/*gamePlayer.getHealth() > 1 && */bar_healthPlayer.getProgress() > 0.05) {
             //  gamePlayer.setHealth(gamePlayer.getHealth() - 1);
@@ -576,13 +576,13 @@ public class ControllerGame implements Initializable {
     }
 
     private void augmentLife() {
-        double gainsHealth = 0.2;
-
-        if (bar_healthPlayer.getProgress() < 0.81) {
+        //double gainsHealth = 0.2;
+        bar_healthPlayer.setProgress(1);
+        /*if (bar_healthPlayer.getProgress() < 0.51) {
             bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() + gainsHealth);
         } else {
             bar_healthPlayer.setProgress(1);
-        }
+        }*/
     }
 
     private Stage stage;
