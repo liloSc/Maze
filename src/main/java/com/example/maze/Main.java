@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-
+    	
         try {
             music();
             Parent startpage = FXMLLoader.load(getClass().getResource("startpage.fxml"));
@@ -29,6 +29,7 @@ public class Main extends Application {
 
     MediaPlayer mediaPlayer;
 
+    //plays audioclip when the game starts
     public void music() {
         String fileName = getClass().getResource("audio/musik.mp3").toExternalForm();
         Media media = new Media(fileName);

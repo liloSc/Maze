@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#movePlayerKeyPressed" onKeyReleased="#stopMovePlayerKeyReleased" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerGame">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#movePlayerKeyPressed" onKeyReleased="#stopMovePlayerKeyReleased" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerGame">
     <children>
         <FlowPane prefHeight="800.0" prefWidth="1200.0">
             <children>
@@ -249,12 +249,12 @@
                 </StackPane>
             </children>
         </FlowPane>
-        <Label layoutX="1238.0" layoutY="49.0" prefHeight="17.0" prefWidth="124.0" text="Player">
+        <Label layoutX="1253.0" layoutY="49.0" prefHeight="17.0" prefWidth="124.0" text="Player">
          <font>
             <Font name="Retro Gaming" size="19.0" />
          </font></Label>
         <Label fx:id="label_lifePlayer" layoutX="1238.0" layoutY="90.0" prefHeight="17.0" prefWidth="59.0" text="Your Health" visible="false" />
-        <Label layoutX="1238.0" layoutY="173.0" text="Enemies">
+        <Label layoutX="1253.0" layoutY="168.0" text="Enemies">
          <font>
             <Font name="Retro Gaming" size="16.0" />
          </font></Label>
@@ -270,10 +270,25 @@
          <font>
             <Font name="Retro Gaming" size="14.0" />
          </font></Label>
-      <Label fx:id="label_foundKeys" layoutX="1238.0" layoutY="367.0" text="Found Keys">
+      <Label fx:id="label_foundKeys" layoutX="1253.0" layoutY="367.0" text="Found Keys">
          <font>
             <Font name="Retro Gaming" size="14.0" />
          </font></Label>
       <ProgressBar fx:id="bar_healthPlayer" layoutX="1238.0" layoutY="97.0" prefHeight="20.0" prefWidth="150.0" progress="1.0" />
+      <ImageView fitHeight="18.0" fitWidth="14.0" layoutX="1234.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="18.0" fitWidth="14.0" layoutX="1234.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="18.0" fitWidth="14.0" layoutX="1238.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/arrow.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
