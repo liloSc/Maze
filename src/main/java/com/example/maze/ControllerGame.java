@@ -421,8 +421,8 @@ public class ControllerGame implements Initializable {
                     // label_healthEnemy1.setVisible(false);
                     //  nextEnemyRectangle.setVisible(false); // THAT DOENST WORK (MAYBE CHANGE POSTION?
                     //	label_healthEnemy1.setDisable(false);
-                    gamelayoutgrid.getChildren().remove(nextEnemyRectangle);
-                    anchorPane.getChildren().remove(label_healthEnemy1);
+                    removeEnemy(label_healthEnemy1, nextEnemyRectangle);
+
 
                 }
             } else if (!(nextenemy2 == null)) {
@@ -431,8 +431,7 @@ public class ControllerGame implements Initializable {
                     label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
                 } else {
 
-                    gamelayoutgrid.getChildren().remove(nextEnemyRectangle);
-                    anchorPane.getChildren().remove(label_healthEnemy2);
+                    removeEnemy(label_healthEnemy2, nextEnemyRectangle);
 
                 }
             } else {
@@ -440,12 +439,18 @@ public class ControllerGame implements Initializable {
                     myfighter3.setHealth3(myfighter3.getHealth(3) - 1);
                     label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
                 } else {
-                    gamelayoutgrid.getChildren().remove(nextEnemyRectangle);
-                    anchorPane.getChildren().remove(label_healthEnemy3);
+                    removeEnemy(label_healthEnemy3, nextEnemyRectangle);
 
                 }
             }
         }
+    }
+
+    private void removeEnemy(Label label_healthEnemy1, Rectangle rectangle) {
+        gamelayoutgrid.getChildren().remove(rectangle);
+        anchorPane.getChildren().remove(label_healthEnemy1);
+        listEnemies.remove(rectangle);
+        augmentLife();
     }
 
 
@@ -511,6 +516,16 @@ public class ControllerGame implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    private void augmentLife() {
+        double gainsHealth = 0.1;
+
+        if (bar_healthPlayer.getProgress() < 0.91) {
+            bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() + gainsHealth);
+        }else{
+            bar_healthPlayer.setProgress(1);
         }
     }
 
