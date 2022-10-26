@@ -21,5 +21,7 @@
             <Label fx:id="label_timer" text="Label" />
          </children>
       </StackPane>
+      <Label layoutX="42.0" layoutY="353.0" text="Code to unlock" />
+      <Label fx:id="label_codeToUnlock" layoutX="139.0" layoutY="353.0" text="Code" />
    </children>
 </AnchorPane>

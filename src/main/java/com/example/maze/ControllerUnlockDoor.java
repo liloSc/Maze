@@ -7,6 +7,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,10 +20,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ResourceBundle;
 
-public class ControllerUnlockDoor {
+public class ControllerUnlockDoor implements Initializable {
     private Stage stage;
     private Scene scene;
 
@@ -36,6 +39,9 @@ public class ControllerUnlockDoor {
     private Label label3;
     @FXML
     private Label label4;
+
+    @FXML
+    private Label label_codeToUnlock;
 
     @FXML
     private Slider slider1;
@@ -72,7 +78,7 @@ public class ControllerUnlockDoor {
         if (id.equals("slider3")) label3.setText(String.valueOf(sliderValue));
         if (id.equals("slider4")) label4.setText(String.valueOf(sliderValue));
         if (isCodeCorrect()) {
-            System.out.println("Code is correct");
+          //  System.out.println("Code is correct");
             try {
                 switchToGameWon();
             } catch (IOException e) {
@@ -159,4 +165,8 @@ public class ControllerUnlockDoor {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        label_codeToUnlock.setText(String.valueOf(quest_number));
+    }
 }
