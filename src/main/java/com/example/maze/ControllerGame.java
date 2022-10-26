@@ -480,6 +480,7 @@ public class ControllerGame implements Initializable {
             int healthColumn = gamelayoutgrid.getColumnIndex(health);
             int healthRow = gamelayoutgrid.getRowIndex(health);
             if (playerColumn == healthColumn && playerRow == healthRow) {
+                augmentLife();
                 //    key.setVisible(false);
                 //   foundKeys++;
                 if (numberOfEnemies == 3) {
@@ -488,7 +489,7 @@ public class ControllerGame implements Initializable {
                     return;
                 }
 
-                augmentLife();
+
             }
         }
 
