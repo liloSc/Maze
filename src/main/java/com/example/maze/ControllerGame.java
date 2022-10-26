@@ -55,6 +55,7 @@ public class ControllerGame implements Initializable {
     private Label label_healthEnemy2;
     @FXML
     private Label label_healthEnemy3;
+    Image image_enemy;
 
     public Enemy gameClassEnemy1;
     public Enemy gameClassEnemy2;
@@ -104,7 +105,10 @@ public class ControllerGame implements Initializable {
         int enemyXPosition = randomNumber.nextInt(grid_height - 1);
         for (int i = 0; i < numberOfEnemies; ) {
             Rectangle enemy1 = new Rectangle(20, 20);
-            enemy1.setFill(Color.RED);
+            image_enemy = getEnemyImage();
+            enemy1.setFill(new ImagePattern(image_enemy));
+
+         //   enemy1.setFill(Color.RED);
             // Obtain a number between [0 - 49].
 
             if (!gameLayout.isWall(enemyYPosition, enemyXPosition)) { //Checks if tile is a wall
@@ -151,6 +155,15 @@ public class ControllerGame implements Initializable {
 
     }
 
+private Image getEnemyImage(){
+        String path = "resources/enemy/ghost.png";
+    try {
+        image_enemy = new Image(new FileInputStream(path));
+    } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+    }
+    return image_enemy;
+}
     private Image getCharacterImage() {
         String path = "resources/player/dog_left_1.png";
         if (playerIsActive) {
@@ -348,11 +361,7 @@ public class ControllerGame implements Initializable {
     Enemy nextenemy3;
     Rectangle nextEnemyRectangle;
 
-    public void whichcharacterisclose() {
 
-    }
-
-    ;
 
     private boolean isPlayerNextToEnemy() {
         //get Position of Player
