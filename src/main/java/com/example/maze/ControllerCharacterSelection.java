@@ -49,7 +49,8 @@ public class ControllerCharacterSelection implements Initializable {
             Parent root = loader.load();
             Scene root_scene = new Scene(root);
 
-            // Access the controller and call a method
+            //THIS SET THE IMAGE FOR THE GAME CONTROLLER GAME CLASS
+            // Access the controller and call a method and initialise the selected character in Controller Level Selection class
             ControllerLevelSelection controllerLevelSelection = loader.getController();
             controllerLevelSelection.initData(player);
 
@@ -69,7 +70,7 @@ public class ControllerCharacterSelection implements Initializable {
         image_bigCharac4.setVisible(false);
     }
 
-
+ // if a Character is selected return true 
     private boolean isCharacterSelected() {
         if (image_bigCharac1.isVisible() || image_bigCharac2.isVisible() || image_bigCharac3.isVisible() || image_bigCharac4.isVisible()) {
             return true;

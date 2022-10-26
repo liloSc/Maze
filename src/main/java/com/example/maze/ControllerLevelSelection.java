@@ -69,8 +69,8 @@ public class ControllerLevelSelection implements Initializable {
             Parent root = loader.load();
             scene = new Scene(root);
 
-            //TODO THIS SHOULD SET THE IMAGE FOR THE GAME IN COMBININGGAME CLASS (via Game_layout?
-            // Access the controller and call a method
+            //THIS SET THE IMAGE FOR THE GAME CONTROLLER GAME CLASS
+            // Access the controller and call a method and initialise the amount of enemies in Controller Game class
             ControllerGame controllerGame = loader.getController();
             controllerGame.initEnemy(ourEnemies, ourEnemies, ourEnemies);
             //    ControllerGame controller3 = loader.getController();
@@ -83,7 +83,8 @@ public class ControllerLevelSelection implements Initializable {
         }
     }
 
-
+    
+// if a Level is selected return true 
     private boolean isLevelSelected() {
         if (rectangle_level1.isVisible() || rectangle_level2.isVisible() || rectangle_level3.isVisible()) {
             return true;
@@ -92,6 +93,7 @@ public class ControllerLevelSelection implements Initializable {
         }
     }
 
+ // Visual feedback of level selected and also initialise amount of enemy in this class
     @FXML
     public void selectLevel(MouseEvent event) {
         if ((event.getSource() == rectangle_level1) || (event.getSource() == level1)) {
@@ -110,6 +112,7 @@ public class ControllerLevelSelection implements Initializable {
     }
 
 
+ // initialiser used to set up character. Initialised by character selection 
     public void initData(Player player) { // THIS METHOD accepts a player to initialize the view
         this.player = player;
         label_yourPlayer.setText(this.player.getCharacter());

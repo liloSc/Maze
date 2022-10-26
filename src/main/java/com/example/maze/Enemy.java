@@ -1,8 +1,5 @@
 package com.example.maze;
 
-
-
-
 import javafx.beans.property.SimpleStringProperty;
 
 
@@ -10,17 +7,18 @@ public class Enemy {
 
     private SimpleStringProperty LevelEnemy;
    
- //ENEMY SHARE INFOMRMATION SUCH AS?
+ //ENEMY SHARE INFOMRMATION 
+   // Future implementation can include things such as different kind of items which have effect on enemy
     int health;
     int health1 =20;
     int health2 =20;
     int health3 =20;
-    int forceAgainstPlayer;
+   // int forceAgainstPlayer;
 
     // Every Enemy gets these properties
     public Enemy(int health, int forceAgainstPlayer) {
         this.health = health;
-        this.forceAgainstPlayer = forceAgainstPlayer;
+     //   this.forceAgainstPlayer = forceAgainstPlayer;
     }
 
 
@@ -39,6 +37,11 @@ public class Enemy {
     }
 
    
+    
+    
+    
+    //SET and GET enemies health
+    
 	public int getHealth(int k) {
 		if(k==1) {
 			return health1;
@@ -65,16 +68,15 @@ public class Enemy {
 }
 
 
+
+// Each player has a health an is a subclass of Enemy. T
+// These Enemies are used in Controller Game. However there are not further used
+// i.e. enemy specific functions
+
 class Fighter1 extends Enemy {
   public Fighter1(int health, int forceAgainstPlayer) {
 		super(health, forceAgainstPlayer);
 		// TODO Auto-generated constructor stub
-	}
-  void setHealth(int life2) {
-      this.health = life2;
-  }
-  int getHealth() {
-      return health;
   }
 }
 
@@ -85,14 +87,8 @@ class Fighter2 extends Enemy {
 		super(health, forceAgainstPlayer);
 		// TODO Auto-generated constructor stub
 	}
-  void setHealth(int life2) {
-      this.health = life2;
-  }
-  int getHealth2() {
-      return health;
-  }
+ }
 
-}
 
 
 class Fighter3 extends Enemy {
@@ -100,13 +96,13 @@ class Fighter3 extends Enemy {
 		super(health, forceAgainstPlayer);
 		// TODO Auto-generated constructor stub
 	}
-	void setHealth(int life2) {
-	      this.health = life2;
-	}
-	int getHealth() {
-	      return health;
-	}
+	//void setHealth(int life2) {
+	//      this.health = life2;
+	//}
+	//int getHealth() {
+	 //     return health;
 }
+
 
 
 
