@@ -73,6 +73,11 @@ public class ControllerUnlockDoor {
         if (id.equals("slider4")) label4.setText(String.valueOf(sliderValue));
         if (isCodeCorrect()) {
             System.out.println("Code is correct");
+            try {
+                switchToGameWon();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             //     System.out.println(" NOT correct");
         }
@@ -131,6 +136,19 @@ public class ControllerUnlockDoor {
         timeline.pause();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("gameover.fxml"));
+        Parent root = loader.load();
+        scene = new Scene(root);
+        stage = (Stage) label_timer.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+
+    }
+
+    public void switchToGameWon() throws IOException {
+        timeline.pause();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("gamewon.fxml"));
         Parent root = loader.load();
         scene = new Scene(root);
         stage = (Stage) label_timer.getScene().getWindow();

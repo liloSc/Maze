@@ -8,7 +8,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class ControllerGameOver {
+public class ControllerGameWon {
+
     private Stage stage;
     private Scene scene;
 
@@ -22,7 +23,7 @@ public class ControllerGameOver {
                 stage.show();
 
             } catch (Exception e) {
-                System.out.println("Can not load the FXML Start");
+                System.out.println("Can not load the FXML Start ");
             }
         }
 

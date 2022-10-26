@@ -72,7 +72,7 @@ public class ControllerGame implements Initializable {
     public Enemy myfighter3 = new Fighter3(20, 30);
 
     private int numberOfEnemies;
-    private int numberOfKeys = 3;
+    private int numberOfKeys = 4;
 
     double xPosDoor;
     double yPosDoor;
@@ -381,10 +381,11 @@ public class ControllerGame implements Initializable {
             int keyRow = gamelayoutgrid.getRowIndex(key);
             if (playerColumn == keyColumn && playerRow == keyRow) {
                 //    key.setVisible(false);
-             //   foundKeys++;
+                //   foundKeys++;
+                gamelayoutgrid.getChildren().remove(key); //Remove Key when Player is on it
+                listOfKeys.remove(key);
                 label_foundKeys.setText(String.valueOf(++foundKeys));
 
-                gamelayoutgrid.getChildren().remove(key); //Remove Key when Player is on it
                 revealDoor();
             }
         }
@@ -506,7 +507,7 @@ public class ControllerGame implements Initializable {
     public void switchToTask(KeyEvent event) {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("door.fxml"));
+        loader.setLocation(getClass().getResource("unlockDoor.fxml"));
         Parent root = null;
         try {
             root = loader.load();

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onKeyReleased="#switchToHomeScreen" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.maze.ControllerGameWon"
+            prefHeight="600.0" prefWidth="800.0">
+    <children>
+        <ImageView fitHeight="628.0" fitWidth="823.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/bg.png"/>
+            </image>
+        </ImageView>
+        <Label layoutX="263.0" layoutY="164.0" text="Game Won" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="60.0"/>
+            </font>
+        </Label>
+        <Label layoutX="328.0" layoutY="237.0" text="Press enter to restart" textFill="WHITE">
+            <font>
+                <Font name="Retro Gaming" size="20.0"/>
+            </font>
+        </Label>
+        <Button layoutX="340.0" layoutY="521.0" mnemonicParsing="false" onAction="#quit" prefHeight="41.0"
+                prefWidth="142.0" style="-fx-background-color: Chocolate;" text="EXIT">
+            <font>
+                <Font name="Retro Gaming" size="14.0"/>
+            </font>
+        </Button>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="520.0" layoutY="342.0" pickOnBounds="true"
+                   preserveRatio="true" rotate="112.9">
+            <image>
+                <Image url="@images/Luchu_front_bigger.png"/>
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

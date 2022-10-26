@@ -1,8 +1,5 @@
 package com.example.maze;
 
-
-import java.nio.file.Paths;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,14 +8,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
-import java.io.File;
-
-
 public class Main extends Application {
-
 
     @Override
     public void start(Stage stage) {
@@ -44,7 +34,6 @@ public class Main extends Application {
         Media media = new Media(fileName);
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-
 
     }
 
