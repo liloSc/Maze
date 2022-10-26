@@ -4,8 +4,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
-
 
 <Pane prefHeight="600.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerStartPage">
    <children>
@@ -19,5 +19,6 @@
             <Font name="Retro Gaming" size="18.0" />
          </font>
       </Button>
+      <MediaView fitHeight="200.0" fitWidth="200.0" />
    </children>
 </Pane>

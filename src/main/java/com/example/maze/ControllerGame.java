@@ -357,7 +357,7 @@ public class ControllerGame implements Initializable {
     public void switchToTask(KeyEvent event) {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("unlockDoor.fxml"));
+        loader.setLocation(getClass().getResource("door.fxml"));
         Parent root = null;
         try {
             root = loader.load();
