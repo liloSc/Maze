@@ -26,10 +26,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
+import javax.swing.text.Position;
 
 public class ControllerGame implements Initializable {
 
@@ -145,9 +146,39 @@ public class ControllerGame implements Initializable {
 
     }
 
+    List<Rectangle> listHealth = new ArrayList<>();
+    // int[][] healthPosition= {4,5,"c","a1","b1","c1","a2","b2","c2"};
+    //  = new int[4][5];
+    //Horizontal, Vertikal
+    int[][] healthPosition = {{14, 2}, {15, 22}, {2, 10}, {30, 10}, {30, 30}, {45, 30}};
+
+    public void setHealthCharger() {
+
+        for (int i = 0; i < healthPosition.length; i++) {
+            //   listHealth.add(healthPosition);
+            Rectangle heart = new Rectangle(20, 20);
+            Image image_heart = null;
+            String path = "resources/objects/heart.png";
+            try {
+                image_heart = new Image(new FileInputStream(path));
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            heart.setFill(new ImagePattern(image_heart));
+            //  for(int j = 0 ; j < 2; j++){
+            //    System.out.print(healthPosition[i][j] + " ");
+            gamelayoutgrid.add(heart, healthPosition[i][0], healthPosition[i][1]);
+            listHealth.add(heart);
+            //  }
+
+        }
+
+
+    }
+
     List<Rectangle> listOfKeys = new ArrayList<>();
 
-    public void setKeys(int numberOfKeysToSet) {
+    public void setRandomlyKeys(int numberOfKeysToSet) {
         //  int numberOfKeys = 1;
         // Obtain a number between [0 - 49].
         Random randomNumber = new Random();
@@ -347,7 +378,8 @@ public class ControllerGame implements Initializable {
 
             rectangle_player.toFront();
             isPlayerOnDoor(event);
-            isPlayerOnKey(event);
+            isPlayerOnKey();
+            isPlayerOnHeart();
 
             if (isPlayerNextToEnemy()) shootOnEnemy(event);
             //   if (isPlayerNextToEnemy()) System.out.print(nextenemy  + " test ");
@@ -379,7 +411,29 @@ public class ControllerGame implements Initializable {
         }
     }
 
-    private void isPlayerOnKey(KeyEvent event) {
+    private void isPlayerOnHeart() {
+        //get Position of Player
+        int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
+        int playerRow = gamelayoutgrid.getRowIndex(rectangle_player);
+
+        for (Rectangle health : listHealth) {
+            //getPositionDoor
+            int healthColumn = gamelayoutgrid.getColumnIndex(health);
+            int healthRow = gamelayoutgrid.getRowIndex(health);
+            if (playerColumn == healthColumn && playerRow == healthRow) {
+                //    key.setVisible(false);
+                //   foundKeys++;
+                gamelayoutgrid.getChildren().remove(health); //Remove Key when Player is on it
+                listOfKeys.remove(health);
+
+                augmentLife();
+            }
+        }
+
+    }
+
+
+    private void isPlayerOnKey() {
         //get Position of Player
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
         int playerRow = gamelayoutgrid.getRowIndex(rectangle_player);
@@ -389,14 +443,15 @@ public class ControllerGame implements Initializable {
             int keyColumn = gamelayoutgrid.getColumnIndex(key);
             int keyRow = gamelayoutgrid.getRowIndex(key);
             if (playerColumn == keyColumn && playerRow == keyRow) {
-                //    key.setVisible(false);
-                //   foundKeys++;
-                gamelayoutgrid.getChildren().remove(key); //Remove Key when Player is on it
-                listOfKeys.remove(key);
-                label_foundKeys.setText(String.valueOf(++foundKeys));
+                key.setVisible(false);
 
+                gamelayoutgrid.getChildren().remove(key); //Remove Key when Player is on it
+                label_foundKeys.setText(String.valueOf(++foundKeys));
                 revealDoor();
+                listOfKeys.remove(key);
+                return;
             }
+
         }
     }
 
@@ -412,7 +467,7 @@ public class ControllerGame implements Initializable {
 
     private void shootOnEnemy(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-            System.out.println("Shoot on Enemy");
+            //   System.out.println("Shoot on Enemy");
             if (!(nextenemy1 == null)) {
                 if (myfighter1.getHealth(1) > 1) {
                     myfighter1.setHealth1(myfighter1.getHealth(1) - 1);
@@ -503,6 +558,7 @@ public class ControllerGame implements Initializable {
 
     private void reduceLife(boolean isNextToEnemy) {
         double loosesHealth = 0.01;
+       // double loosesHealth = 0;
         if (isNextToEnemy) loosesHealth = 0.1;
         if (/*gamePlayer.getHealth() > 1 && */bar_healthPlayer.getProgress() > 0.05) {
             //  gamePlayer.setHealth(gamePlayer.getHealth() - 1);
@@ -520,11 +576,11 @@ public class ControllerGame implements Initializable {
     }
 
     private void augmentLife() {
-        double gainsHealth = 0.1;
+        double gainsHealth = 0.2;
 
-        if (bar_healthPlayer.getProgress() < 0.91) {
+        if (bar_healthPlayer.getProgress() < 0.81) {
             bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() + gainsHealth);
-        }else{
+        } else {
             bar_healthPlayer.setProgress(1);
         }
     }
@@ -581,7 +637,8 @@ public class ControllerGame implements Initializable {
             movePlayerKeyPressed(event);
             stopMovePlayerKeyReleased(event);
             setRandomEnemiesToGame(numberOfEnemies);
-            setKeys(numberOfKeys);
+            setRandomlyKeys(numberOfKeys);
+            setHealthCharger();
             label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
             label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
             label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
