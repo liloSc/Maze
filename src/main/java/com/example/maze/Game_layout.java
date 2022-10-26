@@ -373,6 +373,10 @@ public class Game_layout {
                 grid[i][j] = 8;
             }
         }
+        grid[59][38] = 8;
+        grid[59][37] = 8;
+
+
         System.out.println(grid[i][j]);
     }
 
