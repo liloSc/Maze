@@ -150,9 +150,22 @@ public class ControllerGame implements Initializable {
     // int[][] healthPosition= {4,5,"c","a1","b1","c1","a2","b2","c2"};
     //  = new int[4][5];
     //Horizontal, Vertikal
-    int[][] healthPosition = {{14, 2}, {15, 22}, {2, 10}, {30, 10},{28, 25}, {30, 30}, {45, 30},{45, 15}};
+    int[][] healthPosition = {{14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}};
 
-    public void setHealthCharger() {
+    public void setHealthCharger(int numberOfEnemies) {
+        if (numberOfEnemies == 1)//Level 1
+            healthPosition = new int[][]{{14, 2},{33, 3},{49, 4}, {40, 5},{2, 10},{2, 10},{20, 10},{35, 10},{49, 10},{14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}, {2, 20}, {2, 30},{9, 38}, {25, 38},{35, 38},{50, 38},{56, 30},{45, 30},   };
+                    //{15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}
+
+        if (numberOfEnemies == 2)//Level 2
+            healthPosition = new int[][]{{14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}};
+
+
+        if (numberOfEnemies == 3)//Level 2
+            healthPosition = new int[][]{{14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}};
+
+
+        //= new int[][]{{14, 2}, {15, 22}, {2, 10}, {30, 10}, {28, 25}, {30, 30}, {45, 30}, {45, 15}};
 
         for (int i = 0; i < healthPosition.length; i++) {
             //   listHealth.add(healthPosition);
@@ -202,8 +215,8 @@ public class ControllerGame implements Initializable {
                 gamelayoutgrid.add(key, keyPositionY, keyPositionX);
                 //  gamelayoutgrid.add(enemy1, 5, 1);
                 listOfKeys.add(key);
-                keyPositionY = randomNumber.nextInt(grid_length - 1);
-                keyPositionX = randomNumber.nextInt(grid_height - 1);
+                keyPositionY = randomNumber.nextInt(grid_length - 2);
+                keyPositionX = randomNumber.nextInt(grid_height - 2);
                 i++;
             } else {
                 if (keyPositionY < grid_length - 2) {
@@ -638,7 +651,7 @@ public class ControllerGame implements Initializable {
             stopMovePlayerKeyReleased(event);
             setRandomEnemiesToGame(numberOfEnemies);
             setRandomlyKeys(numberOfKeys);
-            setHealthCharger();
+            setHealthCharger(numberOfEnemies);
             label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
             label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
             label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
