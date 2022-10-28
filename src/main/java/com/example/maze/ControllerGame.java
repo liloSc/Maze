@@ -68,7 +68,7 @@ public class ControllerGame implements Initializable {
     public Enemy gameClassEnemy1;
     public Enemy gameClassEnemy2;
     public Enemy gameClassEnemy3;
-   
+
 
     public Player gamePlayer = new Player(null, 10);
     public Enemy myfighter1 = new Fighter1(20, 30);
@@ -97,7 +97,7 @@ public class ControllerGame implements Initializable {
     Image image_wall = new Image("file:resources/player/Three.png", 20, 20, false, false);
     ImageView image_background;
     Image image_player;
-    DraggableMaker draggableMaker= new DraggableMaker();
+    DraggableMaker draggableMaker = new DraggableMaker();
 
 
     public ControllerGame() {
@@ -379,7 +379,8 @@ public class ControllerGame implements Initializable {
     }
 
 
-    /**Change position with key pressed
+    /**
+     * Change position with key pressed
      *
      * @param event
      * @throws IOException
@@ -439,7 +440,6 @@ public class ControllerGame implements Initializable {
     }
 
     /**
-     *
      * @param event
      */
     @FXML
@@ -452,6 +452,7 @@ public class ControllerGame implements Initializable {
 
     /**
      * Method to check if the player is on door
+     *
      * @param event
      */
     private void isPlayerOnDoor(KeyEvent event) {
@@ -496,8 +497,8 @@ public class ControllerGame implements Initializable {
 
     }
 
-    /** Method to check if Player is on KeyObject
-     *
+    /**
+     * Method to check if Player is on KeyObject
      */
 
     private void isPlayerOnKey() {
@@ -537,6 +538,7 @@ public class ControllerGame implements Initializable {
 
     /**
      * Shoot on Enemy if you are next to it
+     *
      * @param event
      */
     private void shootOnEnemy(KeyEvent event) {
@@ -573,6 +575,7 @@ public class ControllerGame implements Initializable {
 
     /**
      * Method to remove the enemy after he dies
+     *
      * @param label_healthEnemy1
      * @param rectangle
      */
@@ -592,6 +595,7 @@ public class ControllerGame implements Initializable {
 
     /**
      * Method to check if player is next to enemy
+     *
      * @return
      */
     private boolean isPlayerNextToEnemy() {
@@ -638,6 +642,7 @@ public class ControllerGame implements Initializable {
     /**
      * Method to reduce life of the player
      * when he moves or when he is next to Enemy
+     *
      * @param isNextToEnemy
      */
     private void reduceLife(boolean isNextToEnemy) {
@@ -661,7 +666,6 @@ public class ControllerGame implements Initializable {
 
     /**
      * Method to Augment the Life of the player
-     *
      */
     private void augmentLife() {
         //double gainsHealth = 0.2;
@@ -678,6 +682,7 @@ public class ControllerGame implements Initializable {
 
     /**
      * Method to switch Scene
+     *
      * @param event
      */
     public void switchToTask(KeyEvent event) {
@@ -707,7 +712,8 @@ public class ControllerGame implements Initializable {
 
     /**
      * Method to initialize the enemy
-     * @param myFirstFigther
+     *
+     * @param ourEnemy1
      * @param ourEnemy2
      * @param ourEnemy3
      */
@@ -717,7 +723,7 @@ public class ControllerGame implements Initializable {
         this.myfighter3 = ourEnemy3;
         this.numberOfEnemies = Integer.parseInt(myfighter3.getLevelEnemy());
         //	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits()); 
-    
+
     }
 
 
@@ -732,7 +738,7 @@ public class ControllerGame implements Initializable {
         if (event.getCode().equals((KeyCode.ENTER))) {
             instructionPane.setVisible(false);
             rectangle_player.setVisible(true);
-            draggableMaker.makeDraggable(rectangle_player,1000);
+            draggableMaker.makeDraggable(rectangle_player);
             rectangle_player.requestFocus();
             movePlayerKeyPressed(event);
             stopMovePlayerKeyReleased(event);
@@ -760,6 +766,61 @@ public class ControllerGame implements Initializable {
         stage.centerOnScreen();
         stage.show();
 
+    }
+
+    public class DraggableMaker {
+
+        private double mouseAnchorX;
+        private double mouseAnchorY;
+        private double startPositionX;
+        private double startPositionY;
+
+        public void makeDraggable(Node node) {
+            node.setOnMousePressed(mouseEvent -> {
+                //    startPositionX = node.getTranslateX();
+                //  startPositionY = node.getTranslateY();
+                //  startPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
+                //  startPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
+                //  System.out.println(" " + startPositionX + " " + startPositionY);
+
+                mouseAnchorX = mouseEvent.getSceneX() - node.getTranslateX();
+                mouseAnchorY = mouseEvent.getSceneY() - node.getTranslateY();
+
+            });
+
+            node.setOnMouseDragged(mouseEvent -> {
+                int newXPosition = (int) Math.round((mouseEvent.getSceneX() - mouseAnchorX) / 20);
+                int newYPosition = (int) Math.round((mouseEvent.getSceneY() - mouseAnchorY) / 20);
+
+             //   node.setTranslateX(mouseEvent.getSceneX() - mouseAnchorX);
+             //   node.setTranslateY(mouseEvent.getSceneY() - mouseAnchorY);
+            });
+            node.setOnMouseReleased(mouseEvent -> {
+                        //  System.out.print(" X " + (mouseEvent.getSceneX() - mouseAnchorX) / 20);
+                        //  System.out.print(" Y " + (mouseEvent.getSceneY() - mouseAnchorY) / 20);
+                        int newXPosition = (int) Math.round((mouseEvent.getSceneX() /*- mouseAnchorX*/) / 20);
+                        int newYPosition = (int) Math.round((mouseEvent.getSceneY()/* - mouseAnchorY*/) / 20);
+                        // System.out.print("New X " + newXPosition);
+                        //  System.out.print(" New Y " + newYPosition);
+                        // if (newXPosition < 0) newXPosition = newXPosition * (-1);
+                        //  if (newYPosition < 0) newYPosition = newYPosition * (-1);
+                        //   System.out.print("New X " + newXPosition);
+                        //   System.out.print(" New Y " + newYPosition);
+                       // node.setTranslateX(newXPosition);
+                     //   node.setTranslateY(newYPosition);
+                        gamelayoutgrid.setRowIndex(rectangle_player,newYPosition );
+                        gamelayoutgrid.setColumnIndex(rectangle_player, newXPosition);
+                        //    gamelayoutgrid.setRowIndex(node, 3);
+                        //    gamelayoutgrid.setColumnIndex(node, 3);
+
+                      //  startPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
+                       // startPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
+                        System.out.println("Position " + newXPosition + " " + newYPosition);
+                    }
+            );
+
+
+        }
     }
 }
 
