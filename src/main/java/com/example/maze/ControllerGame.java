@@ -97,6 +97,7 @@ public class ControllerGame implements Initializable {
     Image image_wall = new Image("file:resources/player/Three.png", 20, 20, false, false);
     ImageView image_background;
     Image image_player;
+    DraggableMaker draggableMaker= new DraggableMaker();
 
 
     public ControllerGame() {
@@ -731,6 +732,7 @@ public class ControllerGame implements Initializable {
         if (event.getCode().equals((KeyCode.ENTER))) {
             instructionPane.setVisible(false);
             rectangle_player.setVisible(true);
+            draggableMaker.makeDraggable(rectangle_player,1000);
             rectangle_player.requestFocus();
             movePlayerKeyPressed(event);
             stopMovePlayerKeyReleased(event);
