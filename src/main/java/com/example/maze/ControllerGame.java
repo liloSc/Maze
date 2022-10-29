@@ -774,14 +774,16 @@ public class ControllerGame implements Initializable {
         private double mouseAnchorY;
         private double startPositionX;
         private double startPositionY;
+        private int startGridPositionX;
+        private int startGridPositionY;
 
         public void makeDraggable(Node node) {
             node.setOnMousePressed(mouseEvent -> {
                 //    startPositionX = node.getTranslateX();
                 //  startPositionY = node.getTranslateY();
-                //  startPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
-                //  startPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
-                //  System.out.println(" " + startPositionX + " " + startPositionY);
+                startGridPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
+                startGridPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
+                System.out.println(" " + startGridPositionX + " " + startGridPositionY);
 
                 mouseAnchorX = mouseEvent.getSceneX() - node.getTranslateX();
                 mouseAnchorY = mouseEvent.getSceneY() - node.getTranslateY();
@@ -798,8 +800,8 @@ public class ControllerGame implements Initializable {
             node.setOnMouseReleased(mouseEvent -> {
                         //  System.out.print(" X " + (mouseEvent.getSceneX() - mouseAnchorX) / 20);
                         //  System.out.print(" Y " + (mouseEvent.getSceneY() - mouseAnchorY) / 20);
-                        int newXPosition = (int) Math.round((mouseEvent.getSceneX() /*- mouseAnchorX*/) / 20);
-                        int newYPosition = (int) Math.round((mouseEvent.getSceneY()/* - mouseAnchorY*/) / 20);
+                        int newXPosition = (int)(mouseEvent.getSceneX() /*- mouseAnchorX*/ / 20);
+                        int newYPosition = (int) (mouseEvent.getSceneY()/* - mouseAnchorY*/ / 20);
                         // System.out.print("New X " + newXPosition);
                         //  System.out.print(" New Y " + newYPosition);
                         // if (newXPosition < 0) newXPosition = newXPosition * (-1);
@@ -809,15 +811,17 @@ public class ControllerGame implements Initializable {
                         // node.setTranslateX(newXPosition);
                         //   node.setTranslateY(newYPosition);
                         if (!gameLayout.isWall(newXPosition, newYPosition)) {
-                            gamelayoutgrid.setRowIndex(rectangle_player, newYPosition);
-                            gamelayoutgrid.setColumnIndex(rectangle_player, newXPosition);
-                            //    gamelayoutgrid.setRowIndex(node, 3);
-                            //    gamelayoutgrid.setColumnIndex(node, 3);
+                            if (startGridPositionX == newYPosition || startGridPositionY == newXPosition) {
+                                gamelayoutgrid.setRowIndex(rectangle_player, newYPosition);
+                                gamelayoutgrid.setColumnIndex(rectangle_player, newXPosition);
+                                //    gamelayoutgrid.setRowIndex(node, 3);
+                                //    gamelayoutgrid.setColumnIndex(node, 3);
 
-                            //  startPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
-                            // startPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
-                            System.out.println("Position " + newXPosition + " " + newYPosition);
-                            // } else {
+                                //  startPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
+                                // startPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
+                                System.out.println("Position " + newXPosition + " " + newYPosition);
+                            }
+                        } else {
 
                         }
                     }
