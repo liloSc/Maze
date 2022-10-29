@@ -30,8 +30,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import javax.swing.text.Position;
-
 public class ControllerGame implements Initializable {
 
 
@@ -774,16 +772,16 @@ public class ControllerGame implements Initializable {
         private double mouseAnchorY;
         private double startPositionX;
         private double startPositionY;
-        private int startGridPositionX;
         private int startGridPositionY;
+        private int startGridPositionX;
 
         public void makeDraggable(Node node) {
             node.setOnMousePressed(mouseEvent -> {
                 //    startPositionX = node.getTranslateX();
                 //  startPositionY = node.getTranslateY();
-                startGridPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
-                startGridPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
-                System.out.println(" " + startGridPositionX + " " + startGridPositionY);
+                startGridPositionY = gamelayoutgrid.getRowIndex(rectangle_player);
+                startGridPositionX = gamelayoutgrid.getColumnIndex(rectangle_player);
+                System.out.println(" " + startGridPositionY + " " + startGridPositionX);
 
                 mouseAnchorX = mouseEvent.getSceneX() - node.getTranslateX();
                 mouseAnchorY = mouseEvent.getSceneY() - node.getTranslateY();
@@ -791,16 +789,100 @@ public class ControllerGame implements Initializable {
             });
 
             node.setOnMouseDragged(mouseEvent -> {
-                int newXPosition = (int) Math.round((mouseEvent.getSceneX() - mouseAnchorX) / 20);
-                int newYPosition = (int) Math.round((mouseEvent.getSceneY() - mouseAnchorY) / 20);
 
+                int maximumXPlus = startGridPositionX;
+                int maximumXMinus = 0;
+                int maximumYPlus = startGridPositionY;
+                int maximumYMinus = 0;
+
+                //Find out X Extreme Plus
+                for (int b = startGridPositionX; b < grid_length - 1; b++) {
+                    if (gameLayout.isWall(b, startGridPositionY)) {
+                        maximumXPlus = b;
+                        break;
+                    }
+                }
+                //Find out X Extreme Minus
+                for (int b = startGridPositionX; b > 0; b--) {
+                    if (gameLayout.isWall(b, startGridPositionY)) {
+                        maximumXMinus = b;
+                        break;
+                    }
+                }
+                //Find out Y Extreme Plus
+                for (int b = startGridPositionY; b < grid_height - 1; b++) {
+                    if (gameLayout.isWall(startGridPositionX, b)) {
+                        maximumYPlus = b;
+                        break;
+                    }
+                }
+                //Find out Y Extreme Minus
+                for (int b = startGridPositionY; b > 0; b--) {
+                    if (gameLayout.isWall(startGridPositionX, b)) {
+                        maximumYMinus = b;
+                        break;
+                    }
+                }
+                System.out.println("Aktuelle Position: " + startGridPositionX + " " + startGridPositionY);
+                System.out.println("Extreme X Position: " + maximumXMinus + " " + maximumXPlus);
+                System.out.println("Extreme Y Position: " + maximumYMinus + " " + maximumYPlus);
+
+                int newXPosition = (int) (mouseEvent.getSceneX() /*- mouseAnchorX*/ / 20);
+                int newYPosition = (int) (mouseEvent.getSceneY()/* - mouseAnchorY*/ / 20);
+                if ((maximumXMinus < newXPosition) && (newXPosition < maximumXPlus) && (maximumYMinus < newYPosition) && (newYPosition < maximumYPlus))
+
+                    // int newXPosition = (int) Math.round((mouseEvent.getSceneX() - mouseAnchorX) / 20);
+                    // int newYPosition = (int) Math.round((mouseEvent.getSceneY() - mouseAnchorY) / 20);
+                    if (!gameLayout.isWall(newXPosition, newYPosition)) {
+                        if (startGridPositionY == newYPosition || startGridPositionX == newXPosition) {
+                            gamelayoutgrid.setRowIndex(rectangle_player, newYPosition);
+                            gamelayoutgrid.setColumnIndex(rectangle_player, newXPosition);
+                            //    gamelayoutgrid.setRowIndex(node, 3);
+                            //    gamelayoutgrid.setColumnIndex(node, 3);
+
+                            //  startPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
+                            // startPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
+                            System.out.println("Position " + newXPosition + " " + newYPosition);
+                        }
+                    }
                 //   node.setTranslateX(mouseEvent.getSceneX() - mouseAnchorX);
                 //   node.setTranslateY(mouseEvent.getSceneY() - mouseAnchorY);
             });
             node.setOnMouseReleased(mouseEvent -> {
-                        //  System.out.print(" X " + (mouseEvent.getSceneX() - mouseAnchorX) / 20);
-                        //  System.out.print(" Y " + (mouseEvent.getSceneY() - mouseAnchorY) / 20);
-                        int newXPosition = (int)(mouseEvent.getSceneX() /*- mouseAnchorX*/ / 20);
+                        int maximumXPlus = startGridPositionX;
+                        int maximumXMinus = 0;
+                        int maximumYPlus = startGridPositionY;
+                        int maximumYMinus = 0;
+
+                        //Find out X Extreme Plus
+                        for (int b = startGridPositionX; b < grid_length - 1; b++) {
+                            if (gameLayout.isWall(b, startGridPositionY)) {
+                                maximumXPlus = b;
+                                break;
+                            }
+                        }
+                        //Find out X Extreme Minus
+                        for (int b = startGridPositionX; b > 0; b--) {
+                            if (gameLayout.isWall(b, startGridPositionY)) {
+                                maximumXMinus = b;
+                                break;
+                            }
+                        }
+                        //Find out Y Extreme Plus
+                        for (int b = startGridPositionY; b < grid_height - 1; b++) {
+                            if (gameLayout.isWall(startGridPositionX, b)) {
+                                maximumYPlus = b;
+                                break;
+                            }
+                        }
+                        //Find out Y Extreme Minus
+                        for (int b = startGridPositionY; b > 0; b--) {
+                            if (gameLayout.isWall(startGridPositionX, b)) {
+                                maximumYMinus = b;
+                                break;
+                            }
+                        }
+                        int newXPosition = (int) (mouseEvent.getSceneX() /*- mouseAnchorX*/ / 20);
                         int newYPosition = (int) (mouseEvent.getSceneY()/* - mouseAnchorY*/ / 20);
                         // System.out.print("New X " + newXPosition);
                         //  System.out.print(" New Y " + newYPosition);
@@ -810,20 +892,22 @@ public class ControllerGame implements Initializable {
                         //   System.out.print(" New Y " + newYPosition);
                         // node.setTranslateX(newXPosition);
                         //   node.setTranslateY(newYPosition);
-                        if (!gameLayout.isWall(newXPosition, newYPosition)) {
-                            if (startGridPositionX == newYPosition || startGridPositionY == newXPosition) {
+                        if ((maximumXMinus < newXPosition) && (newXPosition < maximumXPlus) && (maximumYMinus < newYPosition) && (newYPosition < maximumYPlus))
+                            if (!gameLayout.isWall(newXPosition, newYPosition)) {
+                                if (startGridPositionY == newYPosition || startGridPositionX == newXPosition) {
+                                    gamelayoutgrid.setRowIndex(rectangle_player, newYPosition);
+                                    gamelayoutgrid.setColumnIndex(rectangle_player, newXPosition);
+                                    //    gamelayoutgrid.setRowIndex(node, 3);
+                                    //    gamelayoutgrid.setColumnIndex(node, 3);
+
+                                    //  startPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
+                                    // startPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
+                                    System.out.println("Position " + newXPosition + " " + newYPosition);
+                                }
+                            } else {
                                 gamelayoutgrid.setRowIndex(rectangle_player, newYPosition);
                                 gamelayoutgrid.setColumnIndex(rectangle_player, newXPosition);
-                                //    gamelayoutgrid.setRowIndex(node, 3);
-                                //    gamelayoutgrid.setColumnIndex(node, 3);
-
-                                //  startPositionX = gamelayoutgrid.getRowIndex(rectangle_player);
-                                // startPositionY = gamelayoutgrid.getColumnIndex(rectangle_player);
-                                System.out.println("Position " + newXPosition + " " + newYPosition);
                             }
-                        } else {
-
-                        }
                     }
             );
 
