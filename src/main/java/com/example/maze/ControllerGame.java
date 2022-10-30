@@ -69,6 +69,7 @@ public class ControllerGame implements Initializable {
     public Enemy gameClassEnemy2;
     public Enemy gameClassEnemy3;
    
+    boolean blockPlayer = false;
 
     public Player gamePlayer = new Player(null, 10);
     public Enemy myfighter1 = new Fighter1(20, 30);
@@ -378,6 +379,13 @@ public class ControllerGame implements Initializable {
     }
 
 
+   // private canPlayeMove()                                              
+    
+    
+    
+    
+    
+    
     /**Change position with key pressed
      *
      * @param event
@@ -387,10 +395,11 @@ public class ControllerGame implements Initializable {
     void movePlayerKeyPressed(KeyEvent event) throws IOException {
         int i = gamelayoutgrid.getColumnIndex(rectangle_player);
         int j = gamelayoutgrid.getRowIndex(rectangle_player);
-
+        System.out.println("want to move" );
+        //if(blockPlayer = false) {
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
-            playerIsActive = true;
-
+            playerIsActive = true;									// IS THAT ONLY USED FOR THE PICTURE
+           
             if (event.getCode().equals(KeyCode.UP)) {
                 direction = Direction.UP;
                 if (gameLayout.isWall(i, j - 1) == false) {
@@ -434,7 +443,8 @@ public class ControllerGame implements Initializable {
             if (isPlayerNextToEnemy()) shootOnEnemy(event);
             //   if (isPlayerNextToEnemy()) System.out.print(nextenemy  + " test ");
             //   if (isPlayerNextToEnemy()) System.out.print(whichcharacterisclose  + " whichcharacterisclose ");
-        }
+        } 
+      //  }
     }
 
     /**
@@ -540,15 +550,13 @@ public class ControllerGame implements Initializable {
      */
     private void shootOnEnemy(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-            //   System.out.println("Shoot on Enemy");
+            System.out.println("Shoot on Enemy");
             if (!(nextenemy1 == null)) {
                 if (myfighter1.getHealth(1) > 1) {
                     myfighter1.setHealth1(myfighter1.getHealth(1) - 1);
                     label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
                 } else {
                     removeEnemy(label_healthEnemy1, nextEnemyRectangle);
-
-
                 }
             } else if (!(nextenemy2 == null)) {
                 if (myfighter2.getHealth(2) > 1) {
@@ -580,6 +588,9 @@ public class ControllerGame implements Initializable {
         anchorPane.getChildren().remove(label_healthEnemy1);
         listEnemies.remove(rectangle);
         augmentLife();
+        blockPlayer = false;
+        System.out.println("Move again" );
+
     }
 
 
@@ -593,6 +604,8 @@ public class ControllerGame implements Initializable {
      * Method to check if player is next to enemy
      * @return
      */
+	
+
     private boolean isPlayerNextToEnemy() {
         //get Position of Player
         int playerColumn = gamelayoutgrid.getColumnIndex(rectangle_player);
@@ -604,8 +617,11 @@ public class ControllerGame implements Initializable {
             int enemyRow = gamelayoutgrid.getRowIndex(e);
 
             if (((playerColumn == enemyColumn) || (playerColumn + 1 == enemyColumn) || (playerColumn - 1 == enemyColumn)) && ((playerRow == enemyRow) || (playerRow + 1 == enemyRow) || (playerRow - 1 == enemyRow))) {
-                if (playerIsMoving) reduceLife(true);
+                System.out.println("We cannot work anymore" );
+            	if (playerIsMoving) reduceLife(true);
                 if (i == 1) {
+                    blockPlayer = true;
+
                     nextenemy1 = myfighter1;
                     nextenemy2 = null;
                     nextenemy3 = null;
@@ -613,12 +629,16 @@ public class ControllerGame implements Initializable {
                 //   System.out.print(nextenemy1 + " test ");
 
                 if (i == 2) {
+                    blockPlayer = true;
+
                     nextenemy2 = myfighter1;
                     nextenemy1 = null;
                     nextenemy3 = null;
                 }
                 //   System.out.print(nextenemy2 + " tester ");
                 if (i == 3) {
+                    blockPlayer = true;
+
                     nextenemy3 = myfighter1;
                     nextenemy1 = null;
                     nextenemy2 = null;
