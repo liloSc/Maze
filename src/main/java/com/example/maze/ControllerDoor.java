@@ -15,12 +15,13 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.scene.Node;
 
 public class ControllerDoor implements Initializable{
 	@FXML private Pane pane;
-	@FXML private GridPane gridpane;
 	@FXML private GridPane gridpane1;
 	@FXML private GridPane gridpane2;
+	@FXML private GridPane gridpane3;
 	
 	@FXML 
 	private Text top;
@@ -43,16 +44,19 @@ public class ControllerDoor implements Initializable{
 	String idmid;
 	String idbottom;
 	
+	codeArray codeArray;
+	private int[] myArray;
+	int i =0;
+	int j = 0;
+	
 	private double deltaY;
 	
-	private int code=5;
-	private int code1=3;
-	private int code2=12;
 	
+	int quest_number = 1234;
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL url, ResourceBundle resourcesBundle) {
+    	/*
     	s_top = top.getText();
 		s_mid = mid.getText();
 		s_bottom = bottom.getText();
@@ -60,68 +64,128 @@ public class ControllerDoor implements Initializable{
 		nb_top = Integer.parseInt(s_top);
 		nb_mid = Integer.parseInt(s_mid);
 		nb_bottom = Integer.parseInt(s_bottom);
-    	gridpane.setOnScroll(new EventHandler() {
-
-			@Override
-			public void handle(Event event) {
-			 // gridpane.setTranslateY(gridpane.getTranslateY() + ((ScrollEvent) event).getDeltaY());
-				deltaY = ((ScrollEvent) event).getDeltaY();
-
-				if(deltaY < 0) {
-
-					nb_top = nb_top + 1;
-					nb_mid = nb_mid + 1;
-					nb_bottom = nb_bottom + 1;
-				}
-
-				else {						
-					nb_top = nb_top - 1;
-					nb_mid = nb_mid - 1;
-					nb_bottom = nb_bottom - 1;
-	
-
-				}
-				
-				s_top = Integer.toString(nb_top);
-				s_mid = Integer.toString(nb_mid);
-				s_bottom = Integer.toString(nb_bottom);
-				
-				top.setText(s_top);
-				mid.setText(s_mid);
-				bottom.setText(s_bottom);
-			}
-			
-			
-
-        });
-    	
+		*/
 		
-	
-		
-		
+		myArray = new int[10];
+		for (i = 0; i<10; i++) {
+			myArray[i] = i;
+			System.out.println(myArray[i]);
+		}
+
     }
 
 
 	@FXML void scroll(ScrollEvent event) {
-		
-		if(ScrollEvent.SCROLL.equals(event)) {
-			System.out.println("Event Detected");
-			deltaY = event.getDeltaY();
-			if(deltaY > 0 ) {
-				nb_top = nb_top + 1;
-				nb_mid = nb_mid + 1;
-				nb_bottom = nb_bottom + 1;
+
+		deltaY = ((ScrollEvent) event).getDeltaY();
+		System.out.println("scroll");
+		if(event.getSource() == gridpane1) {
+			
+			if(deltaY > 0) {
 				
-				s_top = Integer.toString(nb_top);
-				
-				top.setText(s_top);
-				
-			} else {
-				
+				if(j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+			
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = 9;
+					
+				} else if (j == 9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = j-1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = j - 1;
+					
+				}
+				System.out.println(myArray[j]);
+			}
+			
+			if(deltaY<0) {
+				if(j==9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = 0;
+				} else if (j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = j+1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = j+1;
+					
+				}
+				System.out.println(myArray[j]);
 			}
 		}
 		
+		
+		
 	}
+
 	
 
 }

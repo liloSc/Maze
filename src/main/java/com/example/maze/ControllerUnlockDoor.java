@@ -15,7 +15,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -43,18 +46,59 @@ public class ControllerUnlockDoor implements Initializable {
     @FXML
     private Label label_codeToUnlock;
 
+    
+    @FXML 
+    private GridPane gridpane1;
+    
+    @FXML 
+    private GridPane gridpane2;
+    
+    @FXML 
+    private GridPane gridpane3;
+    
     @FXML
-    private Slider slider1;
+    private GridPane gridpane4;
 
-    @FXML
-    private Slider slider2;
-
-    @FXML
-    private Slider slider3;
-    @FXML
-    private Slider slider4;
     @FXML
     private Label label_timer;
+    
+    
+    
+	@FXML private Text top;
+	@FXML private Text top2;
+	@FXML private Text top3;
+	@FXML private Text top4;
+	
+	@FXML private Text mid;
+	@FXML private Text mid2;
+	@FXML private Text mid3;
+	@FXML private Text mid4;
+	
+	
+	@FXML private Text bottom;
+	@FXML private Text bottom2;
+	@FXML private Text bottom3;
+	@FXML private Text bottom4;
+	
+	String s_top;
+	String s_mid;
+	String s_bottom;
+	
+	int nb_top;
+	int nb_mid;
+	int nb_bottom;
+	
+	String idtop;
+	String idmid;
+	String idbottom;
+	
+	codeArray codeArray;
+	private int[] myArray;
+	int i =0;
+	int j = 0;
+	
+	private double deltaY;
+	
 
     @FXML
     private StackPane pane_timer;
@@ -67,6 +111,7 @@ public class ControllerUnlockDoor implements Initializable {
      *
      * @param event
      */
+    /*
     public void onSliderChanged(MouseEvent event) {
         if (isNewGame) {
             setTimer();
@@ -93,6 +138,7 @@ public class ControllerUnlockDoor implements Initializable {
         }
     }
 
+*/
     /**Check if Code is correct
      *
      * @return
@@ -183,9 +229,476 @@ public class ControllerUnlockDoor implements Initializable {
 
     }
 
+    
+    @FXML void scroll(ScrollEvent event) {
+        if (isNewGame) {
+            setTimer();
+            isNewGame = false;
+        }
+
+		deltaY = ((ScrollEvent) event).getDeltaY();
+		System.out.println("scroll");
+		if(event.getSource() == gridpane1) {
+			
+			if(deltaY > 0) {
+				
+				if(j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+			
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					label1.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = 9;
+					
+				} else if (j == 9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					label1.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = j-1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					label1.setText(s_mid);
+					
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = j - 1;
+					
+				}
+				System.out.println(myArray[j]);
+			}
+			
+			if(deltaY<0) {
+				if(j==9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					label1.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = 0;
+				} else if (j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					label1.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = j+1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid.setText(s_mid);
+					label1.setText(s_mid);
+					
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom.setText(s_bottom);
+					
+					j = j+1;
+					
+				}
+				System.out.println(myArray[j]);
+			}
+		}
+		
+		if(event.getSource() == gridpane2) {
+			
+			if(deltaY > 0) {
+				
+				if(j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top2.setText(s_top);
+			
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid2.setText(s_mid);
+					label2.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom2.setText(s_bottom);
+					
+					j = 9;
+					
+				} else if (j == 9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top2.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid2.setText(s_mid);
+					label2.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom2.setText(s_bottom);
+					
+					j = j-1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top2.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid2.setText(s_mid);
+					label2.setText(s_mid);
+					
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom2.setText(s_bottom);
+					
+					j = j - 1;
+					
+				}
+				System.out.println(myArray[j]);
+			}
+			
+			if(deltaY<0) {
+				if(j==9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top2.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid2.setText(s_mid);
+					label2.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom2.setText(s_bottom);
+					
+					j = 0;
+				} else if (j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top2.setText(s_top);
+					
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid2.setText(s_mid);
+					label2.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom2.setText(s_bottom);
+					
+					j = j+1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top2.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid2.setText(s_mid);
+					label2.setText(s_mid);
+					
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom2.setText(s_bottom);
+					
+					j = j+1;
+					
+				}
+				System.out.println(myArray[j]);
+			}
+		}
+		
+		if(event.getSource() == gridpane3) {
+			
+			if(deltaY > 0) {
+				
+				if(j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top3.setText(s_top);
+			
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid3.setText(s_mid);
+					label3.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom3.setText(s_bottom);
+					
+					j = 9;
+					
+				} else if (j == 9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top3.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid3.setText(s_mid);
+					label3.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom3.setText(s_bottom);
+					
+					j = j-1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top3.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid3.setText(s_mid);
+					label3.setText(s_mid);
+					
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom3.setText(s_bottom);
+					
+					j = j - 1;
+					
+				}
+				System.out.println(myArray[j]);
+			}
+			
+			if(deltaY<0) {
+				if(j==9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top3.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid3.setText(s_mid);
+					label3.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom3.setText(s_bottom);
+					
+					j = 0;
+				} else if (j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top3.setText(s_top);
+					
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid3.setText(s_mid);
+					label3.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom3.setText(s_bottom);
+					
+					j = j+1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top3.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid3.setText(s_mid);
+					label3.setText(s_mid);
+					
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom3.setText(s_bottom);
+					
+					j = j+1;
+					
+				}
+				System.out.println(myArray[j]);
+			}
+		}
+		
+		if(event.getSource() == gridpane4) {
+			
+			if(deltaY > 0) {
+				
+				if(j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top4.setText(s_top);
+			
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid4.setText(s_mid);
+					label4.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom4.setText(s_bottom);
+					
+					j = 9;
+					
+				} else if (j == 9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top4.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid4.setText(s_mid);
+					label4.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom4.setText(s_bottom);
+					
+					j = j-1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top4.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid4.setText(s_mid);
+					label4.setText(s_mid);
+					
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom4.setText(s_bottom);
+					
+					j = j - 1;
+					
+				}
+				System.out.println(myArray[j]);
+			}
+			
+			if(deltaY<0) {
+				if(j==9) {
+					nb_top = myArray[8];
+					s_top = Integer.toString(nb_top);
+					top4.setText(s_top);
+					
+					nb_mid = myArray[9];
+					s_mid = Integer.toString(nb_mid);
+					mid4.setText(s_mid);
+					label4.setText(s_mid);
+					
+					nb_bottom = myArray[0];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom4.setText(s_bottom);
+					
+					j = 0;
+				} else if (j == 0) {
+					nb_top = myArray[9];
+					s_top = Integer.toString(nb_top);
+					top4.setText(s_top);
+					
+					nb_mid = myArray[0];
+					s_mid = Integer.toString(nb_mid);
+					mid4.setText(s_mid);
+					label4.setText(s_mid);
+					
+					nb_bottom = myArray[1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom4.setText(s_bottom);
+					
+					j = j+1;
+					
+				} else {
+					nb_top = myArray[j-1];
+					s_top = Integer.toString(nb_top);
+					top4.setText(s_top);
+					
+					nb_mid = myArray[j];
+					s_mid = Integer.toString(nb_mid);
+					mid4.setText(s_mid);
+					label4.setText(s_mid);
+				
+					nb_bottom = myArray[j+1];
+					s_bottom = Integer.toString(nb_bottom);
+					bottom4.setText(s_bottom);
+					
+					j = j+1;
+					
+				}
+				System.out.println(myArray[j]);
+			}
+		}
+		
+
+        if (isCodeCorrect()) {
+            //  System.out.println("Code is correct");
+              try {
+                  switchToGameWon();
+              } catch (IOException e) {
+                  throw new RuntimeException(e);
+              }
+          } else {
+              //     System.out.println(" NOT correct");
+          }
+      
+	}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+		myArray = new int[10];
+		for (i = 0; i<10; i++) {
+			myArray[i] = i;
+			System.out.println(myArray[i]);
+		}
+
         label_codeToUnlock.setText(String.valueOf(quest_number));
     }
+    
+    
+    
 }

@@ -9,7 +9,7 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onScroll="#scroll" onScrollStarted="#scroll" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerDoor">
    <children>
-      <GridPane fx:id="gridpane" layoutX="113.0" layoutY="116.0" onScroll="#scroll" prefHeight="170.0" prefWidth="101.0">
+      <GridPane fx:id="gridpane1" layoutX="113.0" layoutY="116.0" onScroll="#scroll" prefHeight="170.0" prefWidth="101.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -30,60 +30,6 @@
                </font>
             </Text>
             <Text fx:id="bottom" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="104.0687255859375" GridPane.rowIndex="2">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-         </children>
-      </GridPane>
-      <GridPane fx:id="gridpane1" layoutX="235.0" layoutY="115.0" onScroll="#scroll" prefHeight="170.0" prefWidth="104.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Text fx:id="top1" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="100.86871337890625">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="mid1" layoutX="10.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" wrappingWidth="102.46875" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-            </Text>
-            <Text fx:id="bottom1" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="104.0687255859375" GridPane.rowIndex="2">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-         </children>
-      </GridPane>
-      <GridPane fx:id="gridpane2" layoutX="362.0" layoutY="111.0" onScroll="#scroll" prefHeight="177.0" prefWidth="117.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Text fx:id="top11" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="100.86871337890625">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="mid11" layoutX="10.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" wrappingWidth="102.46875" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-            </Text>
-            <Text fx:id="bottom11" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="104.0687255859375" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
