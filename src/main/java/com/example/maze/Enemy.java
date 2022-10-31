@@ -52,19 +52,18 @@ public class Enemy {
 		else if (k==2) {
 			return health2;
 		}
-		else {
+		else if (k==3) {
 			return health3;
 		}
+		return 0;
 	}
 	void setHealth1(int life2 ) {
 	      this.health1 = life2;
-	   
 }
 	void setHealth2( int fighter2) {
 	      this.health2 = fighter2;
 }
 	void setHealth3( int fighter3) {
-	    
 	      this.health3 = fighter3;
 }
   
