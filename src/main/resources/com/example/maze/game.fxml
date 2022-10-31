@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#movePlayerKeyPressed" onKeyReleased="#stopMovePlayerKeyReleased" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerGame">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#movePlayerKeyPressed" onKeyReleased="#stopMovePlayerKeyReleased" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerGame">
     <children>
         <FlowPane prefHeight="800.0" prefWidth="1200.0">
             <children>
@@ -301,5 +301,8 @@
             <Image url="@images/arrow.png" />
          </image>
       </ImageView>
+      <ProgressBar fx:id="bar_healthEnemy1" layoutX="1236.0" layoutY="212.0" prefHeight="20.0" prefWidth="150.0" progress="1.0" visible="false" />
+      <ProgressBar fx:id="bar_healthEnemy2" layoutX="1236.0" layoutY="258.0" prefHeight="20.0" prefWidth="150.0" progress="1.0" visible="false" />
+      <ProgressBar fx:id="bar_healthEnemy3" layoutX="1236.0" layoutY="303.0" prefHeight="20.0" prefWidth="150.0" progress="1.0" visible="false" />
     </children>
 </AnchorPane>

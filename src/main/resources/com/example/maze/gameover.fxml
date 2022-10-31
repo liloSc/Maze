@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onKeyReleased="#switchToHomeScreen" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerGameOver">
+<AnchorPane onKeyReleased="#switchToHomeScreen" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.maze.ControllerGameOver">
    <children>
       <ImageView fitHeight="628.0" fitWidth="823.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,7 +19,7 @@
             <Font name="Retro Gaming" size="60.0" />
          </font>
       </Label>
-      <Label layoutX="328.0" layoutY="237.0" text="Press enter to restart" textFill="WHITE">
+      <Label layoutX="328.0" layoutY="237.0" text="Press enter to restart" textFill="#ffb200">
          <font>
             <Font name="Retro Gaming" size="20.0" />
          </font>

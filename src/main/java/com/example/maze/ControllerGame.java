@@ -54,18 +54,30 @@ public class ControllerGame implements Initializable {
     private Rectangle rectangle_player;
     @FXML
     private Label label_lifePlayer;
-    @FXML
-    private Label label_healthEnemy1;
-    @FXML
-    private Label label_healthEnemy2;
-    @FXML
-    private Label label_healthEnemy3;
+    
+   // private Label label_healthEnemy1;
+   
+   // private Label label_healthEnemy2;
+   
+  //  private Label label_healthEnemy3;
     @FXML
     private Label label_foundKeys;
 
 
     @FXML
     private ProgressBar bar_healthPlayer;
+    
+    @FXML
+    private ProgressBar bar_healthEnemy1;
+    @FXML
+    private ProgressBar bar_healthEnemy2;
+    @FXML
+    private ProgressBar bar_healthEnemy3;
+    
+    
+    
+    
+    
     Image image_enemy;
 
     public Enemy gameClassEnemy1;
@@ -396,7 +408,6 @@ public class ControllerGame implements Initializable {
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) { 
             playerIsActive = true;									// IS THAT ONLY USED FOR THE PICTURE
             if(blockPlayer== false) { 	
-            	 System.out.println("test" );
             	if (event.getCode().equals(KeyCode.UP)) {
             		direction = Direction.UP;
             		if (gameLayout.isWall(i, j - 1) == false) {
@@ -452,9 +463,11 @@ public class ControllerGame implements Initializable {
         if (KeyEvent.KEY_RELEASED.equals(event.getEventType())) {
             playerIsActive = false;
             playerIsMoving = false;    
-            isPlayerNextToEnemy();
+            if(isPlayerNextToEnemy()) {
             if (event.getCode() == KeyCode.SPACE) {
-         		shootOnEnemy();
+            		shootOnEnemy();
+            	}
+         		
             } 
         }
     }
@@ -550,26 +563,32 @@ public class ControllerGame implements Initializable {
      */
     private void shootOnEnemy() {
              if (!(nextenemy1 == null)) {
-                if (myfighter1.getHealth(1) > 1) {
+            	if (bar_healthEnemy1.getProgress() > 0.05) {
+               // if (myfighter1.getHealth(1) > 1) {
                     myfighter1.setHealth1(myfighter1.getHealth(1) - 1);
-                    label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
+                    bar_healthEnemy1.setProgress(bar_healthEnemy1.getProgress() - 0.04);
+                   // label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));
                 } else {
-                    removeEnemy(label_healthEnemy1, nextEnemyRectangle);
+                    removeEnemy(nextEnemyRectangle,bar_healthEnemy1);
                 }
             } else if (!(nextenemy2 == null)) {
-                if (myfighter2.getHealth(2) > 1) {
+            	if (bar_healthEnemy2.getProgress() > 0.05) {
+               // if (myfighter2.getHealth(2) > 1) {
                     myfighter2.setHealth2(myfighter2.getHealth(2) - 1);
-                    label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
+                  //  label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
+                    bar_healthEnemy2.setProgress(bar_healthEnemy1.getProgress() - 0.04);
                 } else {
-                    removeEnemy(label_healthEnemy2, nextEnemyRectangle);
+                    removeEnemy( nextEnemyRectangle,bar_healthEnemy2 );
 
                 }
             } else {
-                if (myfighter3.getHealth(3) > 1) {
+            	if (bar_healthEnemy3.getProgress() > 0.05) {
+               // if (myfighter3.getHealth(3) > 1) {
                     myfighter3.setHealth3(myfighter3.getHealth(3) - 1);
-                    label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
+                    bar_healthEnemy1.setProgress(bar_healthEnemy1.getProgress() - 0.04);
+                 //   label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
                 } else {
-                    removeEnemy(label_healthEnemy3, nextEnemyRectangle);
+                    removeEnemy(nextEnemyRectangle, bar_healthEnemy3);
 
                 }
             }
@@ -579,13 +598,14 @@ public class ControllerGame implements Initializable {
     /**
      * Method to remove the enemy after he dies
      *
-     * @param label_healthEnemy1
      * @param rectangle
+     * @param bar_healthEnemy22 
      */
-    private void removeEnemy(Label label_healthEnemy1, Rectangle rectangle) {
+    private void removeEnemy(Rectangle rectangle, ProgressBar bar_healthEnemy) {
         gamelayoutgrid.getChildren().remove(rectangle);
-        anchorPane.getChildren().remove(label_healthEnemy1);
+        //anchorPane.getChildren().remove(label_healthEnemy1);
         listEnemies.remove(rectangle);
+        bar_healthEnemy.setVisible(false);
         augmentLife();
         blockPlayer = false;
         timeline.stop();
@@ -753,11 +773,14 @@ public class ControllerGame implements Initializable {
      * @param ourEnemy3
      */
     public void initEnemy(Enemy ourEnemy1, Enemy ourEnemy2, Enemy ourEnemy3) {
-        this.myfighter1 = ourEnemy1;
+        this.myfighter1 = ourEnemy1;  
         this.myfighter2 = ourEnemy2;
         this.myfighter3 = ourEnemy3;
         this.numberOfEnemies = Integer.parseInt(myfighter3.getLevelEnemy());
         //	EnemyLabel1.setText(GameClassEnemy1.getPersonTraits()); 
+        bar_healthEnemy1.setProgress(1);
+        bar_healthEnemy2.setProgress(1);
+        bar_healthEnemy3.setProgress(1);
 
     }
 
@@ -781,12 +804,15 @@ public class ControllerGame implements Initializable {
             setRandomEnemiesToGame(numberOfEnemies);
             setRandomlyKeys(numberOfKeys);
             setHealthCharger(numberOfEnemies);
-            label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));  // translate enemy to label
-            label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
-            label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
-            if (numberOfEnemies >= 1) label_healthEnemy1.setVisible(true);
-            if (numberOfEnemies >= 2) label_healthEnemy2.setVisible(true);
-            if (numberOfEnemies >= 3) label_healthEnemy3.setVisible(true);
+           // label_healthEnemy1.setText(String.valueOf(myfighter1.getHealth(1)));  // translate enemy to label
+           // label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
+           // label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
+           // if (numberOfEnemies >= 1) label_healthEnemy1.setVisible(true);
+           // if (numberOfEnemies >= 2) label_healthEnemy2.setVisible(true);
+           // if (numberOfEnemies >= 3) label_healthEnemy3.setVisible(true);
+            if (numberOfEnemies >= 1) bar_healthEnemy1.setVisible(true);
+            if (numberOfEnemies >= 2) bar_healthEnemy2.setVisible(true);
+            if (numberOfEnemies >= 3) bar_healthEnemy3.setVisible(true);
 
 
         }
