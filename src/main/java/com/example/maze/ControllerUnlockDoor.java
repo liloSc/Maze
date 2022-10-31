@@ -32,38 +32,23 @@ public class ControllerUnlockDoor implements Initializable {
     private Stage stage;
     private Scene scene;
 
-    @FXML
-    private Label label1;
-
-    @FXML
-    private Label label2;
-
-    @FXML
-    private Label label3;
-    @FXML
-    private Label label4;
+    @FXML private Label label1;
+    @FXML private Label label2;
+    @FXML private Label label3;
+    @FXML private Label label4;
 
     @FXML
     private Label label_codeToUnlock;
 
     
-    @FXML 
-    private GridPane gridpane1;
-    
-    @FXML 
-    private GridPane gridpane2;
-    
-    @FXML 
-    private GridPane gridpane3;
-    
-    @FXML
-    private GridPane gridpane4;
+    @FXML private GridPane gridpane1;
+    @FXML private GridPane gridpane2;
+    @FXML private GridPane gridpane3;
+    @FXML private GridPane gridpane4;
 
     @FXML
     private Label label_timer;
-    
-    
-    
+
 	@FXML private Text top;
 	@FXML private Text top2;
 	@FXML private Text top3;
