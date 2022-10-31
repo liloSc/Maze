@@ -4,12 +4,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,6 +33,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class ControllerGame implements Initializable {
 
@@ -376,18 +381,7 @@ public class ControllerGame implements Initializable {
         return grid;
     }
 
-    boolean CanMove;
 
-   private boolean canPlayeMove() {
-	   
-	  // if(blockPlayer = false) {
-	   CanMove = true;
-	   return CanMove;
-   }
-
-    
-    
-    
     
     /**Change position with key pressed
      *
@@ -399,56 +393,56 @@ public class ControllerGame implements Initializable {
         int i = gamelayoutgrid.getColumnIndex(rectangle_player);
         int j = gamelayoutgrid.getRowIndex(rectangle_player);
         System.out.println("want to move" );
-        if(canPlayeMove()== true)
         
         if (KeyEvent.KEY_PRESSED.equals(event.getEventType())) {
             playerIsActive = true;									// IS THAT ONLY USED FOR THE PICTURE
            
-            if (event.getCode().equals(KeyCode.UP)) {
-                direction = Direction.UP;
-                if (gameLayout.isWall(i, j - 1) == false) {
-                    gamelayoutgrid.setRowIndex(rectangle_player, GridPane.getRowIndex(rectangle_player) - 1);
-                }
-
-                playerIsMoving = true;
-            } else if (event.getCode().equals(KeyCode.DOWN)) {
-                direction = Direction.DOWN;
-
-                if (gameLayout.isWall(i, j + 1) == false) {
-                    gamelayoutgrid.setRowIndex(rectangle_player, GridPane.getRowIndex(rectangle_player) + 1);
-                }
-                playerIsMoving = true;
-
-            } else if (event.getCode().equals(KeyCode.LEFT)) {
-                direction = Direction.LEFT;
-
-                if (gameLayout.isWall(i - 1, j) == false) {
-                    gamelayoutgrid.setColumnIndex(rectangle_player, GridPane.getColumnIndex(rectangle_player) - 1);
-                }
-                playerIsMoving = true;
-            } else if (event.getCode().equals(KeyCode.RIGHT)) {
-                direction = Direction.RIGHT;
-
-                if (gameLayout.isWall(i + 1, j) == false) {
-                    gamelayoutgrid.setColumnIndex(rectangle_player, GridPane.getColumnIndex(rectangle_player) + 1);
-                }
-                playerIsMoving = true;
+            if (isPlayerNextToEnemy()) {
+            	shootOnEnemy(event);
             }
-            if (playerIsMoving) reduceLife(false);
-            //bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - 0.01);
-            image_player = getCharacterImage();
-            rectangle_player.setFill(new ImagePattern(image_player));
+            if(blockPlayer== false) { 	
+       
+            	if (event.getCode().equals(KeyCode.UP)) {
+            		direction = Direction.UP;
+            		if (gameLayout.isWall(i, j - 1) == false) {
+            			gamelayoutgrid.setRowIndex(rectangle_player, GridPane.getRowIndex(rectangle_player) - 1);
+            		}
+            		
+            		playerIsMoving = true;
+            	} else if (event.getCode().equals(KeyCode.DOWN)) {
+            		direction = Direction.DOWN;
+                
+            		if (gameLayout.isWall(i, j + 1) == false) {
+            			gamelayoutgrid.setRowIndex(rectangle_player, GridPane.getRowIndex(rectangle_player) + 1);
+            		}
+            		playerIsMoving = true;
 
-            rectangle_player.toFront();
-            isPlayerOnDoor(event);
-            isPlayerOnKey();
-            isPlayerOnHeart();
+            	} else if (event.getCode().equals(KeyCode.LEFT)) {
+            		direction = Direction.LEFT;
+            		
+            		if (gameLayout.isWall(i - 1, j) == false) {
+            			gamelayoutgrid.setColumnIndex(rectangle_player, GridPane.getColumnIndex(rectangle_player) - 1);
+            		}
+            		playerIsMoving = true;
+            	} else if (event.getCode().equals(KeyCode.RIGHT)) {
+            		direction = Direction.RIGHT;
 
-            if (isPlayerNextToEnemy()) shootOnEnemy(event);
-            //   if (isPlayerNextToEnemy()) System.out.print(nextenemy  + " test ");
-            //   if (isPlayerNextToEnemy()) System.out.print(whichcharacterisclose  + " whichcharacterisclose ");
-        } 
-      //  }
+            		if (gameLayout.isWall(i + 1, j) == false) {
+            			gamelayoutgrid.setColumnIndex(rectangle_player, GridPane.getColumnIndex(rectangle_player) + 1);
+            		}
+            		playerIsMoving = true;
+            	}
+            	if (playerIsMoving) reduceLife(false);
+            	//bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - 0.01);
+            	image_player = getCharacterImage();
+            	rectangle_player.setFill(new ImagePattern(image_player));
+
+            	rectangle_player.toFront();
+            	isPlayerOnDoor(event);
+            	isPlayerOnKey();
+            	isPlayerOnHeart();
+            }
+        } 	
     }
 
     /**
@@ -502,8 +496,6 @@ public class ControllerGame implements Initializable {
                     listHealth.remove(health);
                     return;
                 }
-
-
             }
         }
 
@@ -531,7 +523,6 @@ public class ControllerGame implements Initializable {
                 listOfKeys.remove(key);
                 return;
             }
-
         }
     }
 
@@ -552,6 +543,7 @@ public class ControllerGame implements Initializable {
      * Shoot on Enemy if you are next to it
      *
      * @param event
+     * 
      */
     private void shootOnEnemy(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
@@ -595,6 +587,8 @@ public class ControllerGame implements Initializable {
         listEnemies.remove(rectangle);
         augmentLife();
         blockPlayer = false;
+        timeline.stop();
+        timeline.pause();
         System.out.println("Move again" );
 
     }
@@ -625,7 +619,8 @@ public class ControllerGame implements Initializable {
 
             if (((playerColumn == enemyColumn) || (playerColumn + 1 == enemyColumn) || (playerColumn - 1 == enemyColumn)) && ((playerRow == enemyRow) || (playerRow + 1 == enemyRow) || (playerRow - 1 == enemyRow))) {
                 System.out.println("We cannot work anymore" );
-            	if (playerIsMoving) reduceLife(true);
+                setTimer();
+            	//if (playerIsMoving) reduceLife(true);
                 if (i == 1) {
                     blockPlayer = true;
 
@@ -686,6 +681,25 @@ public class ControllerGame implements Initializable {
         }
     }
 
+    private void fighting() {
+        double loosesHealth1 = 0.002;
+        double loosesHealth2 = 0.004;
+        double loosesHealth3 = 0.006;
+        if (bar_healthPlayer.getProgress() > 0.05) {  
+            if (numberOfEnemies >= 1) bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - loosesHealth1);
+            if (numberOfEnemies >= 2) bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - loosesHealth2);
+            if (numberOfEnemies >= 3) bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - loosesHealth3);
+        } else {
+            try {
+                switchToGameOver();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    
+    
+    
     /**
      * Method to Augment the Life of the player
      */
@@ -938,6 +952,32 @@ public class ControllerGame implements Initializable {
 
         }
     }
+    
+    
+    
+    DateFormat timeFormat = new SimpleDateFormat("mm:ss.SSS");
+    long startTime = System.currentTimeMillis();
+    long intoLong = 10000; //Time that the user has for the quest in milliseconds 30s --> 30 000 ms
+    Timeline timeline = new Timeline(
+            new KeyFrame(
+                    Duration.millis(100),
+                    event -> {                                      
+                            System.out.println("THis is a test " +bar_healthPlayer.getProgress());
+                           fighting();
+                    }
+            )
+    );
+    
+    /**Method to set the timer
+    *
+    */
+   public void setTimer() {
+       timeline.setCycleCount(Animation.INDEFINITE);
+       startTime = System.currentTimeMillis();
+       timeline.play();
+
+   }
+    
 }
 
 
