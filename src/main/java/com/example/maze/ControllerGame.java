@@ -576,7 +576,7 @@ public class ControllerGame implements Initializable {
                // if (myfighter2.getHealth(2) > 1) {
                     myfighter2.setHealth2(myfighter2.getHealth(2) - 1);
                   //  label_healthEnemy2.setText(String.valueOf(myfighter2.getHealth(2)));
-                    bar_healthEnemy2.setProgress(bar_healthEnemy1.getProgress() - 0.04);
+                    bar_healthEnemy2.setProgress(bar_healthEnemy2.getProgress() - 0.04);
                 } else {
                     removeEnemy( nextEnemyRectangle,bar_healthEnemy2 );
 
@@ -585,7 +585,7 @@ public class ControllerGame implements Initializable {
             	if (bar_healthEnemy3.getProgress() > 0.05) {
                // if (myfighter3.getHealth(3) > 1) {
                     myfighter3.setHealth3(myfighter3.getHealth(3) - 1);
-                    bar_healthEnemy1.setProgress(bar_healthEnemy1.getProgress() - 0.04);
+                    bar_healthEnemy3.setProgress(bar_healthEnemy3.getProgress() - 0.04);
                  //   label_healthEnemy3.setText(String.valueOf(myfighter3.getHealth(3)));
                 } else {
                     removeEnemy(nextEnemyRectangle, bar_healthEnemy3);
@@ -643,7 +643,7 @@ public class ControllerGame implements Initializable {
             	//if (playerIsMoving) reduceLife(true);
                 if (i == 1) {
                     
-
+                	
                     nextenemy1 = myfighter1;
                     nextenemy2 = null;
                     nextenemy3 = null;
@@ -704,7 +704,7 @@ public class ControllerGame implements Initializable {
         double loosesHealth1 = 0.004;
         double loosesHealth2 = 0.006;
         double loosesHealth3 = 0.008;
-        if (bar_healthPlayer.getProgress() > 0.05) {  
+        if (bar_healthPlayer.getProgress() > 0.1) {  
             if (numberOfEnemies >= 1) bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - loosesHealth1);
             if (numberOfEnemies >= 2) bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - loosesHealth2);
             if (numberOfEnemies >= 3) bar_healthPlayer.setProgress(bar_healthPlayer.getProgress() - loosesHealth3);
